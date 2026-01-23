@@ -10,6 +10,9 @@ from enum import Enum
 
 from physical_design_intelligence import PhysicalDesignIntelligence
 from synthetic_design_generator import DesignSpec
+from core.rtl_transformer import RTLTransformer
+import tempfile
+import os
 
 
 class OptimizationStrategy(Enum):
@@ -19,6 +22,7 @@ class OptimizationStrategy(Enum):
     REDUCE_REGISTER_COUNT = "reduce_register_count"
     OPTIMIZE_FANOUT = "optimize_fanout"
     BALANCE_AREA_POWER = "balance_area_power"
+    CLOCK_GATING = "clock_gating"
 
 
 class AutonomousOptimizer:
@@ -29,12 +33,14 @@ class AutonomousOptimizer:
     
     def __init__(self):
         self.design_intelligence = PhysicalDesignIntelligence()
+        self.rtl_transformer = RTLTransformer()
         self.optimization_strategies = {
             OptimizationStrategy.PIPELINE_CRITICAL_PATHS: self._apply_pipelining,
             OptimizationStrategy.CLUSTER_CONGESTED_AREAS: self._apply_clustering,
             OptimizationStrategy.REDUCE_REGISTER_COUNT: self._reduce_registers,
             OptimizationStrategy.OPTIMIZE_FANOUT: self._optimize_fanout,
-            OptimizationStrategy.BALANCE_AREA_POWER: self._balance_area_power
+            OptimizationStrategy.BALANCE_AREA_POWER: self._balance_area_power,
+            OptimizationStrategy.CLOCK_GATING: self._apply_clock_gating
         }
     
     def analyze_and_optimize(self, rtl_content: str, design_name: str = "unnamed") -> Dict[str, Any]:
@@ -141,58 +147,72 @@ class AutonomousOptimizer:
             return rtl_content
     
     def _apply_pipelining(self, rtl_content: str, params: Dict) -> str:
-        """Apply pipelining to critical paths"""
-        # This is a simplified example - in practice, this would be much more complex
-        # and would require proper RTL parsing and transformation
+        """Apply pipelining to critical paths using AST transformation"""
+        print(f"Applying AST-based pipelining for parameters: {params}")
         
-        # Look for patterns that could benefit from pipelining
-        if "assign sum =" in rtl_content and " + " in rtl_content:
-            # Simple example: convert a combinational adder to pipelined
-            if "module " in rtl_content and "input clk" not in rtl_content:
-                # Add clock and pipeline registers
-                lines = rtl_content.split('\n')
-                new_lines = []
-                
-                for line in lines:
-                    if "output" in line and "[" in line and "]" in line and "sum" in line:
-                        # Change output to reg and add clock
-                        new_lines.append(line.replace("output", "output reg"))
-                        # Add clock input
-                        for i, l in enumerate(lines):
-                            if "module " in l and "input" in l:
-                                # Insert clock after module declaration
-                                new_lines.insert(i+1, "    input clk;")
-                                new_lines.insert(i+2, "    input rst_n;")
-                                break
-                    elif "assign sum =" in line:
-                        # Replace assign with always block for pipelining
-                        continue  # Skip the assign line, we'll add pipelined version
-                    else:
-                        new_lines.append(line)
-                
-                # Add pipelined implementation
-                pipelined_logic = [
-                    "",
-                    "    reg sum_pipe;",
-                    "",
-                    "    always @(posedge clk) begin",
-                    "        if (!rst_n)",
-                    "            sum_pipe <= 0;",
-                    "        else",
-                    "            sum_pipe <= /* original calculation */;",
-                    "    end",
-                    ""
-                ]
-                
-                # Insert pipelined logic before endmodule
-                for i, line in enumerate(new_lines):
-                    if "endmodule" in line:
-                        new_lines[i:i] = pipelined_logic
-                        break
-                
-                return '\n'.join(new_lines)
+        # 1. Write RTL to temp file for the transformer
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.v', delete=False) as tmp:
+            tmp.write(rtl_content)
+            tmp_path = tmp.name
         
-        return rtl_content  # Placeholder - real implementation would be complex
+        try:
+            # 2. Parse and Transform
+            ast = self.rtl_transformer.parse_rtl(tmp_path)
+            
+            # For demonstration, we'll pipeline 'processed_data' if it exists, 
+            # or try to find a suitable candidate from params
+            target_signal = params.get('target_signal', 'processed_data')
+            module_name = params.get('module_name', 'test_engine')
+            
+            try:
+                ast, reg_name = self.rtl_transformer.add_pipeline_stage(ast, module_name, target_signal)
+                
+                # Robustly update all sinks of the original signal to use the new pipe reg
+                ast = self.rtl_transformer.update_signal_sinks(ast, module_name, target_signal, reg_name)
+                
+                # 3. Generate new RTL
+                optimized_rtl = self.rtl_transformer.generate_verilog(ast)
+                return optimized_rtl
+            except Exception as transform_err:
+                print(f"AST Transformation failed: {transform_err}. Returning original.")
+                return rtl_content
+                
+        finally:
+            if os.path.exists(tmp_path):
+                os.remove(tmp_path)
+
+    def _apply_clock_gating(self, rtl_content: str, params: Dict) -> str:
+        """Apply clock gating to reduce dynamic power using AST transformation"""
+        print(f"Applying AST-based clock gating for parameters: {params}")
+        
+        # 1. Write RTL to temp file for the transformer
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.v', delete=False) as tmp:
+            tmp.write(rtl_content)
+            tmp_path = tmp.name
+        
+        try:
+            # 2. Parse and Transform
+            ast = self.rtl_transformer.parse_rtl(tmp_path)
+            
+            target_signal = params.get('target_signal', 'reg_data')
+            module_name = params.get('module_name', 'top_module')
+            enable_signal = params.get('enable_signal', 'en')
+            
+            try:
+                ast, gated_clk = self.rtl_transformer.insert_clock_gate(
+                    ast, module_name, target_signal, enable_signal
+                )
+                
+                # 3. Generate new RTL
+                optimized_rtl = self.rtl_transformer.generate_verilog(ast)
+                return optimized_rtl
+            except Exception as transform_err:
+                print(f"AST Power Transformation failed: {transform_err}. Returning original.")
+                return rtl_content
+                
+        finally:
+            if os.path.exists(tmp_path):
+                os.remove(tmp_path)
     
     def _apply_clustering(self, rtl_content: str, params: Dict) -> str:
         """Apply clustering to reduce congestion"""

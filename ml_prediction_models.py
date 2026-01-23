@@ -17,6 +17,8 @@ import seaborn as sns
 from dataclasses import dataclass
 
 from physical_design_intelligence import PhysicalDesignIntelligence
+import torch
+from networks.graph_neural_network import SiliconGNN, convert_to_pyg_data
 
 
 @dataclass
@@ -44,6 +46,15 @@ class DesignPPAPredictor:
         }
         self.feature_columns = []
         self.is_trained = False
+        
+        # GNN-related
+        self.gnn_model = None
+        self.use_gnn = False
+    
+    def enable_gnn(self, in_channels=7, hidden_channels=64):
+        """Enable and initialize the GNN model"""
+        self.gnn_model = SiliconGNN(in_channels=in_channels, hidden_channels=hidden_channels, out_channels=3)
+        self.use_gnn = True
     
     def prepare_features(self, feature_dict: Dict[str, Any]) -> np.ndarray:
         """Convert feature dictionary to feature vector"""
@@ -97,6 +108,9 @@ class DesignPPAPredictor:
         print(f"Feature matrix shape: {X.shape}")
         print(f"Feature columns: {self.feature_columns}")
         
+        if self.use_gnn and self.gnn_model is not None:
+            self._train_gnn(design_records)
+        
         # Train each model
         for target_name, y in y_targets.items():
             print(f"Training {target_name} model...")
@@ -110,6 +124,46 @@ class DesignPPAPredictor:
         
         self.is_trained = True
         print("Training completed!")
+
+    def _train_gnn(self, design_records: List[Dict], epochs=50):
+        """Train the GNN model using design records"""
+        from torch_geometric.loader import DataLoader
+        
+        print(f"Training GNN on {len(design_records)} designs...")
+        pyg_dataset = []
+        for record in design_records:
+            if 'silicon_graph' in record:
+                data = convert_to_pyg_data(record['silicon_graph'])
+                # Targets: [area, power, timing]
+                y = [
+                    float(record['labels'].get('actual_area', 0.0)),
+                    float(record['labels'].get('actual_power', 0.0)),
+                    float(record['labels'].get('actual_timing', 0.0))
+                ]
+                data.y = torch.tensor([y], dtype=torch.float)
+                pyg_dataset.append(data)
+        
+        if not pyg_dataset:
+            print("No graph data found for GNN training, skipping.")
+            return
+
+        loader = DataLoader(pyg_dataset, batch_size=min(4, len(pyg_dataset)), shuffle=True)
+        optimizer = torch.optim.Adam(self.gnn_model.parameters(), lr=0.01)
+        criterion = torch.nn.MSELoss()
+        
+        self.gnn_model.train()
+        for epoch in range(epochs):
+            total_loss = 0
+            for batch in loader:
+                optimizer.zero_grad()
+                out = self.gnn_model(batch.x, batch.edge_index, batch.batch)
+                loss = criterion(out, batch.y)
+                loss.backward()
+                optimizer.step()
+                total_loss += loss.item()
+            
+            if (epoch + 1) % 10 == 0:
+                print(f"  Epoch {epoch+1}/{epochs}, Loss: {total_loss/len(loader):.4f}")
     
     def predict(self, feature_dict: Dict[str, Any]) -> Dict[str, float]:
         """Predict PPA metrics for a given design"""
@@ -120,9 +174,37 @@ class DesignPPAPredictor:
         X = self.prepare_features(feature_dict)
         
         predictions = {}
-        for target_name, model in self.models.items():
-            pred = model.predict(X)[0]
-            predictions[target_name] = max(0, pred)  # Ensure non-negative predictions
+        
+        if self.use_gnn and self.gnn_model is not None:
+            # GNN prediction requires a silicon_graph object which might be in the feature_dict
+            # or we might need to recreate it. For now, assume it's passed or we can't use GNN.
+            if 'silicon_graph' in feature_dict:
+                self.gnn_model.eval()
+                with torch.no_grad():
+                    pyg_data = convert_to_pyg_data(feature_dict['silicon_graph'])
+                    # SiliconGNN expects batch index; for single graph it's all zeros
+                    batch = torch.zeros(pyg_data.x.size(0), dtype=torch.long)
+                    gnn_out = self.gnn_model(pyg_data.x, pyg_data.edge_index, batch)
+                    
+                    predictions['area'] = max(0, float(gnn_out[0, 0]))
+                    predictions['power'] = max(0, float(gnn_out[0, 1]))
+                    predictions['timing'] = max(0, float(gnn_out[0, 2]))
+            else:
+                # Fallback to ridge if no graph provided
+                for target_name in ['area', 'power', 'timing']:
+                    X = self.prepare_features(feature_dict)
+                    pred = self.models[target_name].predict(X)[0]
+                    predictions[target_name] = max(0, pred)
+        else:
+            for target_name, model in self.models.items():
+                X = self.prepare_features(feature_dict)
+                pred = model.predict(X)[0]
+                predictions[target_name] = max(0, pred)
+        
+        # Always run DRC violations with RF for now
+        if 'drc_violations' not in predictions:
+            X = self.prepare_features(feature_dict)
+            predictions['drc_violations'] = max(0, self.models['drc_violations'].predict(X)[0])
         
         return predictions
     
