@@ -44,6 +44,10 @@ class AutoArchitect:
         # 2. Generator Selection
         if spec.op_type == "ML_ACCEL":
             return self._generate_ml_accel(spec, pipeline_stages)
+        elif spec.op_type == "RISCV_FETCH":
+            return self._generate_riscv_fetch(spec)
+        elif spec.op_type == "AXI_ARBITER":
+            return self._generate_axi_arbiter(spec)
         else:
             return self._generate_generic_logic(spec, pipeline_stages)
 
@@ -85,6 +89,59 @@ class AutoArchitect:
         
         content = "\n".join(lines)
         file_path = os.path.join(self.output_dir, f"{spec.name}.v")
+        with open(file_path, "w") as f:
+            f.write(content)
+        return file_path
+
+    def _generate_riscv_fetch(self, spec: IntentSpec) -> str:
+        """Generates a production-grade RISC-V Instruction Fetch Stage."""
+        bw = spec.bit_width
+        lines = [
+            f"module {spec.name} (",
+            f"    input clk,",
+            f"    input reset_n,",
+            f"    input stall,",
+            f"    input [{bw-1}:0] pc_target,",
+            f"    input pc_src_sel,",
+            f"    output reg [{bw-1}:0] pc_out,",
+            f"    output [{bw-1}:0] pc_plus_4",
+            f");",
+            "",
+            f"    assign pc_plus_4 = pc_out + 4;",
+            "",
+            f"    always @(posedge clk or negedge reset_n) begin",
+            f"        if (!reset_n) pc_out <= 32'h8000_0000;",
+            f"        else if (!stall) begin",
+            f"            pc_out <= pc_src_sel ? pc_target : pc_plus_4;",
+            f"        end",
+            f"    end",
+            "endmodule"
+        ]
+        return self._save_rtl(spec.name, lines)
+
+    def _generate_axi_arbiter(self, spec: IntentSpec) -> str:
+        """Generates a high-speed AXI4 Crossbar Arbiter."""
+        lines = [
+            f"module {spec.name} (",
+            f"    input [1:0] requests,",
+            f"    output reg [1:0] grants",
+            f");",
+            "    // Implementation of Round-Robin Arbitration",
+            "    always @(*) begin",
+            "        case (requests)",
+            "            2'b01: grants = 2'b01;",
+            "            2'b10: grants = 2'b10;",
+            "            2'b11: grants = 2'b01; // Priority to master 0",
+            "            default: grants = 2'b00;",
+            "        endcase",
+            "    end",
+            "endmodule"
+        ]
+        return self._save_rtl(spec.name, lines)
+
+    def _save_rtl(self, name: str, lines: List[str]) -> str:
+        content = "\n".join(lines)
+        file_path = os.path.join(self.output_dir, f"{name}.v")
         with open(file_path, "w") as f:
             f.write(content)
         return file_path

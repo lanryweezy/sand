@@ -53,6 +53,17 @@ class PDKManager:
                         'lib': {'tt': 'gaa2_ultra/lib/gaa2_ultra__tt_025C_0v70.lib'}
                     }
                 }
+            },
+            'asap7': {
+                'name': 'ASAP7 7nm Predictive',
+                'process_node_nm': 7,
+                'layers': ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9'],
+                'sc_libs': {
+                    'rvt': {
+                        'lef': 'asap7/lef/asap7_sc7p5t_28_rvt_4x_201220.lef',
+                        'lib': {'tt': 'asap7/lib/asap7_sc7p5t_rev28_rvt_tt_201220.lib'}
+                    }
+                }
             }
         }
 
