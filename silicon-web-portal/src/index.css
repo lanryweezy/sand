@@ -20,7 +20,7 @@ body {
   color: var(--text-primary);
   font-family: var(--font-family);
   overflow: hidden;
-  background-image: 
+  background-image:
     radial-gradient(circle at 20% 20%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
     radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 40%);
   height: 100vh;
@@ -32,7 +32,7 @@ body {
 
 .dashboard-container {
   display: grid;
-  grid-template-areas: 
+  grid-template-areas:
     "header header header"
     "sidebar main feeds";
   grid-template-columns: 280px 1fr 320px;
@@ -156,41 +156,126 @@ main {
   fill: rgba(255, 204, 0, 0.1);
 }
 
+/* Advanced Animations */
+@keyframes pulse-cyan {
+  0% {
+    filter: drop-shadow(0 0 2px var(--accent-cyan));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 12px var(--accent-cyan));
+  }
+
+  100% {
+    filter: drop-shadow(0 0 2px var(--accent-cyan));
+  }
+}
+
+@keyframes pulse-magenta {
+  0% {
+    filter: drop-shadow(0 0 2px var(--accent-magenta));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 12px var(--accent-magenta));
+  }
+
+  100% {
+    filter: drop-shadow(0 0 2px var(--accent-magenta));
+  }
+}
+
+@keyframes signal-flow {
+  from {
+    stroke-dashoffset: 20;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes text-glitch {
+  0% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  97% {
+    opacity: 0.8;
+    transform: translateX(-2px);
+  }
+
+  99% {
+    opacity: 0.9;
+    transform: translateX(2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .pipelined-block {
   stroke: var(--accent-magenta);
   fill: rgba(255, 0, 255, 0.1);
+  animation: pulse-magenta 3s infinite ease-in-out;
 }
 
-/* Intelligence Feed */
-.cyber-feed {
-  flex: 1;
-  overflow-y: auto;
-  padding: 15px;
+.block-rect:not(.pipelined-block):not(.gated-block) {
+  animation: pulse-cyan 4s infinite ease-in-out;
+}
+
+.signal-path {
+  stroke-dasharray: 4;
+  animation: signal-flow 1s infinite linear;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-glitch 5s infinite;
+}
+
+/* Milestone Checklist Style */
+.milestone-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.milestone-item {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.feed-item {
-  border-left: 2px solid var(--accent-cyan);
-  padding-left: 12px;
-  padding-bottom: 8px;
-  font-size: 0.85rem;
-}
-
-.feed-time {
-  font-size: 0.7rem;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
   color: var(--text-secondary);
-  margin-bottom: 4px;
 }
 
-.feed-title {
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 2px;
+.led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #333;
 }
 
-.feed-desc {
-  color: var(--text-secondary);
-  font-style: italic;
+.led-active {
+  background: #00ff00;
+  box-shadow: 0 0 6px #00ff00;
+}
+
+.led-warning {
+  background: #ffcc00;
+  box-shadow: 0 0 6px #ffcc00;
 }
