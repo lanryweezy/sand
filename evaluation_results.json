@@ -1,0 +1,46 @@
+{
+  "evaluation_timestamp": "2026-01-22T06:59:10.207622",
+  "total_designs_evaluated": 3,
+  "average_accuracy": 0.0,
+  "average_time_saved_per_design": 29.7,
+  "total_bad_decisions_avoided": 32,
+  "average_prediction_time": 0.02366010348002116,
+  "detailed_results": [
+    {
+      "design_name": "mac_array_small",
+      "accuracy_score": 0.0,
+      "congestion_accuracy": 0.0,
+      "timing_accuracy": 0.0,
+      "power_accuracy": 0.0,
+      "drc_accuracy": 0.0,
+      "time_saved": 18.75,
+      "bad_decisions_avoided": 8
+    },
+    {
+      "design_name": "convolution_core",
+      "accuracy_score": 0.0,
+      "congestion_accuracy": 0.0,
+      "timing_accuracy": 0.0,
+      "power_accuracy": 0.0,
+      "drc_accuracy": 0.0,
+      "time_saved": 27.3,
+      "bad_decisions_avoided": 10
+    },
+    {
+      "design_name": "tensor_processor",
+      "accuracy_score": 0.0,
+      "congestion_accuracy": 0.0,
+      "timing_accuracy": 0.0,
+      "power_accuracy": 0.0,
+      "drc_accuracy": 0.0,
+      "time_saved": 43.05,
+      "bad_decisions_avoided": 14
+    }
+  ],
+  "summary": {
+    "prediction_accuracy": "0.00%",
+    "time_saved_per_design": "29.7 hours",
+    "bad_decisions_prevented_total": 32,
+    "prediction_speed": "0.02s per design"
+  }
+}

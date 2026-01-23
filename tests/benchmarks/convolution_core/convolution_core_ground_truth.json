@@ -1,0 +1,50 @@
+{
+  "actual_congestion_map": {
+    "product_calc_region": 0.85,
+    "accumulator_chain": 0.7,
+    "input_buffer": 0.45,
+    "output_driver": 0.55
+  },
+  "actual_timing_violations": [
+    {
+      "path": "input_to_product",
+      "slack": -0.08,
+      "endpoint": "products[5][15]"
+    },
+    {
+      "path": "product_to_accum",
+      "slack": -0.12,
+      "endpoint": "accumulator[15]"
+    }
+  ],
+  "actual_power_hotspots": [
+    {
+      "region": "product_calc_region",
+      "power": 0.92,
+      "type": "dynamic"
+    },
+    {
+      "region": "accumulator_chain",
+      "power": 0.75,
+      "type": "dynamic"
+    }
+  ],
+  "actual_drc_violations": [
+    {
+      "rule": "min_spacing",
+      "count": 5,
+      "location": "product_calc_region"
+    },
+    {
+      "rule": "density",
+      "count": 2,
+      "location": "accumulator_chain"
+    }
+  ],
+  "implementation_time": 18.2,
+  "ppa_results": {
+    "power": 0.245,
+    "performance": 1.6,
+    "area": 1.25
+  }
+}
