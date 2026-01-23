@@ -6,6 +6,8 @@ Focuses on the SkyWater 130nm (sky130) Process Design Kit.
 from typing import Dict, List, Any, Optional
 import os
 
+from core.node_physics import GAAFETPhysicsModel
+
 class PDKManager:
     """
     Manages Paths to LEFs, Libs, and technology rules for specific process nodes.
@@ -15,8 +17,9 @@ class PDKManager:
     def __init__(self, pdk_root: Optional[str] = None):
         self.pdk_root = pdk_root or os.environ.get('PDK_ROOT', '/usr/local/pdk')
         self.current_node = "sky130"
+        self.atomic_physics = GAAFETPhysicsModel(3)
         
-        # Professional standard cell library configuration for SkyWater 130nm
+        # Professional standard cell library configuration
         self.tech_configs = {
             'sky130': {
                 'name': 'SkyWater 130nm',
@@ -25,15 +28,31 @@ class PDKManager:
                 'sc_libs': {
                     'hd': {
                         'lef': 'sky130_fd_sc_hd/lef/sky130_fd_sc_hd.merged.lef',
-                        'lib': {
-                            'tt': 'sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib',
-                            'ss': 'sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib',
-                            'ff': 'sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib'
-                        }
+                        'lib': {'tt': 'sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib'}
                     }
-                },
-                'power_nets': {'vdd': 'VDD', 'vss': 'VSS'},
-                'site_name': 'unithd'
+                }
+            },
+            'gaa3': {
+                'name': 'AtomicGAA 3nm',
+                'process_node_nm': 3,
+                'layers': ['m0', 'm1', 'm2', 'm3', 'm4', 'm5', 'm6'],
+                'sc_libs': {
+                    'pro': {
+                        'lef': 'gaa3_pro/lef/gaa3_pro.merged.lef',
+                        'lib': {'tt': 'gaa3_pro/lib/gaa3_pro__tt_025C_0v75.lib'}
+                    }
+                }
+            },
+            'gaa2': {
+                'name': 'AtomicGAA 2nm',
+                'process_node_nm': 2,
+                'layers': ['m0', 'm1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7'],
+                'sc_libs': {
+                    'ultra': {
+                        'lef': 'gaa2_ultra/lef/gaa2_ultra.merged.lef',
+                        'lib': {'tt': 'gaa2_ultra/lib/gaa2_ultra__tt_025C_0v70.lib'}
+                    }
+                }
             }
         }
 
