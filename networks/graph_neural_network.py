@@ -75,15 +75,15 @@ def convert_to_pyg_data(silicon_graph):
         node_to_idx[node] = i
         node_type_val = node_type_map.get(attrs.get('node_type').value if hasattr(attrs.get('node_type'), 'value') else attrs.get('node_type'), 5)
         
-        # Build node feature vector
+        # Build node feature vector, ensuring robustness against None values
         feat = [
             float(node_type_val),
-            float(attrs.get('area', 1.0)),
-            float(attrs.get('power', 0.0)),
-            float(attrs.get('delay', 0.0)),
-            float(attrs.get('capacitance', 0.0)),
-            float(attrs.get('estimated_congestion', 0.0)),
-            float(attrs.get('timing_criticality', 0.0))
+            float(attrs.get('area') or 1.0),
+            float(attrs.get('power') or 0.0),
+            float(attrs.get('delay') or 0.0),
+            float(attrs.get('capacitance') or 0.0),
+            float(attrs.get('estimated_congestion') or 0.0),
+            float(attrs.get('timing_criticality') or 0.0)
         ]
         x_list.append(feat)
     

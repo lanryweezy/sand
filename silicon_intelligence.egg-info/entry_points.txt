@@ -1,2 +1,0 @@
-[console_scripts]
-silicon-intel = silicon_intelligence.main:main

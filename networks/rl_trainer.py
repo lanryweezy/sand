@@ -22,7 +22,7 @@ class SiliconRLTrainer:
     def _get_state_key(self, state: Dict[str, Any]) -> str:
         """Discretize state for Q-Table mapping"""
         # Professional discretization: round metrics to nearest 0.1
-        return f"t{round(state['avg_timing_slack'], 1)}_c{round(state['congestion_index'], 1)}"
+        return f"p{round(state['power'], 1)}_a{round(state['area'], 1)}_t{round(state['performance'], 1)}"
 
     def choose_action(self, state: Dict[str, Any]) -> Dict[str, Any]:
         """Epsilon-greedy action selection"""
