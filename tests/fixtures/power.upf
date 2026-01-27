@@ -1,0 +1,13 @@
+# Sample UPF power constraints file for testing
+
+# Create power domain
+create_power_domain -name PD_CPU -supply {VDD} -ground {VSS}
+
+# Create voltage domain
+create_voltage_domain -name VD_CPU -supply {VDD}
+
+# Create power switch
+create_power_switch -name PS_CPU -domain PD_CPU
+
+# Set isolation
+set_isolation -domain PD_CPU -isolation_power_net VDD

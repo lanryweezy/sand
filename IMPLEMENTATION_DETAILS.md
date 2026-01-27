@@ -1,631 +1,433 @@
 # Silicon Intelligence System - Implementation Details
 
-## Tier 1: Critical Foundation
+## Tier 1: Integration & Validation (CORRECTED)
 
-### 1.1 RTL Parser Implementation
+### 1.1 Real EDA Tool Integration
 
-#### Current State
-- `silicon-intelligence/data/rtl_parser.py` exists but is mostly placeholder
-- No actual Verilog/VHDL parsing
-- No constraint parsing (SDC/UPF)
-
-#### Implementation Plan
-
-**Step 1: Choose Parsing Libraries**
-```python
-# Recommended libraries:
-# - pyverilog: Verilog parsing (https://github.com/PyHDL/pyverilog)
-# - pyhdl: VHDL parsing (https://github.com/PyHDL/pyhdl)
-# - pyyaml: For constraint files
-# - lark: For custom grammar parsing if needed
-
-# Add to requirements.txt:
-pyverilog>=1.3.0
-pyhdl>=0.11.0
-pyyaml>=6.0
-```
-
-**Step 2: Implement Core Parser Methods**
-
-```python
-# In rtl_parser.py
-
-class RTLParser:
-    def parse_verilog(self, verilog_file: str) -> Dict:
-        """
-        Parse Verilog file and extract design information
-        
-        Returns:
-        {
-            'instances': [
-                {'name': 'u_cpu', 'type': 'CPU', 'parameters': {...}},
-                ...
-            ],
-            'nets': [
-                {'name': 'clk', 'connections': [('u_cpu', 'clk'), ...]},
-                ...
-            ],
-            'ports': [
-                {'name': 'clk', 'direction': 'input', 'width': 1},
-                ...
-            ],
-            'hierarchy': {...},
-            'parameters': {...}
-        }
-        """
-        # Use pyverilog to parse
-        # Extract instances, nets, ports
-        # Build hierarchy
-        pass
-    
-    def parse_sdc(self, sdc_file: str) -> Dict:
-        """
-        Parse SDC (Synopsys Design Constraints) file
-        
-        Returns:
-        {
-            'clocks': [
-                {'name': 'clk', 'period': 10.0, 'uncertainty': 0.5},
-                ...
-            ],
-            'timing_paths': [
-                {'from': 'input_port', 'to': 'output_port', 'constraint': 8.0},
-                ...
-            ],
-            'input_delays': [...],
-            'output_delays': [...],
-            'false_paths': [...]
-        }
-        """
-        # Parse SDC commands
-        # Extract clock definitions
-        # Extract timing constraints
-        pass
-    
-    def parse_upf(self, upf_file: str) -> Dict:
-        """
-        Parse UPF (Unified Power Format) file
-        
-        Returns:
-        {
-            'power_domains': [
-                {'name': 'PD_CPU', 'supply': 'VDD', 'ground': 'VSS'},
-                ...
-            ],
-            'voltage_domains': [...],
-            'power_switches': [...],
-            'isolation_cells': [...]
-        }
-        """
-        # Parse UPF commands
-        # Extract power domains
-        # Extract voltage domains
-        pass
-    
-    def build_rtl_data(self, verilog_file: str, sdc_file: str = None, 
-                      upf_file: str = None) -> Dict:
-        """
-        Build complete RTL data structure
-        """
-        rtl_data = self.parse_verilog(verilog_file)
-        
-        if sdc_file:
-            rtl_data['constraints'] = self.parse_sdc(sdc_file)
-        
-        if upf_file:
-            rtl_data['power_info'] = self.parse_upf(upf_file)
-        
-        return rtl_data
-```
-
-**Step 3: Create Test Suite**
-
-```python
-# In tests/test_rtl_parser.py
-
-def test_parse_simple_verilog():
-    """Test parsing a simple Verilog file"""
-    parser = RTLParser()
-    rtl_data = parser.parse_verilog('tests/fixtures/simple.v')
-    
-    assert 'instances' in rtl_data
-    assert 'nets' in rtl_data
-    assert 'ports' in rtl_data
-    assert len(rtl_data['instances']) > 0
-
-def test_parse_sdc():
-    """Test parsing SDC constraints"""
-    parser = RTLParser()
-    constraints = parser.parse_sdc('tests/fixtures/constraints.sdc')
-    
-    assert 'clocks' in constraints
-    assert len(constraints['clocks']) > 0
-    assert 'period' in constraints['clocks'][0]
-
-def test_parse_upf():
-    """Test parsing UPF power constraints"""
-    parser = RTLParser()
-    power_info = parser.parse_upf('tests/fixtures/power.upf')
-    
-    assert 'power_domains' in power_info
-    assert len(power_info['power_domains']) > 0
-```
-
-**Step 4: Create Test Fixtures**
-
-Create sample RTL files in `tests/fixtures/`:
-- `simple.v` - Simple counter or adder
-- `medium.v` - More complex design with hierarchy
-- `constraints.sdc` - Sample timing constraints
-- `power.upf` - Sample power constraints
-
-#### Success Criteria
-- [ ] Can parse Verilog files with 100+ instances
-- [ ] Can parse SDC files with 10+ constraints
-- [ ] Can parse UPF files with multiple power domains
-- [ ] All test cases pass
-- [ ] Handles error cases gracefully
-
----
-
-### 1.2 CanonicalSiliconGraph Robustness
-
-#### Current State
-- Graph structure exists
-- Basic node/edge operations work
-- Missing: deepcopy, serialization, consistency checking
+#### Current State (ACCURATE)
+- `silicon-intelligence/core/openroad_interface.py` exists with framework
+- Basic OpenROAD integration implemented
+- Need connection to actual tools
+- Output parsing framework in place
 
 #### Implementation Plan
 
-**Step 1: Implement Deepcopy**
-
+**Step 1: Connect to Real OpenROAD**
 ```python
-# In canonical_silicon_graph.py
+# In openroad_interface.py
 
-import copy
+class OpenROADInterface:
+    def run_placement(self, design_data: Dict, config: Dict = None) -> Dict:
+        """
+        Run actual OpenROAD placement with real tool
 
-class CanonicalSiliconGraph:
-    def __deepcopy__(self, memo):
-        """Create a deep copy of the graph"""
-        # Create new instance
-        new_graph = CanonicalSiliconGraph()
-        
-        # Deep copy the NetworkX graph
-        new_graph.graph = copy.deepcopy(self.graph, memo)
-        
-        # Deep copy metadata
-        new_graph.metadata = copy.deepcopy(self.metadata, memo)
-        
-        return new_graph
-    
-    def copy(self):
-        """Create a shallow copy"""
-        return copy.copy(self)
-```
+        Args:
+            design_data: Design data from canonical graph
+            config: Tool-specific configuration
 
-**Step 2: Add Consistency Validation**
+        Returns:
+            Results from actual OpenROAD run
+        """
+        # Generate actual OpenROAD TCL script
+        tcl_script = self.generate_placement_script(design_data, config)
 
-```python
-def validate_graph_consistency(self) -> Tuple[bool, List[str]]:
-    """
-    Validate graph consistency
-    
-    Returns:
-        (is_valid, list_of_errors)
-    """
-    errors = []
-    
-    # Check 1: All nodes have required attributes
-    for node, attrs in self.graph.nodes(data=True):
-        if 'node_type' not in attrs:
-            errors.append(f"Node {node} missing node_type")
-        if 'area' not in attrs:
-            errors.append(f"Node {node} missing area")
-    
-    # Check 2: All edges have required attributes
-    for src, dst, attrs in self.graph.edges(data=True):
-        if 'edge_type' not in attrs:
-            errors.append(f"Edge {src}->{dst} missing edge_type")
-    
-    # Check 3: No orphaned nodes (except ports)
-    for node, attrs in self.graph.nodes(data=True):
-        if attrs.get('node_type') != 'port':
-            if self.graph.degree(node) == 0:
-                errors.append(f"Node {node} is orphaned")
-    
-    # Check 4: Timing criticality in valid range
-    for node, attrs in self.graph.nodes(data=True):
-        crit = attrs.get('timing_criticality', 0.0)
-        if not (0.0 <= crit <= 1.0):
-            errors.append(f"Node {node} has invalid criticality: {crit}")
-    
-    return len(errors) == 0, errors
-```
+        # Write to temporary file
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.tcl', delete=False) as f:
+            f.write(tcl_script)
+            script_path = f.name
 
-**Step 3: Implement Serialization**
-
-```python
-import json
-
-def serialize_to_json(self, filepath: str):
-    """Serialize graph to JSON file"""
-    data = {
-        'nodes': {},
-        'edges': [],
-        'metadata': self.metadata
-    }
-    
-    # Serialize nodes
-    for node, attrs in self.graph.nodes(data=True):
-        # Convert enums to strings
-        node_attrs = {}
-        for key, value in attrs.items():
-            if isinstance(value, Enum):
-                node_attrs[key] = value.value
-            else:
-                node_attrs[key] = value
-        data['nodes'][node] = node_attrs
-    
-    # Serialize edges
-    for src, dst, key, attrs in self.graph.edges(keys=True, data=True):
-        edge_attrs = {}
-        for key, value in attrs.items():
-            if isinstance(value, Enum):
-                edge_attrs[key] = value.value
-            else:
-                edge_attrs[key] = value
-        data['edges'].append({
-            'source': src,
-            'target': dst,
-            'attributes': edge_attrs
-        })
-    
-    with open(filepath, 'w') as f:
-        json.dump(data, f, indent=2)
-
-def deserialize_from_json(self, filepath: str):
-    """Deserialize graph from JSON file"""
-    with open(filepath, 'r') as f:
-        data = json.load(f)
-    
-    # Clear current graph
-    self.graph.clear()
-    
-    # Deserialize nodes
-    for node_name, node_attrs in data['nodes'].items():
-        # Convert string enums back to Enum objects
-        if 'node_type' in node_attrs:
-            node_attrs['node_type'] = NodeType(node_attrs['node_type'])
-        self.graph.add_node(node_name, **node_attrs)
-    
-    # Deserialize edges
-    for edge_data in data['edges']:
-        src = edge_data['source']
-        dst = edge_data['target']
-        attrs = edge_data['attributes']
-        if 'edge_type' in attrs:
-            attrs['edge_type'] = EdgeType(attrs['edge_type'])
-        self.graph.add_edge(src, dst, **attrs)
-    
-    # Restore metadata
-    self.metadata = data['metadata']
-```
-
-**Step 4: Add Transaction Support**
-
-```python
-from contextlib import contextmanager
-
-class CanonicalSiliconGraph:
-    def __init__(self):
-        # ... existing code ...
-        self._transaction_stack = []
-    
-    @contextmanager
-    def transaction(self):
-        """Context manager for atomic graph updates"""
-        # Save current state
-        import copy
-        saved_graph = copy.deepcopy(self.graph)
-        saved_metadata = copy.deepcopy(self.metadata)
-        
         try:
-            yield self
-        except Exception as e:
-            # Rollback on error
-            self.graph = saved_graph
-            self.metadata = saved_metadata
-            raise e
+            # Run actual OpenROAD tool
+            result = subprocess.run(['openroad', script_path],
+                                  capture_output=True, text=True, timeout=3600)  # 1 hour timeout
+
+            if result.returncode != 0:
+                raise RuntimeError(f"OpenROAD failed: {result.stderr}")
+
+            # Parse actual output
+            output_data = self.parse_openroad_output(result.stdout)
+
+            return output_data
+        finally:
+            os.unlink(script_path)
+
+    def run_routing(self, design_data: Dict, config: Dict = None) -> Dict:
+        """
+        Run actual OpenROAD routing with real tool
+        """
+        # Similar implementation for routing
+        pass
+
+    def parse_openroad_output(self, output_text: str) -> Dict:
+        """
+        Parse actual OpenROAD output
+        """
+        # Parse DEF files, timing reports, congestion maps
+        results = {
+            'def_file': self.extract_def_info(output_text),
+            'timing_report': self.extract_timing_info(output_text),
+            'congestion_map': self.extract_congestion_info(output_text),
+            'utilization': self.extract_utilization_info(output_text)
+        }
+        return results
+```
+
+**Step 2: Implement Commercial Tool Interfaces**
+
+```python
+# In eda_integration.py
+
+class InnovusInterface:
+    def run_placement(self, design_data: Dict, config: Dict = None) -> Dict:
+        """Run actual Innovus placement"""
+        # Generate Innovus TCL script
+        tcl_script = self.generate_placement_script(design_data, config)
+
+        # Run actual Innovus tool
+        # Parse actual output
+        pass
+
+class FusionCompilerInterface:
+    def run_synthesis(self, design_data: Dict, config: Dict = None) -> Dict:
+        """Run actual Fusion Compiler synthesis"""
+        # Generate Fusion Compiler TCL script
+        # Run actual Fusion Compiler tool
+        # Parse actual output
+        pass
+```
+
+**Step 3: Create Integration Tests**
+
+```python
+# In tests/test_eda_integration.py
+
+def test_openroad_integration():
+    """Test actual OpenROAD integration"""
+    # This would require actual OpenROAD installation
+    interface = OpenROADInterface()
+
+    # Use a simple test design
+    test_design = load_test_design()
+
+    try:
+        results = interface.run_placement(test_design)
+
+        assert 'def_file' in results
+        assert 'timing_report' in results
+        assert results['utilization']['total_utilization'] > 0
+
+    except RuntimeError as e:
+        # If OpenROAD not available, skip test
+        pytest.skip(f"OpenROAD not available: {e}")
 ```
 
 #### Success Criteria
-- [ ] Deepcopy creates independent copies
-- [ ] Consistency validation catches all errors
-- [ ] Serialization/deserialization round-trips correctly
-- [ ] Transaction support works
-- [ ] Performance acceptable for 100k+ node graphs
+- [ ] Can connect to actual OpenROAD tool
+- [ ] Can run placement and routing flows
+- [ ] Can parse actual tool outputs
+- [ ] Integration tests pass when tools available
+- [ ] Error handling for tool failures
 
 ---
 
-### 1.3 Basic Agent Proposal Generation
+### 1.2 Hardware Validation
 
-#### Current State
-- Base agent class exists
-- `propose_action()` is abstract
-- No actual proposals generated
+#### Current State (ACCURATE)
+- Silicon feedback processing implemented
+- Learning from predictions vs actual framework exists
+- Need connection to real silicon data
+- Validation pipeline framework in place
 
 #### Implementation Plan
 
-**Step 1: Implement FloorplanAgent Proposals**
+**Step 1: Connect to Real Silicon Data**
 
 ```python
-# In agents/floorplan_agent.py
+# In learning_loop.py
 
-class FloorplanAgent(BaseAgent):
-    def __init__(self):
-        super().__init__(AgentType.FLOORPLAN)
-        self.strategies = [
-            'hierarchical_clustering',
-            'linear_arrangement',
-            'grid_based',
-            'thermal_aware',
-            'power_aware'
-        ]
-    
-    def propose_action(self, graph: CanonicalSiliconGraph) -> Optional[AgentProposal]:
-        """Generate a floorplan proposal"""
-        
-        # Get macros from graph
-        macros = graph.get_macros()
-        if not macros:
-            return None
-        
-        # Select strategy (for now, round-robin)
-        strategy = self.strategies[len(self.proposal_history) % len(self.strategies)]
-        
-        # Generate proposal based on strategy
-        if strategy == 'hierarchical_clustering':
-            return self._propose_hierarchical_clustering(graph, macros)
-        elif strategy == 'thermal_aware':
-            return self._propose_thermal_aware(graph, macros)
-        # ... other strategies
-    
-    def _propose_hierarchical_clustering(self, graph: CanonicalSiliconGraph, 
-                                        macros: List[str]) -> AgentProposal:
-        """Propose hierarchical clustering floorplan"""
-        
-        # Group macros by connectivity
-        clusters = self._cluster_macros(graph, macros)
-        
-        # Generate positions for clusters
-        positions = self._generate_cluster_positions(clusters)
-        
-        # Create proposal
-        proposal = AgentProposal(
-            agent_id=self.agent_id,
-            agent_type=self.agent_type,
-            proposal_id=str(uuid.uuid4()),
-            timestamp=datetime.now(),
-            action_type='place_macros',
-            targets=macros,
-            parameters={
-                'positions': positions,
-                'strategy': 'hierarchical_clustering',
-                'clusters': clusters
-            },
-            confidence_score=0.75,
-            risk_profile={
-                'timing_risk': 0.2,
-                'power_risk': 0.1,
-                'area_risk': 0.15
-            },
-            cost_vector={
-                'power': 0.05,
-                'performance': -0.1,  # Negative = improvement
-                'area': 0.08,
-                'yield': 0.0,
-                'schedule': 0.0
-            },
-            predicted_outcome={
-                'total_area': sum(graph.graph.nodes[m].get('area', 0) for m in macros),
-                'estimated_congestion': 0.6,
-                'timing_slack': 0.5
-            },
-            dependencies=[],
-            conflicts_with=[]
-        )
-        
-        return proposal
-    
-    def _cluster_macros(self, graph: CanonicalSiliconGraph, 
-                       macros: List[str]) -> Dict[str, List[str]]:
-        """Cluster macros by connectivity"""
-        # Simple clustering: group by connectivity
-        clusters = {}
-        for i, macro in enumerate(macros):
-            cluster_id = f"cluster_{i // 3}"  # 3 macros per cluster
-            if cluster_id not in clusters:
-                clusters[cluster_id] = []
-            clusters[cluster_id].append(macro)
-        return clusters
-    
-    def _generate_cluster_positions(self, clusters: Dict) -> Dict[str, Tuple[float, float]]:
-        """Generate positions for clusters"""
-        positions = {}
-        for i, (cluster_id, macros) in enumerate(clusters.items()):
-            # Simple grid layout
-            x = (i % 4) * 1000
-            y = (i // 4) * 1000
-            positions[cluster_id] = (x, y)
-        return positions
-    
-    def evaluate_proposal_impact(self, proposal: AgentProposal, 
-                                graph: CanonicalSiliconGraph) -> Dict[str, float]:
-        """Evaluate impact of proposal"""
-        return {
-            'area_impact': proposal.cost_vector.get('area', 0),
-            'power_impact': proposal.cost_vector.get('power', 0),
-            'timing_impact': proposal.cost_vector.get('performance', 0),
-            'congestion_impact': 0.1
-        }
+class SiliconFeedbackProcessor:
+    def connect_to_silicon_database(self, db_config: Dict):
+        """Connect to actual silicon database"""
+        # Connect to real silicon data source
+        # Could be SQL database, file system, or API
+        pass
+
+    def process_real_silicon_data(self, design_id: str,
+                                 bringup_results: Dict[str, Any]) -> Dict[str, float]:
+        """
+        Process actual silicon bring-up results
+
+        Args:
+            design_id: ID of the design in silicon
+            bringup_results: Actual silicon measurements
+
+        Returns:
+            Prediction accuracy metrics
+        """
+        # Compare predictions to actual silicon results
+        prediction_records = self.get_predictions_for_design(design_id)
+
+        accuracy_metrics = {}
+        for metric in ['area', 'power', 'timing', 'drc_violations']:
+            predicted = prediction_records.get(f'predicted_{metric}', 0)
+            actual = bringup_results.get(f'actual_{metric}', 0)
+
+            # Calculate accuracy
+            error = abs(predicted - actual) / max(abs(actual), 1e-9)
+            accuracy_metrics[f'{metric}_accuracy'] = 1.0 - error
+
+        return accuracy_metrics
 ```
 
-**Step 2: Implement PlacementAgent Proposals**
+**Step 2: Validation Pipeline**
 
 ```python
-# In agents/placement_agent.py
+# In validation_pipeline.py
 
-class PlacementAgent(BaseAgent):
+class ValidationPipeline:
     def __init__(self):
-        super().__init__(AgentType.PLACEMENT)
-        self.strategies = [
-            'congestion_aware',
-            'timing_driven',
-            'power_aware',
-            'density_aware',
-            'mixed_mode'
-        ]
-    
-    def propose_action(self, graph: CanonicalSiliconGraph) -> Optional[AgentProposal]:
-        """Generate a placement proposal"""
-        
-        # Get cells to place
-        cells = [n for n, attrs in graph.graph.nodes(data=True) 
-                if attrs.get('node_type') == 'cell']
-        
-        if not cells:
-            return None
-        
-        # Select strategy
-        strategy = self.strategies[len(self.proposal_history) % len(self.strategies)]
-        
-        # Generate proposal
-        if strategy == 'congestion_aware':
-            return self._propose_congestion_aware(graph, cells)
-        elif strategy == 'timing_driven':
-            return self._propose_timing_driven(graph, cells)
-        # ... other strategies
-    
-    def _propose_congestion_aware(self, graph: CanonicalSiliconGraph, 
-                                 cells: List[str]) -> AgentProposal:
-        """Propose congestion-aware placement"""
-        
-        # Identify congestion hotspots
-        hotspots = self._identify_congestion_hotspots(graph)
-        
-        # Place cells away from hotspots
-        positions = self._generate_positions_avoiding_hotspots(cells, hotspots)
-        
-        proposal = AgentProposal(
-            agent_id=self.agent_id,
-            agent_type=self.agent_type,
-            proposal_id=str(uuid.uuid4()),
-            timestamp=datetime.now(),
-            action_type='place_cells',
-            targets=cells,
-            parameters={
-                'positions': positions,
-                'strategy': 'congestion_aware',
-                'hotspots': hotspots
-            },
-            confidence_score=0.8,
-            risk_profile={
-                'timing_risk': 0.15,
-                'power_risk': 0.05,
-                'area_risk': 0.0
-            },
-            cost_vector={
-                'power': 0.02,
-                'performance': -0.05,
-                'area': 0.0,
-                'yield': 0.05,
-                'schedule': 0.0
-            },
-            predicted_outcome={
-                'estimated_congestion': 0.5,
-                'timing_slack': 0.6,
-                'wirelength': 1000
-            },
-            dependencies=[],
-            conflicts_with=[]
-        )
-        
-        return proposal
-    
-    def _identify_congestion_hotspots(self, graph: CanonicalSiliconGraph) -> List[str]:
-        """Identify congestion hotspots"""
-        # Find regions with high estimated congestion
-        hotspots = []
-        for node, attrs in graph.graph.nodes(data=True):
-            if attrs.get('estimated_congestion', 0) > 0.7:
-                hotspots.append(node)
-        return hotspots
-    
-    def _generate_positions_avoiding_hotspots(self, cells: List[str], 
-                                             hotspots: List[str]) -> Dict[str, Tuple[float, float]]:
-        """Generate positions avoiding hotspots"""
-        positions = {}
-        for i, cell in enumerate(cells):
-            # Simple grid layout
-            x = (i % 10) * 100
-            y = (i // 10) * 100
-            positions[cell] = (x, y)
-        return positions
-    
-    def evaluate_proposal_impact(self, proposal: AgentProposal, 
-                                graph: CanonicalSiliconGraph) -> Dict[str, float]:
-        """Evaluate impact of proposal"""
-        return {
-            'congestion_impact': -0.1,  # Improvement
-            'timing_impact': 0.05,
-            'power_impact': 0.02,
-            'area_impact': 0.0
-        }
-```
+        self.feedback_processor = SiliconFeedbackProcessor()
+        self.model_updater = ModelUpdater(self.feedback_processor)
 
-**Step 3: Implement Other Agents Similarly**
+    def validate_predictions(self, test_designs: List[Dict]) -> Dict[str, float]:
+        """Validate predictions against known silicon results"""
+        results = []
 
-- ClockAgent: CTS proposals
-- PowerAgent: Power grid proposals
-- RoutingAgent: Routing proposals
-- ThermalAgent: Thermal management proposals
-- YieldAgent: Yield optimization proposals
+        for design in test_designs:
+            design_id = design['id']
+            predicted = design['predictions']
+            actual = design['actual_results']
 
-**Step 4: Create Test Suite**
+            # Calculate validation metrics
+            metrics = self.calculate_validation_metrics(predicted, actual)
+            results.append(metrics)
 
-```python
-# In tests/test_agents.py
+        # Aggregate results
+        aggregated = self.aggregate_validation_results(results)
+        return aggregated
 
-def test_floorplan_agent_proposal():
-    """Test floorplan agent generates proposals"""
-    agent = FloorplanAgent()
-    graph = create_test_graph_with_macros()
-    
-    proposal = agent.propose_action(graph)
-    
-    assert proposal is not None
-    assert proposal.action_type == 'place_macros'
-    assert len(proposal.targets) > 0
-    assert 0.0 <= proposal.confidence_score <= 1.0
+    def calculate_validation_metrics(self, predicted: Dict, actual: Dict) -> Dict[str, float]:
+        """Calculate validation metrics for a single design"""
+        metrics = {}
 
-def test_placement_agent_proposal():
-    """Test placement agent generates proposals"""
-    agent = PlacementAgent()
-    graph = create_test_graph_with_cells()
-    
-    proposal = agent.propose_action(graph)
-    
-    assert proposal is not None
-    assert proposal.action_type == 'place_cells'
-    assert len(proposal.targets) > 0
+        for key in predicted.keys():
+            if key in actual:
+                pred_val = predicted[key]
+                actual_val = actual[key]
+
+                # Calculate error metrics
+                abs_error = abs(pred_val - actual_val)
+                rel_error = abs_error / max(abs(actual_val), 1e-9)
+
+                metrics[f'{key}_abs_error'] = abs_error
+                metrics[f'{key}_rel_error'] = rel_error
+                metrics[f'{key}_accuracy'] = 1.0 / (1.0 + rel_error)  # Higher is better
+
+        return metrics
 ```
 
 #### Success Criteria
-- [ ] Each agent generates realistic proposals
-- [ ] Proposals have valid cost vectors
-- [ ] Confidence scores are reasonable
-- [ ] Proposals can be applied to graph
-- [ ] All test cases pass
+- [ ] Can connect to real silicon database
+- [ ] Can validate predictions against actual silicon
+- [ ] Prediction accuracy metrics calculated
+- [ ] Validation pipeline operational
+- [ ] Model updates based on silicon feedback
+
+---
+
+### 1.3 Performance Optimization
+
+#### Current State (ACCURATE)
+- Basic graph operations implemented
+- Serialization/deserialization functional
+- Need optimization for large designs (1M+ instances)
+- Profiling framework available
+
+#### Implementation Plan
+
+**Step 1: Profile Current Performance**
+
+```python
+# In performance_profiler.py
+
+import cProfile
+import pstats
+from functools import wraps
+
+def profile_function(func):
+    """Decorator to profile function performance"""
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        profiler = cProfile.Profile()
+        profiler.enable()
+
+        result = func(*args, **kwargs)
+
+        profiler.disable()
+
+        # Save profile data
+        stats = pstats.Stats(profiler)
+        stats.sort_stats('cumulative')
+
+        # Log top 10 functions
+        profile_file = f"profile_{func.__name__}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.prof"
+        stats.dump_stats(profile_file)
+
+        # Print top functions
+        stats.print_stats(10)
+
+        return result
+    return wrapper
+
+class PerformanceProfiler:
+    def __init__(self):
+        self.profiles = {}
+
+    @profile_function
+    def profile_graph_operations(self, graph: CanonicalSiliconGraph):
+        """Profile graph operations"""
+        # Profile deepcopy
+        start_time = time.time()
+        copy.deepcopy(graph)
+        deepcopy_time = time.time() - start_time
+
+        # Profile serialization
+        start_time = time.time()
+        with tempfile.NamedTemporaryFile() as f:
+            graph.serialize_to_json(f.name)
+        serialize_time = time.time() - start_time
+
+        # Profile query operations
+        start_time = time.time()
+        graph.get_macros()
+        query_time = time.time() - start_time
+
+        return {
+            'deepcopy_time': deepcopy_time,
+            'serialize_time': serialize_time,
+            'query_time': query_time
+        }
+```
+
+**Step 2: Implement Hierarchical Processing**
+
+```python
+# In hierarchical_processor.py
+
+class HierarchicalProcessor:
+    def __init__(self, chunk_size: int = 10000):
+        self.chunk_size = chunk_size
+
+    def process_large_graph(self, large_graph: CanonicalSiliconGraph) -> CanonicalSiliconGraph:
+        """Process large graph using hierarchical approach"""
+        # Break large graph into chunks
+        chunks = self.partition_graph(large_graph)
+
+        processed_chunks = []
+        for chunk in chunks:
+            # Process each chunk independently
+            processed_chunk = self.process_chunk(chunk)
+            processed_chunks.append(processed_chunk)
+
+        # Reassemble processed chunks
+        result = self.combine_chunks(processed_chunks)
+        return result
+
+    def partition_graph(self, graph: CanonicalSiliconGraph) -> List[CanonicalSiliconGraph]:
+        """Partition large graph into smaller chunks"""
+        # Use graph clustering algorithms to partition
+        import networkx as nx
+
+        # Find communities/clusters in the graph
+        communities = nx.community.greedy_modularity_communities(graph.graph.to_undirected())
+
+        chunks = []
+        for community in communities:
+            # Create subgraph for each community
+            subgraph = graph.graph.subgraph(community).copy()
+
+            # Create new CanonicalSiliconGraph for this chunk
+            chunk_graph = CanonicalSiliconGraph()
+            chunk_graph.graph = subgraph
+            chunk_graph.metadata = graph.metadata.copy()
+
+            chunks.append(chunk_graph)
+
+        return chunks
+
+    def process_chunk(self, chunk: CanonicalSiliconGraph) -> CanonicalSiliconGraph:
+        """Process a single chunk"""
+        # Apply transformations to the chunk
+        # This could be agent proposals, optimizations, etc.
+        return chunk
+
+    def combine_chunks(self, chunks: List[CanonicalSiliconGraph]) -> CanonicalSiliconGraph:
+        """Combine processed chunks back into a single graph"""
+        # Combine all chunks into one graph
+        combined = CanonicalSiliconGraph()
+
+        for chunk in chunks:
+            # Add nodes and edges from each chunk
+            combined.graph.add_nodes_from(chunk.graph.nodes(data=True))
+            combined.graph.add_edges_from(chunk.graph.edges(data=True))
+
+        return combined
+```
+
+**Step 3: Memory Optimization**
+
+```python
+# In memory_optimizer.py
+
+import gc
+from weakref import WeakValueDictionary
+
+class MemoryOptimizer:
+    def __init__(self):
+        self.object_cache = WeakValueDictionary()
+
+    def optimize_for_large_designs(self, process_func):
+        """Decorator to optimize memory usage for large designs"""
+        @wraps(process_func)
+        def wrapper(*args, **kwargs):
+            # Clear garbage collector before processing
+            gc.collect()
+
+            # Monitor memory usage
+            import psutil
+            process = psutil.Process()
+            initial_memory = process.memory_info().rss / 1024 / 1024  # MB
+
+            try:
+                result = process_func(*args, **kwargs)
+
+                # Log memory usage
+                final_memory = process.memory_info().rss / 1024 / 1024  # MB
+                memory_used = final_memory - initial_memory
+
+                print(f"Memory used: {memory_used:.2f} MB")
+
+                return result
+            finally:
+                # Force garbage collection after processing
+                gc.collect()
+
+        return wrapper
+
+# Apply to critical functions
+@MemoryOptimizer().optimize_for_large_designs
+def process_large_design(design_data):
+    """Process a large design with memory optimization"""
+    # Implementation here
+    pass
+```
+
+#### Success Criteria
+- [ ] Performance profiling implemented
+- [ ] Hierarchical processing available
+- [ ] Memory optimization techniques applied
+- [ ] Large design (1M+ instances) processing functional
+- [ ] Performance benchmarks established
 
 ---
 
