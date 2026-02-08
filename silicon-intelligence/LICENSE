@@ -1,0 +1,27 @@
+# Commercial License Agreement - Silicon Intelligence™ (v1.0 PRO)
+
+Copyright © 2026 Street Heart Technologies. All Rights Reserved.
+
+## 1. Proprietary Product
+Silicon Intelligence™ is a proprietary autonomous Electronic Design Automation (EDA) software developed and owned exclusively by Street Heart Technologies. 
+
+## 2. Grant of License
+This software is licensed, not sold. Possession of this software does not grant any inherent right to distribute, modify, or commercially exploit the source code or binary distributions without a valid License Key provided by Street Heart Technologies.
+
+## 3. Restrictions
+The Licensee shall not:
+- Reverse engineer, decompile, or disassemble the C++ acceleration kernels.
+- Redistribution of the software to third parties without prior written consent from Sulaiman Adebayo (CEO).
+- Use the software for providing unauthorized SaaS or commercial design services without a "Enterprise Service License".
+
+## 4. IP Protection
+All AI models (GNN, RL Weights), AST transformation logic, and C++ optimization kernels are considered Trade Secrets of Street Heart Technologies.
+
+## 5. Limitation of Liability
+The software is provided "AS IS". Street Heart Technologies is not liable for any silicon fabrication failures or PPA performance discrepancies resulting from the use of this tool.
+
+---
+**Street Heart Technologies**
+CEO: Sulaiman Adebayo
+Contact: ceo@streetheart.tech
+Phone: +2348137502933
