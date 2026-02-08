@@ -1,0 +1,26 @@
+{
+  "area": {
+    "model_name": "LinearRegression",
+    "val_mae": 7.549516567451064e-15,
+    "val_r2": 1.0,
+    "cv_score": 1.1941065420412794e-15
+  },
+  "power": {
+    "model_name": "LinearRegression",
+    "val_mae": 2.42861286636753e-17,
+    "val_r2": 1.0,
+    "cv_score": 1.0870933782787991e-17
+  },
+  "timing": {
+    "model_name": "LinearRegression",
+    "val_mae": 1.1102230246251565e-15,
+    "val_r2": 1.0,
+    "cv_score": 2.516505522483688e-16
+  },
+  "drc_violations": {
+    "model_name": "RandomForest",
+    "val_mae": 0.25,
+    "val_r2": -0.33333333333333326,
+    "cv_score": -0.0
+  }
+}

@@ -1,0 +1,257 @@
+[
+  {
+    "design_change": {
+      "change_type": "pipelining",
+      "description": "Add pipeline register to critical path",
+      "parameters": {
+        "stages": 2,
+        "target_path": "addition"
+      },
+      "timestamp": "2026-01-23T11:46:18.158446"
+    },
+    "before_metrics": {
+      "area_um2": 600.0,
+      "power_mw": 0.24,
+      "timing_ns": 0.1,
+      "drc_violations": 5,
+      "congestion_max": 0.9955242095562783,
+      "util_max": 0.7,
+      "runtime_sec": 0,
+      "timestamp": "2026-01-23T11:46:18.243416"
+    },
+    "after_metrics": {
+      "area_um2": 630.0,
+      "power_mw": 0.252,
+      "timing_ns": 0.1,
+      "drc_violations": 5,
+      "congestion_max": 0.9622395262485259,
+      "util_max": 0.7,
+      "runtime_sec": 0,
+      "timestamp": "2026-01-23T11:46:18.254838"
+    },
+    "improvement_area": -30.0,
+    "improvement_power": -0.01200000000000001,
+    "improvement_timing": 0.0,
+    "improvement_drc": 0,
+    "confidence": 1.0,
+    "timestamp": "2026-01-23T11:46:18.254899"
+  },
+  {
+    "design_change": {
+      "change_type": "pipelining",
+      "description": "Add pipeline register to reduce critical path",
+      "parameters": {
+        "stages": 1
+      },
+      "timestamp": "2026-01-23T12:18:09.957940"
+    },
+    "before_metrics": {
+      "area_um2": 480.0,
+      "power_mw": 0.192,
+      "timing_ns": 0.1,
+      "drc_violations": 5,
+      "congestion_max": 0.9943580399322515,
+      "util_max": 0.7,
+      "runtime_sec": 0,
+      "timestamp": "2026-01-23T12:18:10.040110"
+    },
+    "after_metrics": {
+      "area_um2": 480.0,
+      "power_mw": 0.192,
+      "timing_ns": 0.1,
+      "drc_violations": 5,
+      "congestion_max": 0.9884428410446962,
+      "util_max": 0.7,
+      "runtime_sec": 0,
+      "timestamp": "2026-01-23T12:18:10.081271"
+    },
+    "improvement_area": 0.0,
+    "improvement_power": 0.0,
+    "improvement_timing": 0.0,
+    "improvement_drc": 0,
+    "confidence": 0.0,
+    "timestamp": "2026-01-23T12:18:10.081358"
+  },
+  {
+    "design_change": {
+      "change_type": "power",
+      "description": "Applied power optimization: [{'type': 'clock_gating', 'target_modules': ['alu_block'], 'enable_conditions': ['valid_operation']}]",
+      "parameters": {
+        "changes": [
+          {
+            "type": "clock_gating",
+            "target_modules": [
+              "alu_block"
+            ],
+            "enable_conditions": [
+              "valid_operation"
+            ]
+          }
+        ]
+      },
+      "timestamp": "2026-01-23T15:35:41.886304"
+    },
+    "before_metrics": {
+      "area_um2": 330.0,
+      "power_mw": 0.33000000000000007,
+      "timing_ns": 0.9900000000000001,
+      "drc_violations": 14.399999999999999,
+      "congestion_max": 0.8,
+      "util_max": 0.65,
+      "runtime_sec": 0,
+      "timestamp": "2026-01-23T15:35:41.893150"
+    },
+    "after_metrics": {
+      "area_um2": 300.0,
+      "power_mw": 0.30000000000000004,
+      "timing_ns": 0.9,
+      "drc_violations": 12.0,
+      "congestion_max": 0.7,
+      "util_max": 0.7,
+      "runtime_sec": 0,
+      "timestamp": "2026-01-23T15:35:41.893200"
+    },
+    "improvement_area": 30.0,
+    "improvement_power": 0.030000000000000027,
+    "improvement_timing": 0.09000000000000008,
+    "improvement_drc": 2.3999999999999986,
+    "confidence": 0.9,
+    "timestamp": "2026-01-23T15:35:41.893223"
+  },
+  {
+    "design_change": {
+      "change_type": "area",
+      "description": "Applied area optimization: [{'type': 'resource_sharing', 'shared_units': ['add1', 'add2'], 'mux_control': 'operation_select'}]",
+      "parameters": {
+        "changes": [
+          {
+            "type": "resource_sharing",
+            "shared_units": [
+              "add1",
+              "add2"
+            ],
+            "mux_control": "operation_select"
+          }
+        ]
+      },
+      "timestamp": "2026-01-23T15:35:41.886345"
+    },
+    "before_metrics": {
+      "area_um2": 330.0,
+      "power_mw": 0.33000000000000007,
+      "timing_ns": 0.9900000000000001,
+      "drc_violations": 14.399999999999999,
+      "congestion_max": 0.8,
+      "util_max": 0.65,
+      "runtime_sec": 0,
+      "timestamp": "2026-01-23T15:35:41.893150"
+    },
+    "after_metrics": {
+      "area_um2": 300.0,
+      "power_mw": 0.30000000000000004,
+      "timing_ns": 0.9,
+      "drc_violations": 12.0,
+      "congestion_max": 0.7,
+      "util_max": 0.7,
+      "runtime_sec": 0,
+      "timestamp": "2026-01-23T15:35:41.893200"
+    },
+    "improvement_area": 30.0,
+    "improvement_power": 0.030000000000000027,
+    "improvement_timing": 0.09000000000000008,
+    "improvement_drc": 2.3999999999999986,
+    "confidence": 0.9,
+    "timestamp": "2026-01-23T15:35:41.893259"
+  },
+  {
+    "design_change": {
+      "change_type": "power",
+      "description": "Applied power optimization: [{'type': 'clock_gating', 'target_modules': ['alu_block'], 'enable_conditions': ['valid_operation']}]",
+      "parameters": {
+        "changes": [
+          {
+            "type": "clock_gating",
+            "target_modules": [
+              "alu_block"
+            ],
+            "enable_conditions": [
+              "valid_operation"
+            ]
+          }
+        ]
+      },
+      "timestamp": "2026-01-23T20:13:55.074026"
+    },
+    "before_metrics": {
+      "area_um2": 330.0,
+      "power_mw": 0.33000000000000007,
+      "timing_ns": 0.9900000000000001,
+      "drc_violations": 14.399999999999999,
+      "congestion_max": 0.8,
+      "util_max": 0.65,
+      "runtime_sec": 0,
+      "timestamp": "2026-01-23T20:13:55.075182"
+    },
+    "after_metrics": {
+      "area_um2": 300.0,
+      "power_mw": 0.30000000000000004,
+      "timing_ns": 0.9,
+      "drc_violations": 12.0,
+      "congestion_max": 0.7,
+      "util_max": 0.7,
+      "runtime_sec": 0,
+      "timestamp": "2026-01-23T20:13:55.075210"
+    },
+    "improvement_area": 30.0,
+    "improvement_power": 0.030000000000000027,
+    "improvement_timing": 0.09000000000000008,
+    "improvement_drc": 2.3999999999999986,
+    "confidence": 0.9,
+    "timestamp": "2026-01-23T20:13:55.075220"
+  },
+  {
+    "design_change": {
+      "change_type": "area",
+      "description": "Applied area optimization: [{'type': 'resource_sharing', 'shared_units': ['add1', 'add2'], 'mux_control': 'operation_select'}]",
+      "parameters": {
+        "changes": [
+          {
+            "type": "resource_sharing",
+            "shared_units": [
+              "add1",
+              "add2"
+            ],
+            "mux_control": "operation_select"
+          }
+        ]
+      },
+      "timestamp": "2026-01-23T20:13:55.074044"
+    },
+    "before_metrics": {
+      "area_um2": 330.0,
+      "power_mw": 0.33000000000000007,
+      "timing_ns": 0.9900000000000001,
+      "drc_violations": 14.399999999999999,
+      "congestion_max": 0.8,
+      "util_max": 0.65,
+      "runtime_sec": 0,
+      "timestamp": "2026-01-23T20:13:55.075182"
+    },
+    "after_metrics": {
+      "area_um2": 300.0,
+      "power_mw": 0.30000000000000004,
+      "timing_ns": 0.9,
+      "drc_violations": 12.0,
+      "congestion_max": 0.7,
+      "util_max": 0.7,
+      "runtime_sec": 0,
+      "timestamp": "2026-01-23T20:13:55.075210"
+    },
+    "improvement_area": 30.0,
+    "improvement_power": 0.030000000000000027,
+    "improvement_timing": 0.09000000000000008,
+    "improvement_drc": 2.3999999999999986,
+    "confidence": 0.9,
+    "timestamp": "2026-01-23T20:13:55.075240"
+  }
+]

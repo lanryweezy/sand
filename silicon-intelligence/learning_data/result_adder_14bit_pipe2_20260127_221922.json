@@ -1,0 +1,1358 @@
+{
+  "design_name": "adder_14bit_pipe2",
+  "timestamp": "2026-01-27T22:19:22.411362",
+  "predictions": {
+    "area": 859.546875,
+    "power": -4.979211807250977,
+    "timing": 0.9902819395065308,
+    "drc_violations": 5
+  },
+  "actual": {
+    "area": 720.0,
+    "power": 0.288,
+    "timing": 0.1,
+    "drc_violations": 5
+  },
+  "errors": {
+    "area_error": 859.546875,
+    "area_pct_error": 8595468750000.0,
+    "power_error": 4.979211807250977,
+    "power_pct_error": 49792118072.509766,
+    "timing_error": 0.9902819395065308,
+    "timing_pct_error": 9902819395.065308,
+    "drc_violations_error": 0,
+    "drc_violations_pct_error": 0.0
+  },
+  "analysis": {
+    "design_name": "adder_14bit_pipe2",
+    "physical_ir_stats": {
+      "num_nodes": 8,
+      "num_edges": 5,
+      "node_types": {
+        "combinational": 1,
+        "clock_domain": 1,
+        "control": 1,
+        "port": 3,
+        "register": 2
+      },
+      "total_area": 5.0,
+      "total_power": 0.031,
+      "max_delay": 0.1,
+      "avg_fanout": 0.0,
+      "max_fanout": 0,
+      "critical_path_nodes": 3,
+      "congestion_hotspots": 0
+    },
+    "openroad_results": {
+      "synthesis": {
+        "tool": "yosys",
+        "step": "synthesis",
+        "cell_count": 240,
+        "estimated_area_um2": 480.0,
+        "estimated_power_mw": 0.24,
+        "timing_paths": [],
+        "utilization": 0.3,
+        "success": true
+      },
+      "floorplan": {
+        "tool": "openroad",
+        "step": "floorplan",
+        "die_area_um2": 10000.0,
+        "core_area_um2": 8000.0,
+        "utilization": 0.4,
+        "aspect_ratio": 1.0,
+        "row_height": 2.0,
+        "track_pitch": 0.2,
+        "macros_placed": 0,
+        "success": true
+      },
+      "placement": {
+        "tool": "openroad",
+        "step": "placement",
+        "wirelength_um": 15000.0,
+        "congestion_map": [
+          {
+            "x": 0,
+            "y": 0,
+            "congestion_level": 0.2591097115735286,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "congestion_level": 0.07500443774648513,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "congestion_level": 0.12743746069551531,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "congestion_level": 0.5168131765971947,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 4,
+            "congestion_level": 0.29710361355287485,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 5,
+            "congestion_level": 0.08540379010548138,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 6,
+            "congestion_level": 0.7373594307934177,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 7,
+            "congestion_level": 0.31107689190749166,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 8,
+            "congestion_level": 0.5079927368517033,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 9,
+            "congestion_level": 0.09221145747524573,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "congestion_level": 0.3877536710148366,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "congestion_level": 0.11509909112854178,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "congestion_level": 0.3602911263378622,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "congestion_level": 0.0799314551339374,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 4,
+            "congestion_level": 0.40824980842115954,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 5,
+            "congestion_level": 0.8651321798514904,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 6,
+            "congestion_level": 0.7280876375586882,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 7,
+            "congestion_level": 0.7836448390490931,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 8,
+            "congestion_level": 0.349917403473062,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 9,
+            "congestion_level": 0.12753427124497008,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "congestion_level": 0.051881157062044436,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "congestion_level": 0.43467366555542675,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "congestion_level": 0.895014794956037,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "congestion_level": 0.7140997234960716,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 4,
+            "congestion_level": 0.1586821047808299,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 5,
+            "congestion_level": 0.31396510711809533,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 6,
+            "congestion_level": 0.9805415585228838,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 7,
+            "congestion_level": 0.9946740492203973,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 8,
+            "congestion_level": 0.4302589957188796,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 9,
+            "congestion_level": 0.9993144120669706,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "congestion_level": 0.1578191819460939,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "congestion_level": 0.8022533896826359,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "congestion_level": 0.032918738172533546,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "congestion_level": 0.8121647650130254,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 4,
+            "congestion_level": 0.728229462512915,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 5,
+            "congestion_level": 0.7044708924676207,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 6,
+            "congestion_level": 0.8473537081919044,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 7,
+            "congestion_level": 0.24171273983750752,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 8,
+            "congestion_level": 0.5205731914903609,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 9,
+            "congestion_level": 0.08597246562001504,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "congestion_level": 0.8606048330916524,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "congestion_level": 0.314081398886201,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "congestion_level": 0.31695754405157683,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 3,
+            "congestion_level": 0.2620315380810281,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 4,
+            "congestion_level": 0.6472749533806362,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 5,
+            "congestion_level": 0.03327222576487043,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 6,
+            "congestion_level": 0.06552191247655459,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 7,
+            "congestion_level": 0.136735308509647,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 8,
+            "congestion_level": 0.21669429120698414,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 9,
+            "congestion_level": 0.27651555099381975,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 0,
+            "congestion_level": 0.2870203879639258,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 1,
+            "congestion_level": 0.3641487087133731,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 2,
+            "congestion_level": 0.433904266158158,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 3,
+            "congestion_level": 0.5659594862880019,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 4,
+            "congestion_level": 0.4582838823300861,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 5,
+            "congestion_level": 0.49281008177717456,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 6,
+            "congestion_level": 0.2934867017414242,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 7,
+            "congestion_level": 0.38333025171940094,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 8,
+            "congestion_level": 0.5154673031936238,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 9,
+            "congestion_level": 0.23174175580954348,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 0,
+            "congestion_level": 0.1205912010368122,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 1,
+            "congestion_level": 0.9611234033341015,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 2,
+            "congestion_level": 0.25151528900815145,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 3,
+            "congestion_level": 0.35799320551279745,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 4,
+            "congestion_level": 0.4063853886158836,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 5,
+            "congestion_level": 0.6633804244488115,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 6,
+            "congestion_level": 0.31665874489446655,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 7,
+            "congestion_level": 0.5151972558619866,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 8,
+            "congestion_level": 0.541733406184856,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 9,
+            "congestion_level": 0.21795208110090436,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 0,
+            "congestion_level": 0.9023557123821692,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 1,
+            "congestion_level": 0.10033625640035782,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 2,
+            "congestion_level": 0.11994229445321825,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 3,
+            "congestion_level": 0.24756914488732973,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 4,
+            "congestion_level": 0.8245238708770272,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 5,
+            "congestion_level": 0.4260346256340036,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 6,
+            "congestion_level": 0.0982227504032247,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 7,
+            "congestion_level": 0.45177187142464337,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 8,
+            "congestion_level": 0.3958247006309962,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 9,
+            "congestion_level": 0.17757307776690423,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "congestion_level": 0.5980528705665774,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 1,
+            "congestion_level": 0.9459115986353084,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 2,
+            "congestion_level": 0.8607644129297075,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 3,
+            "congestion_level": 0.5968335877516464,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 4,
+            "congestion_level": 0.8085187538448597,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 5,
+            "congestion_level": 0.7761765160513074,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 6,
+            "congestion_level": 0.017918775773423934,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 7,
+            "congestion_level": 0.06741691929893878,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 8,
+            "congestion_level": 0.5612491940221733,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 9,
+            "congestion_level": 0.3604843215464085,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 0,
+            "congestion_level": 0.5619795983170535,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 1,
+            "congestion_level": 0.9170576125959049,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 2,
+            "congestion_level": 0.3223073673941942,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 3,
+            "congestion_level": 0.41806558157011464,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 4,
+            "congestion_level": 0.9836298655664922,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 5,
+            "congestion_level": 0.32558214902506,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 6,
+            "congestion_level": 0.6908294623303624,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 7,
+            "congestion_level": 0.012858675227035321,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 8,
+            "congestion_level": 0.8587162095361274,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 9,
+            "congestion_level": 0.7747247719676882,
+            "metal_layer": "met1"
+          }
+        ],
+        "timing_slack_ps": -100.0,
+        "cell_density": 0.6,
+        "placement_cost": 1200.0,
+        "success": true
+      },
+      "cts": {
+        "tool": "openroad",
+        "step": "cts",
+        "clock_skew_ps": 50.0,
+        "clock_latency_ns": 2.0,
+        "buffer_count": 50,
+        "clock_utilization": 0.8,
+        "success": true
+      },
+      "routing": {
+        "tool": "openroad",
+        "step": "routing",
+        "routeability": 0.95,
+        "drc_violations": 5,
+        "wirelength_um": 25000.0,
+        "via_count": 1000,
+        "layer_usage": {
+          "met1": 0.3,
+          "met2": 0.4,
+          "met3": 0.2
+        },
+        "success": true
+      },
+      "overall_ppa": {
+        "area_um2": 720.0,
+        "power_mw": 0.288,
+        "timing_ns": 0.1
+      },
+      "success": true
+    },
+    "prediction_comparison": {
+      "area": {
+        "predicted": 5.0,
+        "actual": 720.0,
+        "error": 0.9930555555555556,
+        "accuracy": 0.00694444444444442
+      },
+      "power": {
+        "predicted": 0.031,
+        "actual": 0.288,
+        "error": 0.8923611111111112,
+        "accuracy": 0.10763888888888884
+      },
+      "timing": {
+        "predicted": 0.1,
+        "actual": 0.1,
+        "error": 0.0,
+        "accuracy": 1.0
+      }
+    },
+    "learning_insights": {
+      "complexity_factors": {
+        "node_count": 8,
+        "edge_count": 5,
+        "max_fanout": 0,
+        "critical_path_length": 3,
+        "congestion_hotspots": 0,
+        "register_ratio": 0.25
+      },
+      "bottleneck_identification": {
+        "timing_violations": true,
+        "drc_violations": 5,
+        "congestion_issues": [
+          {
+            "x": 0,
+            "y": 0,
+            "congestion_level": 0.2591097115735286,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "congestion_level": 0.07500443774648513,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "congestion_level": 0.12743746069551531,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "congestion_level": 0.5168131765971947,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 4,
+            "congestion_level": 0.29710361355287485,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 5,
+            "congestion_level": 0.08540379010548138,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 6,
+            "congestion_level": 0.7373594307934177,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 7,
+            "congestion_level": 0.31107689190749166,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 8,
+            "congestion_level": 0.5079927368517033,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 0,
+            "y": 9,
+            "congestion_level": 0.09221145747524573,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "congestion_level": 0.3877536710148366,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "congestion_level": 0.11509909112854178,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "congestion_level": 0.3602911263378622,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "congestion_level": 0.0799314551339374,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 4,
+            "congestion_level": 0.40824980842115954,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 5,
+            "congestion_level": 0.8651321798514904,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 6,
+            "congestion_level": 0.7280876375586882,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 7,
+            "congestion_level": 0.7836448390490931,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 8,
+            "congestion_level": 0.349917403473062,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 1,
+            "y": 9,
+            "congestion_level": 0.12753427124497008,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "congestion_level": 0.051881157062044436,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "congestion_level": 0.43467366555542675,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "congestion_level": 0.895014794956037,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "congestion_level": 0.7140997234960716,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 4,
+            "congestion_level": 0.1586821047808299,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 5,
+            "congestion_level": 0.31396510711809533,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 6,
+            "congestion_level": 0.9805415585228838,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 7,
+            "congestion_level": 0.9946740492203973,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 8,
+            "congestion_level": 0.4302589957188796,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 2,
+            "y": 9,
+            "congestion_level": 0.9993144120669706,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "congestion_level": 0.1578191819460939,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "congestion_level": 0.8022533896826359,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "congestion_level": 0.032918738172533546,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "congestion_level": 0.8121647650130254,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 4,
+            "congestion_level": 0.728229462512915,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 5,
+            "congestion_level": 0.7044708924676207,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 6,
+            "congestion_level": 0.8473537081919044,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 7,
+            "congestion_level": 0.24171273983750752,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 8,
+            "congestion_level": 0.5205731914903609,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 3,
+            "y": 9,
+            "congestion_level": 0.08597246562001504,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "congestion_level": 0.8606048330916524,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "congestion_level": 0.314081398886201,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "congestion_level": 0.31695754405157683,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 3,
+            "congestion_level": 0.2620315380810281,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 4,
+            "congestion_level": 0.6472749533806362,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 5,
+            "congestion_level": 0.03327222576487043,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 6,
+            "congestion_level": 0.06552191247655459,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 7,
+            "congestion_level": 0.136735308509647,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 8,
+            "congestion_level": 0.21669429120698414,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 4,
+            "y": 9,
+            "congestion_level": 0.27651555099381975,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 0,
+            "congestion_level": 0.2870203879639258,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 1,
+            "congestion_level": 0.3641487087133731,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 2,
+            "congestion_level": 0.433904266158158,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 3,
+            "congestion_level": 0.5659594862880019,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 4,
+            "congestion_level": 0.4582838823300861,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 5,
+            "congestion_level": 0.49281008177717456,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 6,
+            "congestion_level": 0.2934867017414242,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 7,
+            "congestion_level": 0.38333025171940094,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 8,
+            "congestion_level": 0.5154673031936238,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 5,
+            "y": 9,
+            "congestion_level": 0.23174175580954348,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 0,
+            "congestion_level": 0.1205912010368122,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 1,
+            "congestion_level": 0.9611234033341015,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 2,
+            "congestion_level": 0.25151528900815145,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 3,
+            "congestion_level": 0.35799320551279745,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 4,
+            "congestion_level": 0.4063853886158836,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 5,
+            "congestion_level": 0.6633804244488115,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 6,
+            "congestion_level": 0.31665874489446655,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 7,
+            "congestion_level": 0.5151972558619866,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 8,
+            "congestion_level": 0.541733406184856,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 6,
+            "y": 9,
+            "congestion_level": 0.21795208110090436,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 0,
+            "congestion_level": 0.9023557123821692,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 1,
+            "congestion_level": 0.10033625640035782,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 2,
+            "congestion_level": 0.11994229445321825,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 3,
+            "congestion_level": 0.24756914488732973,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 4,
+            "congestion_level": 0.8245238708770272,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 5,
+            "congestion_level": 0.4260346256340036,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 6,
+            "congestion_level": 0.0982227504032247,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 7,
+            "congestion_level": 0.45177187142464337,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 8,
+            "congestion_level": 0.3958247006309962,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 7,
+            "y": 9,
+            "congestion_level": 0.17757307776690423,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "congestion_level": 0.5980528705665774,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 1,
+            "congestion_level": 0.9459115986353084,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 2,
+            "congestion_level": 0.8607644129297075,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 3,
+            "congestion_level": 0.5968335877516464,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 4,
+            "congestion_level": 0.8085187538448597,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 5,
+            "congestion_level": 0.7761765160513074,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 6,
+            "congestion_level": 0.017918775773423934,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 7,
+            "congestion_level": 0.06741691929893878,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 8,
+            "congestion_level": 0.5612491940221733,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 8,
+            "y": 9,
+            "congestion_level": 0.3604843215464085,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 0,
+            "congestion_level": 0.5619795983170535,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 1,
+            "congestion_level": 0.9170576125959049,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 2,
+            "congestion_level": 0.3223073673941942,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 3,
+            "congestion_level": 0.41806558157011464,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 4,
+            "congestion_level": 0.9836298655664922,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 5,
+            "congestion_level": 0.32558214902506,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 6,
+            "congestion_level": 0.6908294623303624,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 7,
+            "congestion_level": 0.012858675227035321,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 8,
+            "congestion_level": 0.8587162095361274,
+            "metal_layer": "met1"
+          },
+          {
+            "x": 9,
+            "y": 9,
+            "congestion_level": 0.7747247719676882,
+            "metal_layer": "met1"
+          }
+        ],
+        "utilization": 0.4
+      },
+      "improvement_opportunities": [
+        "Pipeline critical paths",
+        "Cluster related modules to reduce congestion",
+        "Fix DRC violations"
+      ],
+      "feature_correlations": {
+        "node_count_vs_area": 0.011111111111111112,
+        "edge_count_vs_congestion": 19.296845222959274,
+        "critical_path_vs_timing": 30.0
+      }
+    }
+  }
+}

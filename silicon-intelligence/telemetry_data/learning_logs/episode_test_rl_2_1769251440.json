@@ -1,0 +1,111 @@
+{
+  "design": "test_rl_2",
+  "final_ppa_improvement": {
+    "area_improvement_pct": 0.0,
+    "power_improvement_pct": 0.0,
+    "timing_improvement_pct": 0.0,
+    "drc_improvement": 0
+  },
+  "steps": [
+    {
+      "timestamp": "2026-01-24T11:43:24.483903",
+      "action": "cluster_congested_areas",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:43:29.053894",
+      "action": "clock_gating",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:43:33.840071",
+      "action": "clock_gating",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:43:37.910985",
+      "action": "balance_area_power",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:43:39.418106",
+      "action": "reduce_register_count",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:43:43.385597",
+      "action": "clock_gating",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:43:47.553264",
+      "action": "optimize_fanout",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:43:52.136245",
+      "action": "clock_gating",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:43:56.589008",
+      "action": "cluster_congested_areas",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:44:00.563081",
+      "action": "optimize_fanout",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    }
+  ]
+}

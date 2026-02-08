@@ -1,0 +1,106 @@
+python : Generating 
+LALR tables
+At line:1 char:1
++ python tests/test_i
+solation.py > 
+isolation_output.txt 
+2>&1; Get-Conte ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Generat   
+ ing LALR tables:    
+String) [], Remo    
+teException
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+WARNING: 183 
+shift/reduce 
+conflicts
+Generating LALR 
+tables
+WARNING: 183 
+shift/reduce 
+conflicts
+Testing Area/Power Balance Strategy (Input Isolation)...
+Real OpenROAD not found, will use mock interface
+No pretrained models found, initializing fresh predictor
+
+--- Original RTL ---
+
+module power_hungry_logic (
+    input clk,
+    input en,
+    input [7:0] data_in,
+    output reg [15:0] result
+);
+
+    wire [15:0] complex_calculation;
+    assign complex_calculation = data_in * data_in + 8'hA5;
+
+    always @(posedge clk) begin
+        if (en)
+            result <= complex_calculation;
+    end
+
+endmodule
+
+Applying AST-based input isolation for parameters: {'enable_signal': 'en', 'targets': ['data_in'], 'module_name': 'power_hungry_logic'}
+Warning: Standard parse failed ([WinError 2] The system cannot find the file specified). Attempting fallback...
+  Isolated signals ['data_in'] using control en
+
+--- Optimized RTL ---
+
+
+module power_hungry_logic
+(
+  input clk,
+  input en,
+  input [7:0] data_in,
+  output reg [15:0] result
+);
+
+  wire [15:0] complex_calculation;
+  assign complex_calculation = data_in_isolated * data_in_isolated + 8'hA5;
+
+  always @(posedge clk) begin
+    if(en) result <= complex_calculation; 
+  end
+
+  wire data_in_isolated;
+  assign data_in_isolated = (en)? data_in : 1'b0;
+
+endmodule
+
+
+
+FAILURE: Input isolation logic not found.
+
+DEBUG: Optimized RTL output:
+
+
+module power_hungry_logic
+(
+  input clk,
+  input en,
+  input [7:0] data_in,
+  output reg [15:0] result
+);
+
+  wire [15:0] complex_calculation;
+  assign complex_calculation = data_in_isolated * data_in_isolated + 8'hA5;
+
+  always @(posedge clk) begin
+    if(en) result <= complex_calculation; 
+  end
+
+  wire data_in_isolated;
+  assign data_in_isolated = (en)? data_in : 1'b0;
+
+endmodule
+
+

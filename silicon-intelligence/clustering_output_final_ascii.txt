@@ -1,0 +1,80 @@
+python : Generating 
+LALR tables
+At line:1 char:1
++ python tests/test_c
+lustering.py > cluste
+ring_output_final.txt
+ 2>&1; c ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Generat   
+ ing LALR tables:    
+String) [], Remo    
+teException
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+WARNING: 183 
+shift/reduce 
+conflicts
+Generating LALR 
+tables
+WARNING: 183 
+shift/reduce 
+conflicts
+Testing Clustering Strategy (Logic Merging)...
+Real OpenROAD not found, will use mock interface
+No pretrained models found, initializing fresh predictor
+
+--- Original RTL ---
+
+module redundant_logic (
+    input [7:0] a,
+    input [7:0] b,
+    output [7:0] out1,
+    output [7:0] out2
+);
+
+    wire [7:0] tmp1;
+    wire [7:0] tmp2;
+    
+    assign tmp1 = a + b;
+    assign tmp2 = a + b; // Redundant!
+    
+    assign out1 = tmp1;
+    assign out2 = tmp2;
+
+endmodule
+
+Applying AST-based clustering/merging for parameters: {'module_name': 'redundant_logic'}
+Warning: Standard parse failed ([WinError 2] The system cannot find the file specified). Attempting fallback...
+  Merged 1 redundant signals: ['tmp2']
+
+--- Optimized RTL ---
+
+
+module redundant_logic
+(
+  input [7:0] a,
+  input [7:0] b,
+  output [7:0] out1,
+  output [7:0] out2
+);
+
+  wire [7:0] tmp1;
+  wire [7:0] tmp2;
+  assign tmp1 = a + b;
+  assign out1 = tmp1;
+  assign out2 = tmp1;
+
+endmodule
+
+
+
+SUCCESS: Redundant assignment removed.
+FAILURE: Usage not redirected.

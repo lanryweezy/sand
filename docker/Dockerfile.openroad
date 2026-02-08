@@ -1,0 +1,38 @@
+# Dockerfile for OpenROAD Industrial Flow
+# Provides a stable, containerized environment for RTL-to-GDSII synthesis.
+
+FROM ubuntu:22.04
+
+LABEL maintainer="Street Heart Technologies"
+
+# Install dependencies for OpenROAD and Yosys
+RUN apt-get update && apt-get install -y \
+    git \
+    build-essential \
+    cmake \
+    python3 \
+    python3-pip \
+    tcl-dev \
+    libgoogle-glog-dev \
+    libboost-all-dev \
+    libreadline-dev \
+    zlib1g-dev \
+    qtbase5-dev \
+    libqt5svg5-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Note: In a production environment, we would pull the latest 
+# OpenROAD/OpenLane/OpenROAD-flow-scripts binaries here.
+# For this industrialization anchor, we set up the environment hooks.
+
+ENV PDK_ROOT=/pdk
+ENV OPENROAD_EXE=/usr/local/bin/openroad
+ENV YOSYS_EXE=/usr/local/bin/yosys
+
+# Create mount points for design data and PDKs
+RUN mkdir /designs /pdk
+
+WORKDIR /designs
+
+# Command to execute the Alpha-to-Omega Tcl flow
+ENTRYPOINT ["openroad", "-exit", "-tcl"]

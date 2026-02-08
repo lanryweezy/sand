@@ -1,0 +1,817 @@
+{
+  "dataset_info": {
+    "created_at": 1768820068.0546365,
+    "total_samples": 20,
+    "source_directories": [
+      "./open_source_designs/picorv32/picorv32-main/",
+      "./open_source_designs_extended/ibex/ibex-master/rtl/",
+      "./open_source_designs_extended/serv/serv-master/",
+      "./open_source_designs_extended/vexriscv/VexRiscv-master/"
+    ],
+    "description": "Training dataset from open-source silicon designs with MOCK PPA labels"
+  },
+  "samples": [
+    {
+      "design_name": "picorv32_0",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\picorv32.v",
+      "features": {
+        "num_nodes": 348,
+        "num_edges": 0,
+        "total_area": 15.0,
+        "total_power": 0.15,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 348
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.04310344827586207,
+        "avg_power": 0.0004310344827586207
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 30000.0,
+          "power_mw": 12.0,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 348,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 348
+        },
+        "edge_types": {},
+        "total_area": 15.0,
+        "total_power": 0.15,
+        "avg_area": 0.04310344827586207,
+        "avg_power": 0.0004310344827586207,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.7409234
+    },
+    {
+      "design_name": "testbench_1",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\testbench.v",
+      "features": {
+        "num_nodes": 81,
+        "num_edges": 0,
+        "total_area": 12.0,
+        "total_power": 0.11999999999999998,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 81
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.14814814814814814,
+        "avg_power": 0.0014814814814814812
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 14370.0,
+          "power_mw": 5.748,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 81,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 81
+        },
+        "edge_types": {},
+        "total_area": 12.0,
+        "total_power": 0.11999999999999998,
+        "avg_area": 0.14814814814814814,
+        "avg_power": 0.0014814814814814812,
+        "density": 0.0
+      },
+      "timestamp": 1769400493.3501713
+    },
+    {
+      "design_name": "testbench_ez_2",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\testbench_ez.v",
+      "features": {
+        "num_nodes": 18,
+        "num_edges": 0,
+        "total_area": 7.0,
+        "total_power": 0.07,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 18
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.3888888888888889,
+        "avg_power": 0.003888888888888889
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 2580.0,
+          "power_mw": 1.032,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 18,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 18
+        },
+        "edge_types": {},
+        "total_area": 7.0,
+        "total_power": 0.07,
+        "avg_area": 0.3888888888888889,
+        "avg_power": 0.003888888888888889,
+        "density": 0.0
+      },
+      "timestamp": 1769400493.3547332
+    },
+    {
+      "design_name": "testbench_wb_3",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\testbench_wb.v",
+      "features": {
+        "num_nodes": 39,
+        "num_edges": 0,
+        "total_area": 11.0,
+        "total_power": 0.10999999999999999,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 39
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.28205128205128205,
+        "avg_power": 0.0028205128205128203
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 8790.0,
+          "power_mw": 3.516,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 39,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 39
+        },
+        "edge_types": {},
+        "total_area": 11.0,
+        "total_power": 0.10999999999999999,
+        "avg_area": 0.28205128205128205,
+        "avg_power": 0.0028205128205128203,
+        "density": 0.0
+      },
+      "timestamp": 1769400493.35683
+    },
+    {
+      "design_name": "testbench_4",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\dhrystone\\testbench.v",
+      "features": {
+        "num_nodes": 27,
+        "num_edges": 0,
+        "total_area": 9.0,
+        "total_power": 0.09,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 27
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.3333333333333333,
+        "avg_power": 0.003333333333333333
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 3780.0,
+          "power_mw": 1.512,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 27,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 27
+        },
+        "edge_types": {},
+        "total_area": 9.0,
+        "total_power": 0.09,
+        "avg_area": 0.3333333333333333,
+        "avg_power": 0.003333333333333333,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.669261
+    },
+    {
+      "design_name": "testbench_nola_5",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\dhrystone\\testbench_nola.v",
+      "features": {
+        "num_nodes": 19,
+        "num_edges": 0,
+        "total_area": 8.0,
+        "total_power": 0.08,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 19
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.42105263157894735,
+        "avg_power": 0.004210526315789474
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 2850.0,
+          "power_mw": 1.1400000000000001,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 19,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 19
+        },
+        "edge_types": {},
+        "total_area": 8.0,
+        "total_power": 0.08,
+        "avg_area": 0.42105263157894735,
+        "avg_power": 0.004210526315789474,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.67416
+    },
+    {
+      "design_name": "hx8kdemo_6",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\picosoc\\hx8kdemo.v",
+      "features": {
+        "num_nodes": 25,
+        "num_edges": 0,
+        "total_area": 4.0,
+        "total_power": 0.04,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 25
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.16,
+        "avg_power": 0.0016
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 4170.0,
+          "power_mw": 1.6680000000000001,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 25,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 25
+        },
+        "edge_types": {},
+        "total_area": 4.0,
+        "total_power": 0.04,
+        "avg_area": 0.16,
+        "avg_power": 0.0016,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.7687166
+    },
+    {
+      "design_name": "hx8kdemo_tb_7",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\picosoc\\hx8kdemo_tb.v",
+      "features": {
+        "num_nodes": 19,
+        "num_edges": 0,
+        "total_area": 8.0,
+        "total_power": 0.08,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 19
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.42105263157894735,
+        "avg_power": 0.004210526315789474
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 3240.0,
+          "power_mw": 1.296,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 19,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 19
+        },
+        "edge_types": {},
+        "total_area": 8.0,
+        "total_power": 0.08,
+        "avg_area": 0.42105263157894735,
+        "avg_power": 0.004210526315789474,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.7708395
+    },
+    {
+      "design_name": "ice40up5k_spram_8",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\picosoc\\ice40up5k_spram.v",
+      "features": {
+        "num_nodes": 8,
+        "num_edges": 0,
+        "total_area": 4.0,
+        "total_power": 0.04,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 8
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.5,
+        "avg_power": 0.005
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 2730.0,
+          "power_mw": 1.092,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 8,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 8
+        },
+        "edge_types": {},
+        "total_area": 4.0,
+        "total_power": 0.04,
+        "avg_area": 0.5,
+        "avg_power": 0.005,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.7744598
+    },
+    {
+      "design_name": "icebreaker_9",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\picosoc\\icebreaker.v",
+      "features": {
+        "num_nodes": 26,
+        "num_edges": 0,
+        "total_area": 4.0,
+        "total_power": 0.04,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 26
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.15384615384615385,
+        "avg_power": 0.0015384615384615385
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 4530.0,
+          "power_mw": 1.8119999999999998,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 26,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 26
+        },
+        "edge_types": {},
+        "total_area": 4.0,
+        "total_power": 0.04,
+        "avg_area": 0.15384615384615385,
+        "avg_power": 0.0015384615384615385,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.7825735
+    },
+    {
+      "design_name": "icebreaker_tb_10",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\picosoc\\icebreaker_tb.v",
+      "features": {
+        "num_nodes": 26,
+        "num_edges": 0,
+        "total_area": 8.0,
+        "total_power": 0.08,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 26
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.3076923076923077,
+        "avg_power": 0.003076923076923077
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 3660.0,
+          "power_mw": 1.464,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 26,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 26
+        },
+        "edge_types": {},
+        "total_area": 8.0,
+        "total_power": 0.08,
+        "avg_area": 0.3076923076923077,
+        "avg_power": 0.003076923076923077,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.7847068
+    },
+    {
+      "design_name": "picosoc_11",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\picosoc\\picosoc.v",
+      "features": {
+        "num_nodes": 29,
+        "num_edges": 0,
+        "total_area": 5.0,
+        "total_power": 0.05,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 29
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.1724137931034483,
+        "avg_power": 0.001724137931034483
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 7860.0,
+          "power_mw": 3.144,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 29,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 29
+        },
+        "edge_types": {},
+        "total_area": 5.0,
+        "total_power": 0.05,
+        "avg_area": 0.1724137931034483,
+        "avg_power": 0.001724137931034483,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.8035264
+    },
+    {
+      "design_name": "simpleuart_12",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\picosoc\\simpleuart.v",
+      "features": {
+        "num_nodes": 13,
+        "num_edges": 0,
+        "total_area": 3.0,
+        "total_power": 0.03,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 13
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.23076923076923078,
+        "avg_power": 0.0023076923076923075
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 4110.0,
+          "power_mw": 1.6440000000000001,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 13,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 13
+        },
+        "edge_types": {},
+        "total_area": 3.0,
+        "total_power": 0.03,
+        "avg_area": 0.23076923076923078,
+        "avg_power": 0.0023076923076923075,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.8099425
+    },
+    {
+      "design_name": "spiflash_13",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\picosoc\\spiflash.v",
+      "features": {
+        "num_nodes": 29,
+        "num_edges": 0,
+        "total_area": 5.0,
+        "total_power": 0.05,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 29
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.1724137931034483,
+        "avg_power": 0.001724137931034483
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 12270.0,
+          "power_mw": 4.9079999999999995,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 29,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 29
+        },
+        "edge_types": {},
+        "total_area": 5.0,
+        "total_power": 0.05,
+        "avg_area": 0.1724137931034483,
+        "avg_power": 0.001724137931034483,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.8200493
+    },
+    {
+      "design_name": "spiflash_tb_14",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\picosoc\\spiflash_tb.v",
+      "features": {
+        "num_nodes": 25,
+        "num_edges": 0,
+        "total_area": 9.0,
+        "total_power": 0.09,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 24,
+          "NodeType.PORT": 1
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.36,
+        "avg_power": 0.0036
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 10980.0,
+          "power_mw": 4.392,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 25,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 24,
+          "NodeType.PORT": 1
+        },
+        "edge_types": {},
+        "total_area": 9.0,
+        "total_power": 0.09,
+        "avg_area": 0.36,
+        "avg_power": 0.0036,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.8243582
+    },
+    {
+      "design_name": "spimemio_15",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\picosoc\\spimemio.v",
+      "features": {
+        "num_nodes": 95,
+        "num_edges": 0,
+        "total_area": 4.0,
+        "total_power": 0.04,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 95
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.042105263157894736,
+        "avg_power": 0.0004210526315789474
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 17370.0,
+          "power_mw": 6.9479999999999995,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 95,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 95
+        },
+        "edge_types": {},
+        "total_area": 4.0,
+        "total_power": 0.04,
+        "avg_area": 0.042105263157894736,
+        "avg_power": 0.0004210526315789474,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.8288815
+    },
+    {
+      "design_name": "testbench_16",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\scripts\\csmith\\testbench.v",
+      "features": {
+        "num_nodes": 17,
+        "num_edges": 0,
+        "total_area": 4.0,
+        "total_power": 0.04,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 17
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.23529411764705882,
+        "avg_power": 0.0023529411764705885
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 3000.0,
+          "power_mw": 1.2,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 17,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 17
+        },
+        "edge_types": {},
+        "total_area": 4.0,
+        "total_power": 0.04,
+        "avg_area": 0.23529411764705882,
+        "avg_power": 0.0023529411764705885,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.858454
+    },
+    {
+      "design_name": "testbench_17",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\scripts\\cxxdemo\\testbench.v",
+      "features": {
+        "num_nodes": 19,
+        "num_edges": 0,
+        "total_area": 8.0,
+        "total_power": 0.08,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 19
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.42105263157894735,
+        "avg_power": 0.004210526315789474
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 3420.0,
+          "power_mw": 1.368,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 19,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 19
+        },
+        "edge_types": {},
+        "total_area": 8.0,
+        "total_power": 0.08,
+        "avg_area": 0.42105263157894735,
+        "avg_power": 0.004210526315789474,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.8909638
+    },
+    {
+      "design_name": "example_18",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\scripts\\icestorm\\example.v",
+      "features": {
+        "num_nodes": 21,
+        "num_edges": 0,
+        "total_area": 4.0,
+        "total_power": 0.04,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 21
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.19047619047619047,
+        "avg_power": 0.0019047619047619048
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 2400.0,
+          "power_mw": 0.96,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 21,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 21
+        },
+        "edge_types": {},
+        "total_area": 4.0,
+        "total_power": 0.04,
+        "avg_area": 0.19047619047619047,
+        "avg_power": 0.0019047619047619048,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.9054923
+    },
+    {
+      "design_name": "example_tb_19",
+      "design_path": "./open_source_designs/picorv32/picorv32-main\\scripts\\icestorm\\example_tb.v",
+      "features": {
+        "num_nodes": 14,
+        "num_edges": 0,
+        "total_area": 5.0,
+        "total_power": 0.05,
+        "avg_timing_criticality": 0,
+        "avg_congestion": 0,
+        "node_type_counts": {
+          "NodeType.SIGNAL": 14
+        },
+        "edge_type_counts": {},
+        "density": 0.0,
+        "avg_area": 0.35714285714285715,
+        "avg_power": 0.0035714285714285718
+      },
+      "labels": {
+        "ppa": {
+          "area_um2": 900.0,
+          "power_mw": 0.36,
+          "timing_ns": 0.1
+        }
+      },
+      "graph_stats": {
+        "num_nodes": 14,
+        "num_edges": 0,
+        "node_types": {
+          "NodeType.SIGNAL": 14
+        },
+        "edge_types": {},
+        "total_area": 5.0,
+        "total_power": 0.05,
+        "avg_area": 0.35714285714285715,
+        "avg_power": 0.0035714285714285718,
+        "density": 0.0
+      },
+      "timestamp": 1769400492.9085953
+    }
+  ]
+}

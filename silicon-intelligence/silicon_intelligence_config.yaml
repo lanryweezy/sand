@@ -1,0 +1,32 @@
+deployment_mode: development
+process_node: "7nm"
+target_frequency_ghz: 3.0
+power_budget_watts: 1.0
+use_advanced_models: true
+model_precision: "fp16"
+enable_quantization: false
+max_parallel_workers: 4
+enable_gpu_acceleration: false
+gpu_device_id: 0
+agent_negotiation_timeout: 300.0
+agent_authority_decay_rate: 0.01
+enable_conflict_resolution: true
+learning_rate: 0.001
+batch_size: 32
+max_training_epochs: 100
+enable_continual_learning: true
+enable_eda_integration: false
+commercial_eda_tools:
+  - "openroad"
+cloud_platforms: []
+pdk_path: "./demo_pdk"
+lib_path: "./demo_lib"
+output_directory: "./output"
+temp_directory: "./temp"
+model_cache_directory: "./models/cache"
+enable_cognitive_reasoning: true
+cognitive_reasoning_depth: 5
+enable_parallel_realities: true
+max_parallel_realities: 4
+enable_drc_prediction: true
+enable_intent_interpretation: true

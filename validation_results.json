@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-01-22T06:37:24.712241",
+  "overall_authority": false,
+  "authority_score": 0.9,
+  "accuracy_target_met": false,
+  "autonomous_biasing_active": true,
+  "override_tracking_active": true,
+  "details": {
+    "prediction_accuracy": {
+      "accuracy": 0.0,
+      "time_saved": 29.7,
+      "bad_decisions_prevented": 32,
+      "meets_accuracy_target": false
+    },
+    "autonomous_biasing": {
+      "has_bias_methods": true,
+      "has_oracle": true,
+      "oracle_works": true,
+      "autonomous_biasing_active": true
+    },
+    "override_tracking": {
+      "has_tracking_methods": true,
+      "has_authority_metrics": true,
+      "has_trust_report": true,
+      "override_tracking_active": true
+    },
+    "authority_building": {
+      "authority_score": 0.9,
+      "weighted_authority": 0.7131578947368421,
+      "overrides_processed": 10,
+      "ai_correct_when_challenged": 9,
+      "challenge_success_rate": "90.0%",
+      "engineers_requiring_attention": 0
+    }
+  }
+}

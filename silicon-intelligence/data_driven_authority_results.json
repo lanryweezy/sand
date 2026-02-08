@@ -1,0 +1,103 @@
+{
+  "domain_specification": {
+    "domain": "AI_Accelerators",
+    "focus": "dense_datapaths_brutal_congestion",
+    "typical_sizes": {
+      "small": "1-2mm\u00b2",
+      "medium": "3-5mm\u00b2",
+      "large": "6-10mm\u00b2"
+    },
+    "ppa_priorities": [
+      "performance",
+      "area",
+      "power"
+    ],
+    "failure_modes": [
+      "congestion",
+      "timing",
+      "power_hotspots"
+    ],
+    "success_metrics": {
+      "congestion_accuracy": 0.85,
+      "timing_closure_first_iter": 0.7,
+      "power_prediction_accuracy": 0.8
+    }
+  },
+  "benchmarks": {
+    "open_road_benchmarks": [
+      {
+        "name": "ibex",
+        "type": "microcontroller",
+        "size_range": "small",
+        "files": [
+          "ibex.v",
+          "ibex.sdc"
+        ]
+      },
+      {
+        "name": "picorv32",
+        "type": "riscv_core",
+        "size_range": "small",
+        "files": [
+          "picorv32.v",
+          "picorv32.sdc"
+        ]
+      },
+      {
+        "name": "sha3",
+        "type": "crypto_accelerator",
+        "size_range": "medium",
+        "files": [
+          "sha3.v",
+          "sha3.sdc"
+        ]
+      }
+    ],
+    "ai_accelerator_benchmarks": [
+      {
+        "name": "mac_array_32x32",
+        "type": "compute_unit",
+        "size_range": "medium",
+        "files": [
+          "mac_array.v",
+          "mac_array.sdc"
+        ]
+      },
+      {
+        "name": "conv_core",
+        "type": "convolution_unit",
+        "size_range": "medium",
+        "files": [
+          "conv_core.v",
+          "conv_core.sdc"
+        ]
+      },
+      {
+        "name": "tensor_proc",
+        "type": "tensor_processor",
+        "size_range": "large",
+        "files": [
+          "tensor_proc.v",
+          "tensor_proc.sdc"
+        ]
+      }
+    ],
+    "total_designs": 6,
+    "total_artifacts": 18
+  },
+  "telemetry_system": "active",
+  "synthetic_data_generation": "active",
+  "difference_learning": "active",
+  "bad_decision_memory": 3,
+  "evaluation_results": {
+    "accuracy": "0.00%",
+    "time_saved": "29.7 hours",
+    "decisions_prevented": 32
+  },
+  "authority_metrics": {
+    "authority_score": "100.0%",
+    "overrides_processed": 3,
+    "engineers_attention": 0
+  },
+  "timestamp": "2026-01-22T06:59:10.211300"
+}

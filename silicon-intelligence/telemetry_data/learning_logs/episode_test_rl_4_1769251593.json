@@ -1,0 +1,111 @@
+{
+  "design": "test_rl_4",
+  "final_ppa_improvement": {
+    "area_improvement_pct": 0.0,
+    "power_improvement_pct": 0.0,
+    "timing_improvement_pct": 0.0,
+    "drc_improvement": 0
+  },
+  "steps": [
+    {
+      "timestamp": "2026-01-24T11:45:03.399639",
+      "action": "reduce_register_count",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:45:17.060813",
+      "action": "clock_gating",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:45:30.184188",
+      "action": "clock_gating",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:45:43.802129",
+      "action": "optimize_fanout",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:45:47.989395",
+      "action": "reduce_register_count",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:46:00.712010",
+      "action": "optimize_fanout",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:46:05.403418",
+      "action": "reduce_register_count",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:46:18.464578",
+      "action": "cluster_congested_areas",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:46:22.666336",
+      "action": "reduce_register_count",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    },
+    {
+      "timestamp": "2026-01-24T11:46:33.966254",
+      "action": "clock_gating",
+      "reward": -0.1,
+      "deltas": {
+        "area_um2": 0.0,
+        "power_mw": 0.0,
+        "timing_ns": 0.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+# Silicon Intelligence System Requirements
+
+# Core dependencies
+numpy>=1.21.0
+networkx>=2.8.0
+pandas>=1.4.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+scikit-learn>=1.1.0
+pyyaml>=6.0
+tqdm>=4.64.0
+
+# Machine Learning
+torch>=1.12.0
+torch-geometric>=2.0.0
+transformers>=4.20.0
+tensorboard>=2.9.0
+
+# Parsing and Data Processing
+pyverilog>=1.3.0
+lark-parser>=0.12.0
+antlr4-python3-runtime>=4.11.0
+
+# EDA Tool Interfaces
+# These are optional - only install if you have access to commercial tools
+# openroad-tools>=2.0.0  # Uncomment if using OpenROAD
+
+# Development tools
+pytest>=7.0.0
+black>=22.0.0
+flake8>=4.0.0
+mypy>=0.950
+jupyter>=1.0.0

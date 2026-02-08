@@ -1,0 +1,62 @@
+{
+  "open_road_benchmarks": [
+    {
+      "name": "ibex",
+      "type": "microcontroller",
+      "size_range": "small",
+      "files": [
+        "ibex.v",
+        "ibex.sdc"
+      ]
+    },
+    {
+      "name": "picorv32",
+      "type": "riscv_core",
+      "size_range": "small",
+      "files": [
+        "picorv32.v",
+        "picorv32.sdc"
+      ]
+    },
+    {
+      "name": "sha3",
+      "type": "crypto_accelerator",
+      "size_range": "medium",
+      "files": [
+        "sha3.v",
+        "sha3.sdc"
+      ]
+    }
+  ],
+  "ai_accelerator_benchmarks": [
+    {
+      "name": "mac_array_32x32",
+      "type": "compute_unit",
+      "size_range": "medium",
+      "files": [
+        "mac_array.v",
+        "mac_array.sdc"
+      ]
+    },
+    {
+      "name": "conv_core",
+      "type": "convolution_unit",
+      "size_range": "medium",
+      "files": [
+        "conv_core.v",
+        "conv_core.sdc"
+      ]
+    },
+    {
+      "name": "tensor_proc",
+      "type": "tensor_processor",
+      "size_range": "large",
+      "files": [
+        "tensor_proc.v",
+        "tensor_proc.sdc"
+      ]
+    }
+  ],
+  "total_designs": 6,
+  "total_artifacts": 18
+}

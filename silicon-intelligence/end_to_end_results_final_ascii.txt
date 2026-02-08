@@ -1,0 +1,111 @@
+python : Generating LALR tables
+At line:1 char:1
++ python run_end_to_end_demo.py > 
+end_to_end_results_final.txt 2>&1; ca ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( 
+   Generating LALR tables:String) [], Remote  
+  Exception
+    + FullyQualifiedErrorId : NativeCommandEr 
+   ror
+ 
+WARNING: 183 shift/reduce conflicts
+Generating LALR tables
+WARNING: 183 shift/reduce conflicts
+Generating LALR tables
+WARNING: 183 shift/reduce conflicts
+Generating LALR tables
+WARNING: 183 shift/reduce conflicts
+Generating LALR tables
+WARNING: 183 shift/reduce conflicts
+Generating LALR tables
+WARNING: 183 shift/reduce conflicts
+2026-01-24 11:15:19.342684: I 
+tensorflow/core/util/port.cc:153] oneDNN 
+custom operations are on. You may see 
+slightly different numerical results due to 
+floating-point round-off errors from 
+different computation orders. To turn them 
+off, set the environment variable 
+`TF_ENABLE_ONEDNN_OPTS=0`.
+================================================================================
+   SILICON INTELLIGENCE: END-TO-END INDUSTRIAL OPTIMIZATION RUN
+================================================================================
+
+[STEP 1] Initializing Autonomous AI Optimizer...
+Real OpenROAD not found, will use mock interface
+No pretrained models found, initializing fresh predictor
+
+[STEP 2] Executing Multi-Strategy Optimization...
+Target RTL: industrial_grade_accelerator.v
+
+ -> Applying Logic Merging (Clustering)...
+Applying AST-based clustering/merging for parameters: {'module_name': 'crypto_accelerator_pro'}
+Warning: Standard parse failed ([WinError 2] The system cannot find the file specified). Attempting fallback...
+  Merged 1 redundant signals: ['mult_result_2']
+
+ -> Applying Input Isolation (Power)...
+Applying AST-based input isolation for parameters: {'module_name': 'crypto_accelerator_pro', 'targets': ['data_in_a', 'data_in_b'], 'enable_signal': 'en'}
+Warning: Standard parse failed ([WinError 2] The system cannot find the file specified). Attempting fallback...
+AST Isolation Transformation failed: 'Ioport' object has no attribute 'name'. Returning original.
+
+ -> Applying Fanout Buffering (Timing)...
+Applying AST-based fanout optimization for parameters: {'module_name': 'crypto_accelerator_pro', 'target_signal': 'clk', 'current_avg': 20.0}
+Warning: Standard parse failed ([WinError 2] The system cannot find the file specified). Attempting fallback...
+  Buffered clk into 5 branches: ['clk_buf_0', 'clk_buf_1', 'clk_buf_2', 'clk_buf_3', 'clk_buf_4']
+
+[STEP 3] Optimization Complete. Results saved to: industrial_grade_accelerator_OPTIMIZED.v
+
+[STEP 4] System-Level PPA Verification...
+2026-01-24 11:15:20,450 - agents.base_agent - INFO - Registered agent feb796fb-2e41-4cef-b2c4-11f13cede8ec of type floorplan
+2026-01-24 11:15:20,450 - agents.base_agent - INFO - Registered agent c5036189-4884-4853-bf42-e24396e3b7ee of type placement
+2026-01-24 11:15:20,450 - agents.base_agent - INFO - Registered agent 90007c9a-4ade-47b6-8e9c-62530000a966 of type clock
+2026-01-24 11:15:20,450 - agents.base_agent - INFO - Registered agent a06dfe31-3d13-43c4-8071-1c8b6671f191 of type power
+2026-01-24 11:15:20,450 - agents.base_agent - INFO - Registered agent 63930916-19a2-4d13-9712-83648a2f424d of type yield
+2026-01-24 11:15:20,450 - agents.base_agent - INFO - Registered agent f8fc473e-9a4d-4b55-b369-c76663d1156e of type routing
+2026-01-24 11:15:20,450 - agents.base_agent - INFO - Registered agent 056eb5b0-2925-4f55-ae43-81d619d916e3 of type power
+2026-01-24 11:15:20,557 - agents.base_agent - INFO - Registered agent 2b4afa60-6d6b-47f3-8cc5-b0ad4628deee of type floorplan
+2026-01-24 11:15:20,557 - agents.base_agent - INFO - Registered agent 95fdd399-4398-4f18-848b-570692a5df6f of type placement
+2026-01-24 11:15:20,557 - agents.base_agent - INFO - Registered agent 97b93feb-27b0-4219-a456-1db8724c8ae4 of type clock
+2026-01-24 11:15:20,557 - agents.base_agent - INFO - Registered agent 777ef3ea-c635-4a3a-86af-fd7afc6e0430 of type power
+2026-01-24 11:15:20,557 - agents.base_agent - INFO - Registered agent 0e17e5d3-1d16-4631-8d48-df7ab765eb47 of type yield
+2026-01-24 11:15:20,557 - agents.base_agent - INFO - Registered agent a44afebd-0c47-4635-b703-4e23f5712450 of type routing
+2026-01-24 11:15:20,557 - agents.base_agent - INFO - Registered agent 2014d5de-9874-481c-bf58-cf0c9f36856b of type power
+2026-01-24 11:15:20,560 - monitoring.system_health_monitor - INFO - System health monitoring started
+Generating LALR tables
+WARNING: 183 shift/reduce conflicts
+Generating LALR tables
+WARNING: 183 shift/reduce conflicts
+=== Analyzing Design: original_industrial ===
+Step 1: Converting RTL to Physical IR...
+PyVerilog extraction failed: [WinError 2] The system cannot find the file specified
+Step 2: Running OpenROAD flow...
+Running mock OpenROAD flow...
+Mock synthesis: C:\Users\lanry\AppData\Local\Temp\tmp9s7e8pc7\design.v
+Mock floorplan: C:\Users\lanry\AppData\Local\Temp\tmp9s7e8pc7\design.nl
+Mock placement: C:\Users\lanry\AppData\Local\Temp\tmp9s7e8pc7\design.def
+Mock CTS: C:\Users\lanry\AppData\Local\Temp\tmp9s7e8pc7\design.def
+Mock routing: C:\Users\lanry\AppData\Local\Temp\tmp9s7e8pc7\design.def
+Step 3: Comparing predictions with actual results...
+=== Analyzing Design: optimized_industrial ===
+Step 1: Converting RTL to Physical IR...
+PyVerilog extraction failed: [WinError 2] The system cannot find the file specified
+Step 2: Running OpenROAD flow...
+Running mock OpenROAD flow...
+Mock synthesis: C:\Users\lanry\AppData\Local\Temp\tmpr4fqtq8v\design.v
+Mock floorplan: C:\Users\lanry\AppData\Local\Temp\tmpr4fqtq8v\design.nl
+Mock placement: C:\Users\lanry\AppData\Local\Temp\tmpr4fqtq8v\design.def
+Mock CTS: C:\Users\lanry\AppData\Local\Temp\tmpr4fqtq8v\design.def
+Mock routing: C:\Users\lanry\AppData\Local\Temp\tmpr4fqtq8v\design.def
+Step 3: Comparing predictions with actual results...
+
+--- PERFORMANCE SUMMARY ---
+Logic Nodes Removed: -7
+Power Savings (Est): -24.5%
+Area Efficiency Improvement: -24.5%
+Overall Confidence: 80.0%
+
+================================================================================
+   MISSION SUCCESS: DESIGN TAPE-OUT READY (VIRTUAL)
+================================================================================

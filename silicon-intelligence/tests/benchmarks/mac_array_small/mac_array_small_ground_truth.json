@@ -1,0 +1,44 @@
+{
+  "actual_congestion_map": {
+    "interconnect_region": 0.75,
+    "mac_cluster_0": 0.6,
+    "io_boundary": 0.4
+  },
+  "actual_timing_violations": [
+    {
+      "path": "clk_to_mac_result",
+      "slack": -0.15,
+      "endpoint": "mac_results[0][15]"
+    }
+  ],
+  "actual_power_hotspots": [
+    {
+      "region": "mac_cluster_0",
+      "power": 0.85,
+      "type": "dynamic"
+    },
+    {
+      "region": "interconnect_region",
+      "power": 0.65,
+      "type": "leakage"
+    }
+  ],
+  "actual_drc_violations": [
+    {
+      "rule": "min_spacing",
+      "count": 2,
+      "location": "mac_cluster_0"
+    },
+    {
+      "rule": "density",
+      "count": 1,
+      "location": "io_boundary"
+    }
+  ],
+  "implementation_time": 12.5,
+  "ppa_results": {
+    "power": 0.15,
+    "performance": 1.8,
+    "area": 0.85
+  }
+}

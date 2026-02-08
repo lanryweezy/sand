@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  si-dev:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    stdin_open: true
+    tty: true

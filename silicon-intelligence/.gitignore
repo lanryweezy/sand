@@ -1,0 +1,50 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.venv
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# C++ build artifacts
+*.o
+*.so
+silicon_intelligence_cpp*.so
+cpp/build/
+cpp/core/build/
+cpp/bindings/build/
+
+# PyTest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log

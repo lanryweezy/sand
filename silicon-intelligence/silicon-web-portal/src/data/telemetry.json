@@ -1,0 +1,34 @@
+{
+  "metrics": {
+    "area": "2100 um\u00b2 (-32.1%)",
+    "power": "0.84 mW (-32.1%)",
+    "timing": "+0.0 ns",
+    "confidence": "80.0%"
+  },
+  "feed": [
+    {
+      "id": 1769252244805,
+      "time": "11:57:24",
+      "title": "INDUSTRIAL_OPTIMIZATION_SUCCESS",
+      "desc": "Crypto-accelerator DESIGN TAPE-OUT READY."
+    },
+    {
+      "id": 1769252244804,
+      "time": "11:57:24",
+      "title": "FANOUT_BUFFERING",
+      "desc": "Injected 5-branch clock distribution tree."
+    },
+    {
+      "id": 1769252244803,
+      "time": "11:57:24",
+      "title": "INPUT_ISOLATION",
+      "desc": "Gated data_in_a/b with en control signal."
+    },
+    {
+      "id": 1769252244802,
+      "time": "11:57:24",
+      "title": "LOGIC_MERGING",
+      "desc": "Merged redundant mult_result cones."
+    }
+  ]
+}

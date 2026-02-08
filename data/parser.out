@@ -1,0 +1,2635 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BITWISE_AND
+    BITWISE_NAND
+    BITWISE_NOR
+    BITWISE_NOT
+    BITWISE_OR
+    BITWISE_XNOR
+    BITWISE_XOR
+    CASEX
+    CASZ
+    CEQ
+    CNE
+    COMMENT
+    CONCAT
+    COND_OP
+    CONSTANT_EXPRESSION
+    DEFPARAM
+    DIRECTIVE
+    DISABLE
+    ENDFUNCTION
+    ENDGENERATE
+    ENDSPECIFY
+    ENDTASK
+    EQ
+    FOR
+    FOREVER
+    FORK
+    FUNCTION
+    GE
+    GENERATE
+    GENVAR
+    GT
+    INITIAL_CONSTRUCT
+    INTEGER
+    JOIN
+    LARGE
+    LBRACE
+    LOGICAL_AND
+    LOGICAL_NOT
+    LOGICAL_OR
+    LSHIFT
+    LSHIFTA
+    LT
+    MEDIUM
+    MULTI_CONCAT
+    NE
+    POWER
+    RBRACE
+    REAL
+    REDUCTION_NAND
+    REDUCTION_NOR
+    REDUCTION_XNOR
+    REPEAT
+    RETURN
+    RSHIFT
+    RSHIFTA
+    SCALARED
+    SIGNED
+    SMALL
+    SPECIFY
+    SUPPLY0
+    SUPPLY1
+    TASK
+    TIME
+    TRI
+    TRI0
+    TRI1
+    TRIAND
+    TRIOR
+    TRIREG
+    VECTORED
+    WAIT
+    WAND
+    WHILE
+    WILD_EQ
+    WILD_NE
+    WOR
+
+Grammar
+
+Rule 0     S' -> design
+Rule 1     design -> module_list
+Rule 2     module_list -> module module_list
+Rule 3     module_list -> module
+Rule 4     module -> MODULE ID LPAREN port_list RPAREN SEMICOLON module_items ENDMODULE
+Rule 5     port_list -> port COMMA port_list
+Rule 6     port_list -> port
+Rule 7     port_list -> empty
+Rule 8     port -> INPUT port_type_opt ID
+Rule 9     port -> OUTPUT port_type_opt ID
+Rule 10    port -> INOUT port_type_opt ID
+Rule 11    port_type_opt -> range_opt
+Rule 12    port_type_opt -> empty
+Rule 13    range_opt -> LBRACKET NUMBER COLON NUMBER RBRACKET
+Rule 14    range_opt -> empty
+Rule 15    module_items -> module_item module_items
+Rule 16    module_items -> module_item
+Rule 17    module_items -> empty
+Rule 18    module_item -> net_declaration
+Rule 19    module_item -> parameter_declaration
+Rule 20    module_item -> instantiation
+Rule 21    module_item -> continuous_assign
+Rule 22    module_item -> always_construct
+Rule 23    module_item -> initial_construct
+Rule 24    net_declaration -> WIRE range_opt ID SEMICOLON
+Rule 25    net_declaration -> REG range_opt ID SEMICOLON
+Rule 26    parameter_declaration -> PARAMETER parameter_assign_list SEMICOLON
+Rule 27    parameter_declaration -> LOCALPARAM parameter_assign_list SEMICOLON
+Rule 28    parameter_assign_list -> parameter_assignment COMMA parameter_assign_list
+Rule 29    parameter_assign_list -> parameter_assignment
+Rule 30    parameter_assignment -> ID EQUAL expression
+Rule 31    instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON
+Rule 32    parameter_value_assignment_opt -> HASH LPAREN parameter_assignment COMMA parameter_value_assignment_opt RPAREN
+Rule 33    parameter_value_assignment_opt -> HASH LPAREN parameter_assignment RPAREN
+Rule 34    parameter_value_assignment_opt -> empty
+Rule 35    named_port_connection_list -> DOT ID LPAREN expression RPAREN COMMA named_port_connection_list
+Rule 36    named_port_connection_list -> DOT ID LPAREN expression RPAREN
+Rule 37    named_port_connection_list -> empty
+Rule 38    continuous_assign -> ASSIGN ID EQUAL expression SEMICOLON
+Rule 39    expression -> term
+Rule 40    expression -> expression PLUS term
+Rule 41    expression -> expression MINUS term
+Rule 42    expression -> expression TIMES term
+Rule 43    expression -> expression DIVIDE term
+Rule 44    expression -> expression MODULO term
+Rule 45    expression -> LPAREN expression RPAREN
+Rule 46    term -> ID
+Rule 47    term -> NUMBER
+Rule 48    term -> STRING
+Rule 49    initial_construct -> INITIAL statement
+Rule 50    always_construct -> ALWAYS AT LPAREN event_expression RPAREN statement
+Rule 51    always_construct -> ALWAYS LPAREN event_expression RPAREN statement
+Rule 52    always_construct -> ALWAYS statement
+Rule 53    event_expression -> POSEDGE ID
+Rule 54    event_expression -> NEGEDGE ID
+Rule 55    event_expression -> ID
+Rule 56    statement -> blocking_assignment SEMICOLON
+Rule 57    statement -> non_blocking_assignment SEMICOLON
+Rule 58    statement -> if_statement
+Rule 59    statement -> case_statement
+Rule 60    statement -> begin_end_block
+Rule 61    blocking_assignment -> ID BLOCKING_ASSIGN expression
+Rule 62    non_blocking_assignment -> ID NON_BLOCKING_ASSIGN expression
+Rule 63    if_statement -> IF LPAREN expression RPAREN statement
+Rule 64    if_statement -> IF LPAREN expression RPAREN statement ELSE statement
+Rule 65    case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE
+Rule 66    case_item_list -> case_item case_item_list
+Rule 67    case_item_list -> case_item
+Rule 68    constant_expression -> expression
+Rule 69    constant_expression -> NUMBER
+Rule 70    case_item -> constant_expression COLON statement
+Rule 71    case_item -> DEFAULT COLON statement
+Rule 72    begin_end_block -> BEGIN statement_list END
+Rule 73    statement_list -> statement statement_list
+Rule 74    statement_list -> statement
+Rule 75    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ALWAYS               : 50 51 52
+ASSIGN               : 38
+AT                   : 50
+BEGIN                : 72
+BITWISE_AND          : 
+BITWISE_NAND         : 
+BITWISE_NOR          : 
+BITWISE_NOT          : 
+BITWISE_OR           : 
+BITWISE_XNOR         : 
+BITWISE_XOR          : 
+BLOCKING_ASSIGN      : 61
+CASE                 : 65
+CASEX                : 
+CASZ                 : 
+CEQ                  : 
+CNE                  : 
+COLON                : 13 70 71
+COMMA                : 5 28 32 35
+COMMENT              : 
+CONCAT               : 
+COND_OP              : 
+CONSTANT_EXPRESSION  : 
+DEFAULT              : 71
+DEFPARAM             : 
+DIRECTIVE            : 
+DISABLE              : 
+DIVIDE               : 43
+DOT                  : 35 36
+ELSE                 : 64
+END                  : 72
+ENDCASE              : 65
+ENDFUNCTION          : 
+ENDGENERATE          : 
+ENDMODULE            : 4
+ENDSPECIFY           : 
+ENDTASK              : 
+EQ                   : 
+EQUAL                : 30 38
+FOR                  : 
+FOREVER              : 
+FORK                 : 
+FUNCTION             : 
+GE                   : 
+GENERATE             : 
+GENVAR               : 
+GT                   : 
+HASH                 : 32 33
+ID                   : 4 8 9 10 24 25 30 31 31 35 36 38 46 53 54 55 61 62
+IF                   : 63 64
+INITIAL              : 49
+INITIAL_CONSTRUCT    : 
+INOUT                : 10
+INPUT                : 8
+INTEGER              : 
+JOIN                 : 
+LARGE                : 
+LBRACE               : 
+LBRACKET             : 13
+LOCALPARAM           : 27
+LOGICAL_AND          : 
+LOGICAL_NOT          : 
+LOGICAL_OR           : 
+LPAREN               : 4 31 32 33 35 36 45 50 51 63 64 65
+LSHIFT               : 
+LSHIFTA              : 
+LT                   : 
+MEDIUM               : 
+MINUS                : 41
+MODULE               : 4
+MODULO               : 44
+MULTI_CONCAT         : 
+NE                   : 
+NEGEDGE              : 54
+NON_BLOCKING_ASSIGN  : 62
+NUMBER               : 13 13 47 69
+OUTPUT               : 9
+PARAMETER            : 26
+PLUS                 : 40
+POSEDGE              : 53
+POWER                : 
+RBRACE               : 
+RBRACKET             : 13
+REAL                 : 
+REDUCTION_NAND       : 
+REDUCTION_NOR        : 
+REDUCTION_XNOR       : 
+REG                  : 25
+REPEAT               : 
+RETURN               : 
+RPAREN               : 4 31 32 33 35 36 45 50 51 63 64 65
+RSHIFT               : 
+RSHIFTA              : 
+SCALARED             : 
+SEMICOLON            : 4 24 25 26 27 31 38 56 57
+SIGNED               : 
+SMALL                : 
+SPECIFY              : 
+STRING               : 48
+SUPPLY0              : 
+SUPPLY1              : 
+TASK                 : 
+TIME                 : 
+TIMES                : 42
+TRI                  : 
+TRI0                 : 
+TRI1                 : 
+TRIAND               : 
+TRIOR                : 
+TRIREG               : 
+VECTORED             : 
+WAIT                 : 
+WAND                 : 
+WHILE                : 
+WILD_EQ              : 
+WILD_NE              : 
+WIRE                 : 24
+WOR                  : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+always_construct     : 22
+begin_end_block      : 60
+blocking_assignment  : 56
+case_item            : 66 67
+case_item_list       : 65 66
+case_statement       : 59
+constant_expression  : 70
+continuous_assign    : 21
+design               : 0
+empty                : 7 12 14 17 34 37
+event_expression     : 50 51
+expression           : 30 35 36 38 40 41 42 43 44 45 61 62 63 64 65 68
+if_statement         : 58
+initial_construct    : 23
+instantiation        : 20
+module               : 2 3
+module_item          : 15 16
+module_items         : 4 15
+module_list          : 1 2
+named_port_connection_list : 31 35
+net_declaration      : 18
+non_blocking_assignment : 57
+parameter_assign_list : 26 27 28
+parameter_assignment : 28 29 32 33
+parameter_declaration : 19
+parameter_value_assignment_opt : 31 32
+port                 : 5 6
+port_list            : 4 5
+port_type_opt        : 8 9 10
+range_opt            : 11 24 25
+statement            : 49 50 51 52 63 64 64 70 71 73 74
+statement_list       : 72 73
+term                 : 39 40 41 42 43 44
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . design
+    (1) design -> . module_list
+    (2) module_list -> . module module_list
+    (3) module_list -> . module
+    (4) module -> . MODULE ID LPAREN port_list RPAREN SEMICOLON module_items ENDMODULE
+
+    MODULE          shift and go to state 4
+
+    design                         shift and go to state 1
+    module_list                    shift and go to state 2
+    module                         shift and go to state 3
+
+state 1
+
+    (0) S' -> design .
+
+
+
+state 2
+
+    (1) design -> module_list .
+
+    $end            reduce using rule 1 (design -> module_list .)
+
+
+state 3
+
+    (2) module_list -> module . module_list
+    (3) module_list -> module .
+    (2) module_list -> . module module_list
+    (3) module_list -> . module
+    (4) module -> . MODULE ID LPAREN port_list RPAREN SEMICOLON module_items ENDMODULE
+
+    $end            reduce using rule 3 (module_list -> module .)
+    MODULE          shift and go to state 4
+
+    module                         shift and go to state 3
+    module_list                    shift and go to state 5
+
+state 4
+
+    (4) module -> MODULE . ID LPAREN port_list RPAREN SEMICOLON module_items ENDMODULE
+
+    ID              shift and go to state 6
+
+
+state 5
+
+    (2) module_list -> module module_list .
+
+    $end            reduce using rule 2 (module_list -> module module_list .)
+
+
+state 6
+
+    (4) module -> MODULE ID . LPAREN port_list RPAREN SEMICOLON module_items ENDMODULE
+
+    LPAREN          shift and go to state 7
+
+
+state 7
+
+    (4) module -> MODULE ID LPAREN . port_list RPAREN SEMICOLON module_items ENDMODULE
+    (5) port_list -> . port COMMA port_list
+    (6) port_list -> . port
+    (7) port_list -> . empty
+    (8) port -> . INPUT port_type_opt ID
+    (9) port -> . OUTPUT port_type_opt ID
+    (10) port -> . INOUT port_type_opt ID
+    (75) empty -> .
+
+    INPUT           shift and go to state 11
+    OUTPUT          shift and go to state 12
+    INOUT           shift and go to state 13
+    RPAREN          reduce using rule 75 (empty -> .)
+
+    port_list                      shift and go to state 8
+    port                           shift and go to state 9
+    empty                          shift and go to state 10
+
+state 8
+
+    (4) module -> MODULE ID LPAREN port_list . RPAREN SEMICOLON module_items ENDMODULE
+
+    RPAREN          shift and go to state 14
+
+
+state 9
+
+    (5) port_list -> port . COMMA port_list
+    (6) port_list -> port .
+
+    COMMA           shift and go to state 15
+    RPAREN          reduce using rule 6 (port_list -> port .)
+
+
+state 10
+
+    (7) port_list -> empty .
+
+    RPAREN          reduce using rule 7 (port_list -> empty .)
+
+
+state 11
+
+    (8) port -> INPUT . port_type_opt ID
+    (11) port_type_opt -> . range_opt
+    (12) port_type_opt -> . empty
+    (13) range_opt -> . LBRACKET NUMBER COLON NUMBER RBRACKET
+    (14) range_opt -> . empty
+    (75) empty -> .
+
+    LBRACKET        shift and go to state 19
+    ID              reduce using rule 75 (empty -> .)
+
+    port_type_opt                  shift and go to state 16
+    range_opt                      shift and go to state 17
+    empty                          shift and go to state 18
+
+state 12
+
+    (9) port -> OUTPUT . port_type_opt ID
+    (11) port_type_opt -> . range_opt
+    (12) port_type_opt -> . empty
+    (13) range_opt -> . LBRACKET NUMBER COLON NUMBER RBRACKET
+    (14) range_opt -> . empty
+    (75) empty -> .
+
+    LBRACKET        shift and go to state 19
+    ID              reduce using rule 75 (empty -> .)
+
+    port_type_opt                  shift and go to state 20
+    range_opt                      shift and go to state 17
+    empty                          shift and go to state 18
+
+state 13
+
+    (10) port -> INOUT . port_type_opt ID
+    (11) port_type_opt -> . range_opt
+    (12) port_type_opt -> . empty
+    (13) range_opt -> . LBRACKET NUMBER COLON NUMBER RBRACKET
+    (14) range_opt -> . empty
+    (75) empty -> .
+
+    LBRACKET        shift and go to state 19
+    ID              reduce using rule 75 (empty -> .)
+
+    port_type_opt                  shift and go to state 21
+    range_opt                      shift and go to state 17
+    empty                          shift and go to state 18
+
+state 14
+
+    (4) module -> MODULE ID LPAREN port_list RPAREN . SEMICOLON module_items ENDMODULE
+
+    SEMICOLON       shift and go to state 22
+
+
+state 15
+
+    (5) port_list -> port COMMA . port_list
+    (5) port_list -> . port COMMA port_list
+    (6) port_list -> . port
+    (7) port_list -> . empty
+    (8) port -> . INPUT port_type_opt ID
+    (9) port -> . OUTPUT port_type_opt ID
+    (10) port -> . INOUT port_type_opt ID
+    (75) empty -> .
+
+    INPUT           shift and go to state 11
+    OUTPUT          shift and go to state 12
+    INOUT           shift and go to state 13
+    RPAREN          reduce using rule 75 (empty -> .)
+
+    port                           shift and go to state 9
+    port_list                      shift and go to state 23
+    empty                          shift and go to state 10
+
+state 16
+
+    (8) port -> INPUT port_type_opt . ID
+
+    ID              shift and go to state 24
+
+
+state 17
+
+    (11) port_type_opt -> range_opt .
+
+    ID              reduce using rule 11 (port_type_opt -> range_opt .)
+
+
+state 18
+
+    (12) port_type_opt -> empty .
+    (14) range_opt -> empty .
+
+  ! reduce/reduce conflict for ID resolved using rule 12 (port_type_opt -> empty .)
+    ID              reduce using rule 12 (port_type_opt -> empty .)
+
+  ! ID              [ reduce using rule 14 (range_opt -> empty .) ]
+
+
+state 19
+
+    (13) range_opt -> LBRACKET . NUMBER COLON NUMBER RBRACKET
+
+    NUMBER          shift and go to state 25
+
+
+state 20
+
+    (9) port -> OUTPUT port_type_opt . ID
+
+    ID              shift and go to state 26
+
+
+state 21
+
+    (10) port -> INOUT port_type_opt . ID
+
+    ID              shift and go to state 27
+
+
+state 22
+
+    (4) module -> MODULE ID LPAREN port_list RPAREN SEMICOLON . module_items ENDMODULE
+    (15) module_items -> . module_item module_items
+    (16) module_items -> . module_item
+    (17) module_items -> . empty
+    (18) module_item -> . net_declaration
+    (19) module_item -> . parameter_declaration
+    (20) module_item -> . instantiation
+    (21) module_item -> . continuous_assign
+    (22) module_item -> . always_construct
+    (23) module_item -> . initial_construct
+    (75) empty -> .
+    (24) net_declaration -> . WIRE range_opt ID SEMICOLON
+    (25) net_declaration -> . REG range_opt ID SEMICOLON
+    (26) parameter_declaration -> . PARAMETER parameter_assign_list SEMICOLON
+    (27) parameter_declaration -> . LOCALPARAM parameter_assign_list SEMICOLON
+    (31) instantiation -> . ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON
+    (38) continuous_assign -> . ASSIGN ID EQUAL expression SEMICOLON
+    (50) always_construct -> . ALWAYS AT LPAREN event_expression RPAREN statement
+    (51) always_construct -> . ALWAYS LPAREN event_expression RPAREN statement
+    (52) always_construct -> . ALWAYS statement
+    (49) initial_construct -> . INITIAL statement
+
+    ENDMODULE       reduce using rule 75 (empty -> .)
+    WIRE            shift and go to state 38
+    REG             shift and go to state 39
+    PARAMETER       shift and go to state 40
+    LOCALPARAM      shift and go to state 41
+    ID              shift and go to state 28
+    ASSIGN          shift and go to state 42
+    ALWAYS          shift and go to state 43
+    INITIAL         shift and go to state 44
+
+    module_items                   shift and go to state 29
+    module_item                    shift and go to state 30
+    empty                          shift and go to state 31
+    net_declaration                shift and go to state 32
+    parameter_declaration          shift and go to state 33
+    instantiation                  shift and go to state 34
+    continuous_assign              shift and go to state 35
+    always_construct               shift and go to state 36
+    initial_construct              shift and go to state 37
+
+state 23
+
+    (5) port_list -> port COMMA port_list .
+
+    RPAREN          reduce using rule 5 (port_list -> port COMMA port_list .)
+
+
+state 24
+
+    (8) port -> INPUT port_type_opt ID .
+
+    COMMA           reduce using rule 8 (port -> INPUT port_type_opt ID .)
+    RPAREN          reduce using rule 8 (port -> INPUT port_type_opt ID .)
+
+
+state 25
+
+    (13) range_opt -> LBRACKET NUMBER . COLON NUMBER RBRACKET
+
+    COLON           shift and go to state 45
+
+
+state 26
+
+    (9) port -> OUTPUT port_type_opt ID .
+
+    COMMA           reduce using rule 9 (port -> OUTPUT port_type_opt ID .)
+    RPAREN          reduce using rule 9 (port -> OUTPUT port_type_opt ID .)
+
+
+state 27
+
+    (10) port -> INOUT port_type_opt ID .
+
+    COMMA           reduce using rule 10 (port -> INOUT port_type_opt ID .)
+    RPAREN          reduce using rule 10 (port -> INOUT port_type_opt ID .)
+
+
+state 28
+
+    (31) instantiation -> ID . parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON
+    (32) parameter_value_assignment_opt -> . HASH LPAREN parameter_assignment COMMA parameter_value_assignment_opt RPAREN
+    (33) parameter_value_assignment_opt -> . HASH LPAREN parameter_assignment RPAREN
+    (34) parameter_value_assignment_opt -> . empty
+    (75) empty -> .
+
+    HASH            shift and go to state 47
+    ID              reduce using rule 75 (empty -> .)
+
+    parameter_value_assignment_opt shift and go to state 46
+    empty                          shift and go to state 48
+
+state 29
+
+    (4) module -> MODULE ID LPAREN port_list RPAREN SEMICOLON module_items . ENDMODULE
+
+    ENDMODULE       shift and go to state 49
+
+
+state 30
+
+    (15) module_items -> module_item . module_items
+    (16) module_items -> module_item .
+    (15) module_items -> . module_item module_items
+    (16) module_items -> . module_item
+    (17) module_items -> . empty
+    (18) module_item -> . net_declaration
+    (19) module_item -> . parameter_declaration
+    (20) module_item -> . instantiation
+    (21) module_item -> . continuous_assign
+    (22) module_item -> . always_construct
+    (23) module_item -> . initial_construct
+    (75) empty -> .
+    (24) net_declaration -> . WIRE range_opt ID SEMICOLON
+    (25) net_declaration -> . REG range_opt ID SEMICOLON
+    (26) parameter_declaration -> . PARAMETER parameter_assign_list SEMICOLON
+    (27) parameter_declaration -> . LOCALPARAM parameter_assign_list SEMICOLON
+    (31) instantiation -> . ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON
+    (38) continuous_assign -> . ASSIGN ID EQUAL expression SEMICOLON
+    (50) always_construct -> . ALWAYS AT LPAREN event_expression RPAREN statement
+    (51) always_construct -> . ALWAYS LPAREN event_expression RPAREN statement
+    (52) always_construct -> . ALWAYS statement
+    (49) initial_construct -> . INITIAL statement
+
+  ! reduce/reduce conflict for ENDMODULE resolved using rule 16 (module_items -> module_item .)
+    ENDMODULE       reduce using rule 16 (module_items -> module_item .)
+    WIRE            shift and go to state 38
+    REG             shift and go to state 39
+    PARAMETER       shift and go to state 40
+    LOCALPARAM      shift and go to state 41
+    ID              shift and go to state 28
+    ASSIGN          shift and go to state 42
+    ALWAYS          shift and go to state 43
+    INITIAL         shift and go to state 44
+
+  ! ENDMODULE       [ reduce using rule 75 (empty -> .) ]
+
+    module_item                    shift and go to state 30
+    module_items                   shift and go to state 50
+    empty                          shift and go to state 31
+    net_declaration                shift and go to state 32
+    parameter_declaration          shift and go to state 33
+    instantiation                  shift and go to state 34
+    continuous_assign              shift and go to state 35
+    always_construct               shift and go to state 36
+    initial_construct              shift and go to state 37
+
+state 31
+
+    (17) module_items -> empty .
+
+    ENDMODULE       reduce using rule 17 (module_items -> empty .)
+
+
+state 32
+
+    (18) module_item -> net_declaration .
+
+    WIRE            reduce using rule 18 (module_item -> net_declaration .)
+    REG             reduce using rule 18 (module_item -> net_declaration .)
+    PARAMETER       reduce using rule 18 (module_item -> net_declaration .)
+    LOCALPARAM      reduce using rule 18 (module_item -> net_declaration .)
+    ID              reduce using rule 18 (module_item -> net_declaration .)
+    ASSIGN          reduce using rule 18 (module_item -> net_declaration .)
+    ALWAYS          reduce using rule 18 (module_item -> net_declaration .)
+    INITIAL         reduce using rule 18 (module_item -> net_declaration .)
+    ENDMODULE       reduce using rule 18 (module_item -> net_declaration .)
+
+
+state 33
+
+    (19) module_item -> parameter_declaration .
+
+    WIRE            reduce using rule 19 (module_item -> parameter_declaration .)
+    REG             reduce using rule 19 (module_item -> parameter_declaration .)
+    PARAMETER       reduce using rule 19 (module_item -> parameter_declaration .)
+    LOCALPARAM      reduce using rule 19 (module_item -> parameter_declaration .)
+    ID              reduce using rule 19 (module_item -> parameter_declaration .)
+    ASSIGN          reduce using rule 19 (module_item -> parameter_declaration .)
+    ALWAYS          reduce using rule 19 (module_item -> parameter_declaration .)
+    INITIAL         reduce using rule 19 (module_item -> parameter_declaration .)
+    ENDMODULE       reduce using rule 19 (module_item -> parameter_declaration .)
+
+
+state 34
+
+    (20) module_item -> instantiation .
+
+    WIRE            reduce using rule 20 (module_item -> instantiation .)
+    REG             reduce using rule 20 (module_item -> instantiation .)
+    PARAMETER       reduce using rule 20 (module_item -> instantiation .)
+    LOCALPARAM      reduce using rule 20 (module_item -> instantiation .)
+    ID              reduce using rule 20 (module_item -> instantiation .)
+    ASSIGN          reduce using rule 20 (module_item -> instantiation .)
+    ALWAYS          reduce using rule 20 (module_item -> instantiation .)
+    INITIAL         reduce using rule 20 (module_item -> instantiation .)
+    ENDMODULE       reduce using rule 20 (module_item -> instantiation .)
+
+
+state 35
+
+    (21) module_item -> continuous_assign .
+
+    WIRE            reduce using rule 21 (module_item -> continuous_assign .)
+    REG             reduce using rule 21 (module_item -> continuous_assign .)
+    PARAMETER       reduce using rule 21 (module_item -> continuous_assign .)
+    LOCALPARAM      reduce using rule 21 (module_item -> continuous_assign .)
+    ID              reduce using rule 21 (module_item -> continuous_assign .)
+    ASSIGN          reduce using rule 21 (module_item -> continuous_assign .)
+    ALWAYS          reduce using rule 21 (module_item -> continuous_assign .)
+    INITIAL         reduce using rule 21 (module_item -> continuous_assign .)
+    ENDMODULE       reduce using rule 21 (module_item -> continuous_assign .)
+
+
+state 36
+
+    (22) module_item -> always_construct .
+
+    WIRE            reduce using rule 22 (module_item -> always_construct .)
+    REG             reduce using rule 22 (module_item -> always_construct .)
+    PARAMETER       reduce using rule 22 (module_item -> always_construct .)
+    LOCALPARAM      reduce using rule 22 (module_item -> always_construct .)
+    ID              reduce using rule 22 (module_item -> always_construct .)
+    ASSIGN          reduce using rule 22 (module_item -> always_construct .)
+    ALWAYS          reduce using rule 22 (module_item -> always_construct .)
+    INITIAL         reduce using rule 22 (module_item -> always_construct .)
+    ENDMODULE       reduce using rule 22 (module_item -> always_construct .)
+
+
+state 37
+
+    (23) module_item -> initial_construct .
+
+    WIRE            reduce using rule 23 (module_item -> initial_construct .)
+    REG             reduce using rule 23 (module_item -> initial_construct .)
+    PARAMETER       reduce using rule 23 (module_item -> initial_construct .)
+    LOCALPARAM      reduce using rule 23 (module_item -> initial_construct .)
+    ID              reduce using rule 23 (module_item -> initial_construct .)
+    ASSIGN          reduce using rule 23 (module_item -> initial_construct .)
+    ALWAYS          reduce using rule 23 (module_item -> initial_construct .)
+    INITIAL         reduce using rule 23 (module_item -> initial_construct .)
+    ENDMODULE       reduce using rule 23 (module_item -> initial_construct .)
+
+
+state 38
+
+    (24) net_declaration -> WIRE . range_opt ID SEMICOLON
+    (13) range_opt -> . LBRACKET NUMBER COLON NUMBER RBRACKET
+    (14) range_opt -> . empty
+    (75) empty -> .
+
+    LBRACKET        shift and go to state 19
+    ID              reduce using rule 75 (empty -> .)
+
+    range_opt                      shift and go to state 51
+    empty                          shift and go to state 52
+
+state 39
+
+    (25) net_declaration -> REG . range_opt ID SEMICOLON
+    (13) range_opt -> . LBRACKET NUMBER COLON NUMBER RBRACKET
+    (14) range_opt -> . empty
+    (75) empty -> .
+
+    LBRACKET        shift and go to state 19
+    ID              reduce using rule 75 (empty -> .)
+
+    range_opt                      shift and go to state 53
+    empty                          shift and go to state 52
+
+state 40
+
+    (26) parameter_declaration -> PARAMETER . parameter_assign_list SEMICOLON
+    (28) parameter_assign_list -> . parameter_assignment COMMA parameter_assign_list
+    (29) parameter_assign_list -> . parameter_assignment
+    (30) parameter_assignment -> . ID EQUAL expression
+
+    ID              shift and go to state 56
+
+    parameter_assign_list          shift and go to state 54
+    parameter_assignment           shift and go to state 55
+
+state 41
+
+    (27) parameter_declaration -> LOCALPARAM . parameter_assign_list SEMICOLON
+    (28) parameter_assign_list -> . parameter_assignment COMMA parameter_assign_list
+    (29) parameter_assign_list -> . parameter_assignment
+    (30) parameter_assignment -> . ID EQUAL expression
+
+    ID              shift and go to state 56
+
+    parameter_assign_list          shift and go to state 57
+    parameter_assignment           shift and go to state 55
+
+state 42
+
+    (38) continuous_assign -> ASSIGN . ID EQUAL expression SEMICOLON
+
+    ID              shift and go to state 58
+
+
+state 43
+
+    (50) always_construct -> ALWAYS . AT LPAREN event_expression RPAREN statement
+    (51) always_construct -> ALWAYS . LPAREN event_expression RPAREN statement
+    (52) always_construct -> ALWAYS . statement
+    (56) statement -> . blocking_assignment SEMICOLON
+    (57) statement -> . non_blocking_assignment SEMICOLON
+    (58) statement -> . if_statement
+    (59) statement -> . case_statement
+    (60) statement -> . begin_end_block
+    (61) blocking_assignment -> . ID BLOCKING_ASSIGN expression
+    (62) non_blocking_assignment -> . ID NON_BLOCKING_ASSIGN expression
+    (63) if_statement -> . IF LPAREN expression RPAREN statement
+    (64) if_statement -> . IF LPAREN expression RPAREN statement ELSE statement
+    (65) case_statement -> . CASE LPAREN expression RPAREN case_item_list ENDCASE
+    (72) begin_end_block -> . BEGIN statement_list END
+
+    AT              shift and go to state 59
+    LPAREN          shift and go to state 60
+    ID              shift and go to state 67
+    IF              shift and go to state 68
+    CASE            shift and go to state 69
+    BEGIN           shift and go to state 70
+
+    statement                      shift and go to state 61
+    blocking_assignment            shift and go to state 62
+    non_blocking_assignment        shift and go to state 63
+    if_statement                   shift and go to state 64
+    case_statement                 shift and go to state 65
+    begin_end_block                shift and go to state 66
+
+state 44
+
+    (49) initial_construct -> INITIAL . statement
+    (56) statement -> . blocking_assignment SEMICOLON
+    (57) statement -> . non_blocking_assignment SEMICOLON
+    (58) statement -> . if_statement
+    (59) statement -> . case_statement
+    (60) statement -> . begin_end_block
+    (61) blocking_assignment -> . ID BLOCKING_ASSIGN expression
+    (62) non_blocking_assignment -> . ID NON_BLOCKING_ASSIGN expression
+    (63) if_statement -> . IF LPAREN expression RPAREN statement
+    (64) if_statement -> . IF LPAREN expression RPAREN statement ELSE statement
+    (65) case_statement -> . CASE LPAREN expression RPAREN case_item_list ENDCASE
+    (72) begin_end_block -> . BEGIN statement_list END
+
+    ID              shift and go to state 67
+    IF              shift and go to state 68
+    CASE            shift and go to state 69
+    BEGIN           shift and go to state 70
+
+    statement                      shift and go to state 71
+    blocking_assignment            shift and go to state 62
+    non_blocking_assignment        shift and go to state 63
+    if_statement                   shift and go to state 64
+    case_statement                 shift and go to state 65
+    begin_end_block                shift and go to state 66
+
+state 45
+
+    (13) range_opt -> LBRACKET NUMBER COLON . NUMBER RBRACKET
+
+    NUMBER          shift and go to state 72
+
+
+state 46
+
+    (31) instantiation -> ID parameter_value_assignment_opt . ID LPAREN named_port_connection_list RPAREN SEMICOLON
+
+    ID              shift and go to state 73
+
+
+state 47
+
+    (32) parameter_value_assignment_opt -> HASH . LPAREN parameter_assignment COMMA parameter_value_assignment_opt RPAREN
+    (33) parameter_value_assignment_opt -> HASH . LPAREN parameter_assignment RPAREN
+
+    LPAREN          shift and go to state 74
+
+
+state 48
+
+    (34) parameter_value_assignment_opt -> empty .
+
+    ID              reduce using rule 34 (parameter_value_assignment_opt -> empty .)
+    RPAREN          reduce using rule 34 (parameter_value_assignment_opt -> empty .)
+
+
+state 49
+
+    (4) module -> MODULE ID LPAREN port_list RPAREN SEMICOLON module_items ENDMODULE .
+
+    MODULE          reduce using rule 4 (module -> MODULE ID LPAREN port_list RPAREN SEMICOLON module_items ENDMODULE .)
+    $end            reduce using rule 4 (module -> MODULE ID LPAREN port_list RPAREN SEMICOLON module_items ENDMODULE .)
+
+
+state 50
+
+    (15) module_items -> module_item module_items .
+
+    ENDMODULE       reduce using rule 15 (module_items -> module_item module_items .)
+
+
+state 51
+
+    (24) net_declaration -> WIRE range_opt . ID SEMICOLON
+
+    ID              shift and go to state 75
+
+
+state 52
+
+    (14) range_opt -> empty .
+
+    ID              reduce using rule 14 (range_opt -> empty .)
+
+
+state 53
+
+    (25) net_declaration -> REG range_opt . ID SEMICOLON
+
+    ID              shift and go to state 76
+
+
+state 54
+
+    (26) parameter_declaration -> PARAMETER parameter_assign_list . SEMICOLON
+
+    SEMICOLON       shift and go to state 77
+
+
+state 55
+
+    (28) parameter_assign_list -> parameter_assignment . COMMA parameter_assign_list
+    (29) parameter_assign_list -> parameter_assignment .
+
+    COMMA           shift and go to state 78
+    SEMICOLON       reduce using rule 29 (parameter_assign_list -> parameter_assignment .)
+
+
+state 56
+
+    (30) parameter_assignment -> ID . EQUAL expression
+
+    EQUAL           shift and go to state 79
+
+
+state 57
+
+    (27) parameter_declaration -> LOCALPARAM parameter_assign_list . SEMICOLON
+
+    SEMICOLON       shift and go to state 80
+
+
+state 58
+
+    (38) continuous_assign -> ASSIGN ID . EQUAL expression SEMICOLON
+
+    EQUAL           shift and go to state 81
+
+
+state 59
+
+    (50) always_construct -> ALWAYS AT . LPAREN event_expression RPAREN statement
+
+    LPAREN          shift and go to state 82
+
+
+state 60
+
+    (51) always_construct -> ALWAYS LPAREN . event_expression RPAREN statement
+    (53) event_expression -> . POSEDGE ID
+    (54) event_expression -> . NEGEDGE ID
+    (55) event_expression -> . ID
+
+    POSEDGE         shift and go to state 84
+    NEGEDGE         shift and go to state 86
+    ID              shift and go to state 85
+
+    event_expression               shift and go to state 83
+
+state 61
+
+    (52) always_construct -> ALWAYS statement .
+
+    WIRE            reduce using rule 52 (always_construct -> ALWAYS statement .)
+    REG             reduce using rule 52 (always_construct -> ALWAYS statement .)
+    PARAMETER       reduce using rule 52 (always_construct -> ALWAYS statement .)
+    LOCALPARAM      reduce using rule 52 (always_construct -> ALWAYS statement .)
+    ID              reduce using rule 52 (always_construct -> ALWAYS statement .)
+    ASSIGN          reduce using rule 52 (always_construct -> ALWAYS statement .)
+    ALWAYS          reduce using rule 52 (always_construct -> ALWAYS statement .)
+    INITIAL         reduce using rule 52 (always_construct -> ALWAYS statement .)
+    ENDMODULE       reduce using rule 52 (always_construct -> ALWAYS statement .)
+
+
+state 62
+
+    (56) statement -> blocking_assignment . SEMICOLON
+
+    SEMICOLON       shift and go to state 87
+
+
+state 63
+
+    (57) statement -> non_blocking_assignment . SEMICOLON
+
+    SEMICOLON       shift and go to state 88
+
+
+state 64
+
+    (58) statement -> if_statement .
+
+    WIRE            reduce using rule 58 (statement -> if_statement .)
+    REG             reduce using rule 58 (statement -> if_statement .)
+    PARAMETER       reduce using rule 58 (statement -> if_statement .)
+    LOCALPARAM      reduce using rule 58 (statement -> if_statement .)
+    ID              reduce using rule 58 (statement -> if_statement .)
+    ASSIGN          reduce using rule 58 (statement -> if_statement .)
+    ALWAYS          reduce using rule 58 (statement -> if_statement .)
+    INITIAL         reduce using rule 58 (statement -> if_statement .)
+    ENDMODULE       reduce using rule 58 (statement -> if_statement .)
+    IF              reduce using rule 58 (statement -> if_statement .)
+    CASE            reduce using rule 58 (statement -> if_statement .)
+    BEGIN           reduce using rule 58 (statement -> if_statement .)
+    END             reduce using rule 58 (statement -> if_statement .)
+    ELSE            reduce using rule 58 (statement -> if_statement .)
+    DEFAULT         reduce using rule 58 (statement -> if_statement .)
+    NUMBER          reduce using rule 58 (statement -> if_statement .)
+    LPAREN          reduce using rule 58 (statement -> if_statement .)
+    STRING          reduce using rule 58 (statement -> if_statement .)
+    ENDCASE         reduce using rule 58 (statement -> if_statement .)
+
+
+state 65
+
+    (59) statement -> case_statement .
+
+    WIRE            reduce using rule 59 (statement -> case_statement .)
+    REG             reduce using rule 59 (statement -> case_statement .)
+    PARAMETER       reduce using rule 59 (statement -> case_statement .)
+    LOCALPARAM      reduce using rule 59 (statement -> case_statement .)
+    ID              reduce using rule 59 (statement -> case_statement .)
+    ASSIGN          reduce using rule 59 (statement -> case_statement .)
+    ALWAYS          reduce using rule 59 (statement -> case_statement .)
+    INITIAL         reduce using rule 59 (statement -> case_statement .)
+    ENDMODULE       reduce using rule 59 (statement -> case_statement .)
+    IF              reduce using rule 59 (statement -> case_statement .)
+    CASE            reduce using rule 59 (statement -> case_statement .)
+    BEGIN           reduce using rule 59 (statement -> case_statement .)
+    END             reduce using rule 59 (statement -> case_statement .)
+    ELSE            reduce using rule 59 (statement -> case_statement .)
+    DEFAULT         reduce using rule 59 (statement -> case_statement .)
+    NUMBER          reduce using rule 59 (statement -> case_statement .)
+    LPAREN          reduce using rule 59 (statement -> case_statement .)
+    STRING          reduce using rule 59 (statement -> case_statement .)
+    ENDCASE         reduce using rule 59 (statement -> case_statement .)
+
+
+state 66
+
+    (60) statement -> begin_end_block .
+
+    WIRE            reduce using rule 60 (statement -> begin_end_block .)
+    REG             reduce using rule 60 (statement -> begin_end_block .)
+    PARAMETER       reduce using rule 60 (statement -> begin_end_block .)
+    LOCALPARAM      reduce using rule 60 (statement -> begin_end_block .)
+    ID              reduce using rule 60 (statement -> begin_end_block .)
+    ASSIGN          reduce using rule 60 (statement -> begin_end_block .)
+    ALWAYS          reduce using rule 60 (statement -> begin_end_block .)
+    INITIAL         reduce using rule 60 (statement -> begin_end_block .)
+    ENDMODULE       reduce using rule 60 (statement -> begin_end_block .)
+    IF              reduce using rule 60 (statement -> begin_end_block .)
+    CASE            reduce using rule 60 (statement -> begin_end_block .)
+    BEGIN           reduce using rule 60 (statement -> begin_end_block .)
+    END             reduce using rule 60 (statement -> begin_end_block .)
+    ELSE            reduce using rule 60 (statement -> begin_end_block .)
+    DEFAULT         reduce using rule 60 (statement -> begin_end_block .)
+    NUMBER          reduce using rule 60 (statement -> begin_end_block .)
+    LPAREN          reduce using rule 60 (statement -> begin_end_block .)
+    STRING          reduce using rule 60 (statement -> begin_end_block .)
+    ENDCASE         reduce using rule 60 (statement -> begin_end_block .)
+
+
+state 67
+
+    (61) blocking_assignment -> ID . BLOCKING_ASSIGN expression
+    (62) non_blocking_assignment -> ID . NON_BLOCKING_ASSIGN expression
+
+    BLOCKING_ASSIGN shift and go to state 89
+    NON_BLOCKING_ASSIGN shift and go to state 90
+
+
+state 68
+
+    (63) if_statement -> IF . LPAREN expression RPAREN statement
+    (64) if_statement -> IF . LPAREN expression RPAREN statement ELSE statement
+
+    LPAREN          shift and go to state 91
+
+
+state 69
+
+    (65) case_statement -> CASE . LPAREN expression RPAREN case_item_list ENDCASE
+
+    LPAREN          shift and go to state 92
+
+
+state 70
+
+    (72) begin_end_block -> BEGIN . statement_list END
+    (73) statement_list -> . statement statement_list
+    (74) statement_list -> . statement
+    (56) statement -> . blocking_assignment SEMICOLON
+    (57) statement -> . non_blocking_assignment SEMICOLON
+    (58) statement -> . if_statement
+    (59) statement -> . case_statement
+    (60) statement -> . begin_end_block
+    (61) blocking_assignment -> . ID BLOCKING_ASSIGN expression
+    (62) non_blocking_assignment -> . ID NON_BLOCKING_ASSIGN expression
+    (63) if_statement -> . IF LPAREN expression RPAREN statement
+    (64) if_statement -> . IF LPAREN expression RPAREN statement ELSE statement
+    (65) case_statement -> . CASE LPAREN expression RPAREN case_item_list ENDCASE
+    (72) begin_end_block -> . BEGIN statement_list END
+
+    ID              shift and go to state 67
+    IF              shift and go to state 68
+    CASE            shift and go to state 69
+    BEGIN           shift and go to state 70
+
+    statement_list                 shift and go to state 93
+    statement                      shift and go to state 94
+    blocking_assignment            shift and go to state 62
+    non_blocking_assignment        shift and go to state 63
+    if_statement                   shift and go to state 64
+    case_statement                 shift and go to state 65
+    begin_end_block                shift and go to state 66
+
+state 71
+
+    (49) initial_construct -> INITIAL statement .
+
+    WIRE            reduce using rule 49 (initial_construct -> INITIAL statement .)
+    REG             reduce using rule 49 (initial_construct -> INITIAL statement .)
+    PARAMETER       reduce using rule 49 (initial_construct -> INITIAL statement .)
+    LOCALPARAM      reduce using rule 49 (initial_construct -> INITIAL statement .)
+    ID              reduce using rule 49 (initial_construct -> INITIAL statement .)
+    ASSIGN          reduce using rule 49 (initial_construct -> INITIAL statement .)
+    ALWAYS          reduce using rule 49 (initial_construct -> INITIAL statement .)
+    INITIAL         reduce using rule 49 (initial_construct -> INITIAL statement .)
+    ENDMODULE       reduce using rule 49 (initial_construct -> INITIAL statement .)
+
+
+state 72
+
+    (13) range_opt -> LBRACKET NUMBER COLON NUMBER . RBRACKET
+
+    RBRACKET        shift and go to state 95
+
+
+state 73
+
+    (31) instantiation -> ID parameter_value_assignment_opt ID . LPAREN named_port_connection_list RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 96
+
+
+state 74
+
+    (32) parameter_value_assignment_opt -> HASH LPAREN . parameter_assignment COMMA parameter_value_assignment_opt RPAREN
+    (33) parameter_value_assignment_opt -> HASH LPAREN . parameter_assignment RPAREN
+    (30) parameter_assignment -> . ID EQUAL expression
+
+    ID              shift and go to state 56
+
+    parameter_assignment           shift and go to state 97
+
+state 75
+
+    (24) net_declaration -> WIRE range_opt ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 98
+
+
+state 76
+
+    (25) net_declaration -> REG range_opt ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 99
+
+
+state 77
+
+    (26) parameter_declaration -> PARAMETER parameter_assign_list SEMICOLON .
+
+    WIRE            reduce using rule 26 (parameter_declaration -> PARAMETER parameter_assign_list SEMICOLON .)
+    REG             reduce using rule 26 (parameter_declaration -> PARAMETER parameter_assign_list SEMICOLON .)
+    PARAMETER       reduce using rule 26 (parameter_declaration -> PARAMETER parameter_assign_list SEMICOLON .)
+    LOCALPARAM      reduce using rule 26 (parameter_declaration -> PARAMETER parameter_assign_list SEMICOLON .)
+    ID              reduce using rule 26 (parameter_declaration -> PARAMETER parameter_assign_list SEMICOLON .)
+    ASSIGN          reduce using rule 26 (parameter_declaration -> PARAMETER parameter_assign_list SEMICOLON .)
+    ALWAYS          reduce using rule 26 (parameter_declaration -> PARAMETER parameter_assign_list SEMICOLON .)
+    INITIAL         reduce using rule 26 (parameter_declaration -> PARAMETER parameter_assign_list SEMICOLON .)
+    ENDMODULE       reduce using rule 26 (parameter_declaration -> PARAMETER parameter_assign_list SEMICOLON .)
+
+
+state 78
+
+    (28) parameter_assign_list -> parameter_assignment COMMA . parameter_assign_list
+    (28) parameter_assign_list -> . parameter_assignment COMMA parameter_assign_list
+    (29) parameter_assign_list -> . parameter_assignment
+    (30) parameter_assignment -> . ID EQUAL expression
+
+    ID              shift and go to state 56
+
+    parameter_assignment           shift and go to state 55
+    parameter_assign_list          shift and go to state 100
+
+state 79
+
+    (30) parameter_assignment -> ID EQUAL . expression
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) expression -> . expression TIMES term
+    (43) expression -> . expression DIVIDE term
+    (44) expression -> . expression MODULO term
+    (45) expression -> . LPAREN expression RPAREN
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    LPAREN          shift and go to state 104
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    expression                     shift and go to state 102
+    term                           shift and go to state 103
+
+state 80
+
+    (27) parameter_declaration -> LOCALPARAM parameter_assign_list SEMICOLON .
+
+    WIRE            reduce using rule 27 (parameter_declaration -> LOCALPARAM parameter_assign_list SEMICOLON .)
+    REG             reduce using rule 27 (parameter_declaration -> LOCALPARAM parameter_assign_list SEMICOLON .)
+    PARAMETER       reduce using rule 27 (parameter_declaration -> LOCALPARAM parameter_assign_list SEMICOLON .)
+    LOCALPARAM      reduce using rule 27 (parameter_declaration -> LOCALPARAM parameter_assign_list SEMICOLON .)
+    ID              reduce using rule 27 (parameter_declaration -> LOCALPARAM parameter_assign_list SEMICOLON .)
+    ASSIGN          reduce using rule 27 (parameter_declaration -> LOCALPARAM parameter_assign_list SEMICOLON .)
+    ALWAYS          reduce using rule 27 (parameter_declaration -> LOCALPARAM parameter_assign_list SEMICOLON .)
+    INITIAL         reduce using rule 27 (parameter_declaration -> LOCALPARAM parameter_assign_list SEMICOLON .)
+    ENDMODULE       reduce using rule 27 (parameter_declaration -> LOCALPARAM parameter_assign_list SEMICOLON .)
+
+
+state 81
+
+    (38) continuous_assign -> ASSIGN ID EQUAL . expression SEMICOLON
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) expression -> . expression TIMES term
+    (43) expression -> . expression DIVIDE term
+    (44) expression -> . expression MODULO term
+    (45) expression -> . LPAREN expression RPAREN
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    LPAREN          shift and go to state 104
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    expression                     shift and go to state 107
+    term                           shift and go to state 103
+
+state 82
+
+    (50) always_construct -> ALWAYS AT LPAREN . event_expression RPAREN statement
+    (53) event_expression -> . POSEDGE ID
+    (54) event_expression -> . NEGEDGE ID
+    (55) event_expression -> . ID
+
+    POSEDGE         shift and go to state 84
+    NEGEDGE         shift and go to state 86
+    ID              shift and go to state 85
+
+    event_expression               shift and go to state 108
+
+state 83
+
+    (51) always_construct -> ALWAYS LPAREN event_expression . RPAREN statement
+
+    RPAREN          shift and go to state 109
+
+
+state 84
+
+    (53) event_expression -> POSEDGE . ID
+
+    ID              shift and go to state 110
+
+
+state 85
+
+    (55) event_expression -> ID .
+
+    RPAREN          reduce using rule 55 (event_expression -> ID .)
+
+
+state 86
+
+    (54) event_expression -> NEGEDGE . ID
+
+    ID              shift and go to state 111
+
+
+state 87
+
+    (56) statement -> blocking_assignment SEMICOLON .
+
+    WIRE            reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    REG             reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    PARAMETER       reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    LOCALPARAM      reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    ID              reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    ASSIGN          reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    ALWAYS          reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    INITIAL         reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    ENDMODULE       reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    IF              reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    CASE            reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    BEGIN           reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    END             reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    ELSE            reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    DEFAULT         reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    NUMBER          reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    LPAREN          reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    STRING          reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+    ENDCASE         reduce using rule 56 (statement -> blocking_assignment SEMICOLON .)
+
+
+state 88
+
+    (57) statement -> non_blocking_assignment SEMICOLON .
+
+    WIRE            reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    REG             reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    PARAMETER       reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    LOCALPARAM      reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    ID              reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    ASSIGN          reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    ALWAYS          reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    INITIAL         reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    ENDMODULE       reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    IF              reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    CASE            reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    BEGIN           reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    END             reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    ELSE            reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    DEFAULT         reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    NUMBER          reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    LPAREN          reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    STRING          reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+    ENDCASE         reduce using rule 57 (statement -> non_blocking_assignment SEMICOLON .)
+
+
+state 89
+
+    (61) blocking_assignment -> ID BLOCKING_ASSIGN . expression
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) expression -> . expression TIMES term
+    (43) expression -> . expression DIVIDE term
+    (44) expression -> . expression MODULO term
+    (45) expression -> . LPAREN expression RPAREN
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    LPAREN          shift and go to state 104
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    expression                     shift and go to state 112
+    term                           shift and go to state 103
+
+state 90
+
+    (62) non_blocking_assignment -> ID NON_BLOCKING_ASSIGN . expression
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) expression -> . expression TIMES term
+    (43) expression -> . expression DIVIDE term
+    (44) expression -> . expression MODULO term
+    (45) expression -> . LPAREN expression RPAREN
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    LPAREN          shift and go to state 104
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    expression                     shift and go to state 113
+    term                           shift and go to state 103
+
+state 91
+
+    (63) if_statement -> IF LPAREN . expression RPAREN statement
+    (64) if_statement -> IF LPAREN . expression RPAREN statement ELSE statement
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) expression -> . expression TIMES term
+    (43) expression -> . expression DIVIDE term
+    (44) expression -> . expression MODULO term
+    (45) expression -> . LPAREN expression RPAREN
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    LPAREN          shift and go to state 104
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    expression                     shift and go to state 114
+    term                           shift and go to state 103
+
+state 92
+
+    (65) case_statement -> CASE LPAREN . expression RPAREN case_item_list ENDCASE
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) expression -> . expression TIMES term
+    (43) expression -> . expression DIVIDE term
+    (44) expression -> . expression MODULO term
+    (45) expression -> . LPAREN expression RPAREN
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    LPAREN          shift and go to state 104
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    expression                     shift and go to state 115
+    term                           shift and go to state 103
+
+state 93
+
+    (72) begin_end_block -> BEGIN statement_list . END
+
+    END             shift and go to state 116
+
+
+state 94
+
+    (73) statement_list -> statement . statement_list
+    (74) statement_list -> statement .
+    (73) statement_list -> . statement statement_list
+    (74) statement_list -> . statement
+    (56) statement -> . blocking_assignment SEMICOLON
+    (57) statement -> . non_blocking_assignment SEMICOLON
+    (58) statement -> . if_statement
+    (59) statement -> . case_statement
+    (60) statement -> . begin_end_block
+    (61) blocking_assignment -> . ID BLOCKING_ASSIGN expression
+    (62) non_blocking_assignment -> . ID NON_BLOCKING_ASSIGN expression
+    (63) if_statement -> . IF LPAREN expression RPAREN statement
+    (64) if_statement -> . IF LPAREN expression RPAREN statement ELSE statement
+    (65) case_statement -> . CASE LPAREN expression RPAREN case_item_list ENDCASE
+    (72) begin_end_block -> . BEGIN statement_list END
+
+    END             reduce using rule 74 (statement_list -> statement .)
+    ID              shift and go to state 67
+    IF              shift and go to state 68
+    CASE            shift and go to state 69
+    BEGIN           shift and go to state 70
+
+    statement                      shift and go to state 94
+    statement_list                 shift and go to state 117
+    blocking_assignment            shift and go to state 62
+    non_blocking_assignment        shift and go to state 63
+    if_statement                   shift and go to state 64
+    case_statement                 shift and go to state 65
+    begin_end_block                shift and go to state 66
+
+state 95
+
+    (13) range_opt -> LBRACKET NUMBER COLON NUMBER RBRACKET .
+
+    ID              reduce using rule 13 (range_opt -> LBRACKET NUMBER COLON NUMBER RBRACKET .)
+
+
+state 96
+
+    (31) instantiation -> ID parameter_value_assignment_opt ID LPAREN . named_port_connection_list RPAREN SEMICOLON
+    (35) named_port_connection_list -> . DOT ID LPAREN expression RPAREN COMMA named_port_connection_list
+    (36) named_port_connection_list -> . DOT ID LPAREN expression RPAREN
+    (37) named_port_connection_list -> . empty
+    (75) empty -> .
+
+    DOT             shift and go to state 119
+    RPAREN          reduce using rule 75 (empty -> .)
+
+    named_port_connection_list     shift and go to state 118
+    empty                          shift and go to state 120
+
+state 97
+
+    (32) parameter_value_assignment_opt -> HASH LPAREN parameter_assignment . COMMA parameter_value_assignment_opt RPAREN
+    (33) parameter_value_assignment_opt -> HASH LPAREN parameter_assignment . RPAREN
+
+    COMMA           shift and go to state 121
+    RPAREN          shift and go to state 122
+
+
+state 98
+
+    (24) net_declaration -> WIRE range_opt ID SEMICOLON .
+
+    WIRE            reduce using rule 24 (net_declaration -> WIRE range_opt ID SEMICOLON .)
+    REG             reduce using rule 24 (net_declaration -> WIRE range_opt ID SEMICOLON .)
+    PARAMETER       reduce using rule 24 (net_declaration -> WIRE range_opt ID SEMICOLON .)
+    LOCALPARAM      reduce using rule 24 (net_declaration -> WIRE range_opt ID SEMICOLON .)
+    ID              reduce using rule 24 (net_declaration -> WIRE range_opt ID SEMICOLON .)
+    ASSIGN          reduce using rule 24 (net_declaration -> WIRE range_opt ID SEMICOLON .)
+    ALWAYS          reduce using rule 24 (net_declaration -> WIRE range_opt ID SEMICOLON .)
+    INITIAL         reduce using rule 24 (net_declaration -> WIRE range_opt ID SEMICOLON .)
+    ENDMODULE       reduce using rule 24 (net_declaration -> WIRE range_opt ID SEMICOLON .)
+
+
+state 99
+
+    (25) net_declaration -> REG range_opt ID SEMICOLON .
+
+    WIRE            reduce using rule 25 (net_declaration -> REG range_opt ID SEMICOLON .)
+    REG             reduce using rule 25 (net_declaration -> REG range_opt ID SEMICOLON .)
+    PARAMETER       reduce using rule 25 (net_declaration -> REG range_opt ID SEMICOLON .)
+    LOCALPARAM      reduce using rule 25 (net_declaration -> REG range_opt ID SEMICOLON .)
+    ID              reduce using rule 25 (net_declaration -> REG range_opt ID SEMICOLON .)
+    ASSIGN          reduce using rule 25 (net_declaration -> REG range_opt ID SEMICOLON .)
+    ALWAYS          reduce using rule 25 (net_declaration -> REG range_opt ID SEMICOLON .)
+    INITIAL         reduce using rule 25 (net_declaration -> REG range_opt ID SEMICOLON .)
+    ENDMODULE       reduce using rule 25 (net_declaration -> REG range_opt ID SEMICOLON .)
+
+
+state 100
+
+    (28) parameter_assign_list -> parameter_assignment COMMA parameter_assign_list .
+
+    SEMICOLON       reduce using rule 28 (parameter_assign_list -> parameter_assignment COMMA parameter_assign_list .)
+
+
+state 101
+
+    (46) term -> ID .
+
+    PLUS            reduce using rule 46 (term -> ID .)
+    MINUS           reduce using rule 46 (term -> ID .)
+    TIMES           reduce using rule 46 (term -> ID .)
+    DIVIDE          reduce using rule 46 (term -> ID .)
+    MODULO          reduce using rule 46 (term -> ID .)
+    COMMA           reduce using rule 46 (term -> ID .)
+    SEMICOLON       reduce using rule 46 (term -> ID .)
+    RPAREN          reduce using rule 46 (term -> ID .)
+    COLON           reduce using rule 46 (term -> ID .)
+
+
+state 102
+
+    (30) parameter_assignment -> ID EQUAL expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+    (42) expression -> expression . TIMES term
+    (43) expression -> expression . DIVIDE term
+    (44) expression -> expression . MODULO term
+
+    COMMA           reduce using rule 30 (parameter_assignment -> ID EQUAL expression .)
+    SEMICOLON       reduce using rule 30 (parameter_assignment -> ID EQUAL expression .)
+    RPAREN          reduce using rule 30 (parameter_assignment -> ID EQUAL expression .)
+    PLUS            shift and go to state 123
+    MINUS           shift and go to state 124
+    TIMES           shift and go to state 125
+    DIVIDE          shift and go to state 126
+    MODULO          shift and go to state 127
+
+
+state 103
+
+    (39) expression -> term .
+
+    PLUS            reduce using rule 39 (expression -> term .)
+    MINUS           reduce using rule 39 (expression -> term .)
+    TIMES           reduce using rule 39 (expression -> term .)
+    DIVIDE          reduce using rule 39 (expression -> term .)
+    MODULO          reduce using rule 39 (expression -> term .)
+    COMMA           reduce using rule 39 (expression -> term .)
+    SEMICOLON       reduce using rule 39 (expression -> term .)
+    RPAREN          reduce using rule 39 (expression -> term .)
+    COLON           reduce using rule 39 (expression -> term .)
+
+
+state 104
+
+    (45) expression -> LPAREN . expression RPAREN
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) expression -> . expression TIMES term
+    (43) expression -> . expression DIVIDE term
+    (44) expression -> . expression MODULO term
+    (45) expression -> . LPAREN expression RPAREN
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    LPAREN          shift and go to state 104
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    expression                     shift and go to state 128
+    term                           shift and go to state 103
+
+state 105
+
+    (47) term -> NUMBER .
+
+    PLUS            reduce using rule 47 (term -> NUMBER .)
+    MINUS           reduce using rule 47 (term -> NUMBER .)
+    TIMES           reduce using rule 47 (term -> NUMBER .)
+    DIVIDE          reduce using rule 47 (term -> NUMBER .)
+    MODULO          reduce using rule 47 (term -> NUMBER .)
+    COMMA           reduce using rule 47 (term -> NUMBER .)
+    SEMICOLON       reduce using rule 47 (term -> NUMBER .)
+    RPAREN          reduce using rule 47 (term -> NUMBER .)
+    COLON           reduce using rule 47 (term -> NUMBER .)
+
+
+state 106
+
+    (48) term -> STRING .
+
+    PLUS            reduce using rule 48 (term -> STRING .)
+    MINUS           reduce using rule 48 (term -> STRING .)
+    TIMES           reduce using rule 48 (term -> STRING .)
+    DIVIDE          reduce using rule 48 (term -> STRING .)
+    MODULO          reduce using rule 48 (term -> STRING .)
+    COMMA           reduce using rule 48 (term -> STRING .)
+    SEMICOLON       reduce using rule 48 (term -> STRING .)
+    RPAREN          reduce using rule 48 (term -> STRING .)
+    COLON           reduce using rule 48 (term -> STRING .)
+
+
+state 107
+
+    (38) continuous_assign -> ASSIGN ID EQUAL expression . SEMICOLON
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+    (42) expression -> expression . TIMES term
+    (43) expression -> expression . DIVIDE term
+    (44) expression -> expression . MODULO term
+
+    SEMICOLON       shift and go to state 129
+    PLUS            shift and go to state 123
+    MINUS           shift and go to state 124
+    TIMES           shift and go to state 125
+    DIVIDE          shift and go to state 126
+    MODULO          shift and go to state 127
+
+
+state 108
+
+    (50) always_construct -> ALWAYS AT LPAREN event_expression . RPAREN statement
+
+    RPAREN          shift and go to state 130
+
+
+state 109
+
+    (51) always_construct -> ALWAYS LPAREN event_expression RPAREN . statement
+    (56) statement -> . blocking_assignment SEMICOLON
+    (57) statement -> . non_blocking_assignment SEMICOLON
+    (58) statement -> . if_statement
+    (59) statement -> . case_statement
+    (60) statement -> . begin_end_block
+    (61) blocking_assignment -> . ID BLOCKING_ASSIGN expression
+    (62) non_blocking_assignment -> . ID NON_BLOCKING_ASSIGN expression
+    (63) if_statement -> . IF LPAREN expression RPAREN statement
+    (64) if_statement -> . IF LPAREN expression RPAREN statement ELSE statement
+    (65) case_statement -> . CASE LPAREN expression RPAREN case_item_list ENDCASE
+    (72) begin_end_block -> . BEGIN statement_list END
+
+    ID              shift and go to state 67
+    IF              shift and go to state 68
+    CASE            shift and go to state 69
+    BEGIN           shift and go to state 70
+
+    statement                      shift and go to state 131
+    blocking_assignment            shift and go to state 62
+    non_blocking_assignment        shift and go to state 63
+    if_statement                   shift and go to state 64
+    case_statement                 shift and go to state 65
+    begin_end_block                shift and go to state 66
+
+state 110
+
+    (53) event_expression -> POSEDGE ID .
+
+    RPAREN          reduce using rule 53 (event_expression -> POSEDGE ID .)
+
+
+state 111
+
+    (54) event_expression -> NEGEDGE ID .
+
+    RPAREN          reduce using rule 54 (event_expression -> NEGEDGE ID .)
+
+
+state 112
+
+    (61) blocking_assignment -> ID BLOCKING_ASSIGN expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+    (42) expression -> expression . TIMES term
+    (43) expression -> expression . DIVIDE term
+    (44) expression -> expression . MODULO term
+
+    SEMICOLON       reduce using rule 61 (blocking_assignment -> ID BLOCKING_ASSIGN expression .)
+    PLUS            shift and go to state 123
+    MINUS           shift and go to state 124
+    TIMES           shift and go to state 125
+    DIVIDE          shift and go to state 126
+    MODULO          shift and go to state 127
+
+
+state 113
+
+    (62) non_blocking_assignment -> ID NON_BLOCKING_ASSIGN expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+    (42) expression -> expression . TIMES term
+    (43) expression -> expression . DIVIDE term
+    (44) expression -> expression . MODULO term
+
+    SEMICOLON       reduce using rule 62 (non_blocking_assignment -> ID NON_BLOCKING_ASSIGN expression .)
+    PLUS            shift and go to state 123
+    MINUS           shift and go to state 124
+    TIMES           shift and go to state 125
+    DIVIDE          shift and go to state 126
+    MODULO          shift and go to state 127
+
+
+state 114
+
+    (63) if_statement -> IF LPAREN expression . RPAREN statement
+    (64) if_statement -> IF LPAREN expression . RPAREN statement ELSE statement
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+    (42) expression -> expression . TIMES term
+    (43) expression -> expression . DIVIDE term
+    (44) expression -> expression . MODULO term
+
+    RPAREN          shift and go to state 132
+    PLUS            shift and go to state 123
+    MINUS           shift and go to state 124
+    TIMES           shift and go to state 125
+    DIVIDE          shift and go to state 126
+    MODULO          shift and go to state 127
+
+
+state 115
+
+    (65) case_statement -> CASE LPAREN expression . RPAREN case_item_list ENDCASE
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+    (42) expression -> expression . TIMES term
+    (43) expression -> expression . DIVIDE term
+    (44) expression -> expression . MODULO term
+
+    RPAREN          shift and go to state 133
+    PLUS            shift and go to state 123
+    MINUS           shift and go to state 124
+    TIMES           shift and go to state 125
+    DIVIDE          shift and go to state 126
+    MODULO          shift and go to state 127
+
+
+state 116
+
+    (72) begin_end_block -> BEGIN statement_list END .
+
+    WIRE            reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    REG             reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    PARAMETER       reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    LOCALPARAM      reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    ID              reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    ASSIGN          reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    ALWAYS          reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    INITIAL         reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    ENDMODULE       reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    IF              reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    CASE            reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    BEGIN           reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    END             reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    ELSE            reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    DEFAULT         reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    NUMBER          reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    LPAREN          reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    STRING          reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+    ENDCASE         reduce using rule 72 (begin_end_block -> BEGIN statement_list END .)
+
+
+state 117
+
+    (73) statement_list -> statement statement_list .
+
+    END             reduce using rule 73 (statement_list -> statement statement_list .)
+
+
+state 118
+
+    (31) instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 134
+
+
+state 119
+
+    (35) named_port_connection_list -> DOT . ID LPAREN expression RPAREN COMMA named_port_connection_list
+    (36) named_port_connection_list -> DOT . ID LPAREN expression RPAREN
+
+    ID              shift and go to state 135
+
+
+state 120
+
+    (37) named_port_connection_list -> empty .
+
+    RPAREN          reduce using rule 37 (named_port_connection_list -> empty .)
+
+
+state 121
+
+    (32) parameter_value_assignment_opt -> HASH LPAREN parameter_assignment COMMA . parameter_value_assignment_opt RPAREN
+    (32) parameter_value_assignment_opt -> . HASH LPAREN parameter_assignment COMMA parameter_value_assignment_opt RPAREN
+    (33) parameter_value_assignment_opt -> . HASH LPAREN parameter_assignment RPAREN
+    (34) parameter_value_assignment_opt -> . empty
+    (75) empty -> .
+
+    HASH            shift and go to state 47
+    RPAREN          reduce using rule 75 (empty -> .)
+
+    parameter_value_assignment_opt shift and go to state 136
+    empty                          shift and go to state 48
+
+state 122
+
+    (33) parameter_value_assignment_opt -> HASH LPAREN parameter_assignment RPAREN .
+
+    ID              reduce using rule 33 (parameter_value_assignment_opt -> HASH LPAREN parameter_assignment RPAREN .)
+    RPAREN          reduce using rule 33 (parameter_value_assignment_opt -> HASH LPAREN parameter_assignment RPAREN .)
+
+
+state 123
+
+    (40) expression -> expression PLUS . term
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    term                           shift and go to state 137
+
+state 124
+
+    (41) expression -> expression MINUS . term
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    term                           shift and go to state 138
+
+state 125
+
+    (42) expression -> expression TIMES . term
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    term                           shift and go to state 139
+
+state 126
+
+    (43) expression -> expression DIVIDE . term
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    term                           shift and go to state 140
+
+state 127
+
+    (44) expression -> expression MODULO . term
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    term                           shift and go to state 141
+
+state 128
+
+    (45) expression -> LPAREN expression . RPAREN
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+    (42) expression -> expression . TIMES term
+    (43) expression -> expression . DIVIDE term
+    (44) expression -> expression . MODULO term
+
+    RPAREN          shift and go to state 142
+    PLUS            shift and go to state 123
+    MINUS           shift and go to state 124
+    TIMES           shift and go to state 125
+    DIVIDE          shift and go to state 126
+    MODULO          shift and go to state 127
+
+
+state 129
+
+    (38) continuous_assign -> ASSIGN ID EQUAL expression SEMICOLON .
+
+    WIRE            reduce using rule 38 (continuous_assign -> ASSIGN ID EQUAL expression SEMICOLON .)
+    REG             reduce using rule 38 (continuous_assign -> ASSIGN ID EQUAL expression SEMICOLON .)
+    PARAMETER       reduce using rule 38 (continuous_assign -> ASSIGN ID EQUAL expression SEMICOLON .)
+    LOCALPARAM      reduce using rule 38 (continuous_assign -> ASSIGN ID EQUAL expression SEMICOLON .)
+    ID              reduce using rule 38 (continuous_assign -> ASSIGN ID EQUAL expression SEMICOLON .)
+    ASSIGN          reduce using rule 38 (continuous_assign -> ASSIGN ID EQUAL expression SEMICOLON .)
+    ALWAYS          reduce using rule 38 (continuous_assign -> ASSIGN ID EQUAL expression SEMICOLON .)
+    INITIAL         reduce using rule 38 (continuous_assign -> ASSIGN ID EQUAL expression SEMICOLON .)
+    ENDMODULE       reduce using rule 38 (continuous_assign -> ASSIGN ID EQUAL expression SEMICOLON .)
+
+
+state 130
+
+    (50) always_construct -> ALWAYS AT LPAREN event_expression RPAREN . statement
+    (56) statement -> . blocking_assignment SEMICOLON
+    (57) statement -> . non_blocking_assignment SEMICOLON
+    (58) statement -> . if_statement
+    (59) statement -> . case_statement
+    (60) statement -> . begin_end_block
+    (61) blocking_assignment -> . ID BLOCKING_ASSIGN expression
+    (62) non_blocking_assignment -> . ID NON_BLOCKING_ASSIGN expression
+    (63) if_statement -> . IF LPAREN expression RPAREN statement
+    (64) if_statement -> . IF LPAREN expression RPAREN statement ELSE statement
+    (65) case_statement -> . CASE LPAREN expression RPAREN case_item_list ENDCASE
+    (72) begin_end_block -> . BEGIN statement_list END
+
+    ID              shift and go to state 67
+    IF              shift and go to state 68
+    CASE            shift and go to state 69
+    BEGIN           shift and go to state 70
+
+    statement                      shift and go to state 143
+    blocking_assignment            shift and go to state 62
+    non_blocking_assignment        shift and go to state 63
+    if_statement                   shift and go to state 64
+    case_statement                 shift and go to state 65
+    begin_end_block                shift and go to state 66
+
+state 131
+
+    (51) always_construct -> ALWAYS LPAREN event_expression RPAREN statement .
+
+    WIRE            reduce using rule 51 (always_construct -> ALWAYS LPAREN event_expression RPAREN statement .)
+    REG             reduce using rule 51 (always_construct -> ALWAYS LPAREN event_expression RPAREN statement .)
+    PARAMETER       reduce using rule 51 (always_construct -> ALWAYS LPAREN event_expression RPAREN statement .)
+    LOCALPARAM      reduce using rule 51 (always_construct -> ALWAYS LPAREN event_expression RPAREN statement .)
+    ID              reduce using rule 51 (always_construct -> ALWAYS LPAREN event_expression RPAREN statement .)
+    ASSIGN          reduce using rule 51 (always_construct -> ALWAYS LPAREN event_expression RPAREN statement .)
+    ALWAYS          reduce using rule 51 (always_construct -> ALWAYS LPAREN event_expression RPAREN statement .)
+    INITIAL         reduce using rule 51 (always_construct -> ALWAYS LPAREN event_expression RPAREN statement .)
+    ENDMODULE       reduce using rule 51 (always_construct -> ALWAYS LPAREN event_expression RPAREN statement .)
+
+
+state 132
+
+    (63) if_statement -> IF LPAREN expression RPAREN . statement
+    (64) if_statement -> IF LPAREN expression RPAREN . statement ELSE statement
+    (56) statement -> . blocking_assignment SEMICOLON
+    (57) statement -> . non_blocking_assignment SEMICOLON
+    (58) statement -> . if_statement
+    (59) statement -> . case_statement
+    (60) statement -> . begin_end_block
+    (61) blocking_assignment -> . ID BLOCKING_ASSIGN expression
+    (62) non_blocking_assignment -> . ID NON_BLOCKING_ASSIGN expression
+    (63) if_statement -> . IF LPAREN expression RPAREN statement
+    (64) if_statement -> . IF LPAREN expression RPAREN statement ELSE statement
+    (65) case_statement -> . CASE LPAREN expression RPAREN case_item_list ENDCASE
+    (72) begin_end_block -> . BEGIN statement_list END
+
+    ID              shift and go to state 67
+    IF              shift and go to state 68
+    CASE            shift and go to state 69
+    BEGIN           shift and go to state 70
+
+    statement                      shift and go to state 144
+    blocking_assignment            shift and go to state 62
+    non_blocking_assignment        shift and go to state 63
+    if_statement                   shift and go to state 64
+    case_statement                 shift and go to state 65
+    begin_end_block                shift and go to state 66
+
+state 133
+
+    (65) case_statement -> CASE LPAREN expression RPAREN . case_item_list ENDCASE
+    (66) case_item_list -> . case_item case_item_list
+    (67) case_item_list -> . case_item
+    (70) case_item -> . constant_expression COLON statement
+    (71) case_item -> . DEFAULT COLON statement
+    (68) constant_expression -> . expression
+    (69) constant_expression -> . NUMBER
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) expression -> . expression TIMES term
+    (43) expression -> . expression DIVIDE term
+    (44) expression -> . expression MODULO term
+    (45) expression -> . LPAREN expression RPAREN
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    DEFAULT         shift and go to state 149
+    NUMBER          shift and go to state 150
+    LPAREN          shift and go to state 104
+    ID              shift and go to state 101
+    STRING          shift and go to state 106
+
+    expression                     shift and go to state 145
+    case_item_list                 shift and go to state 146
+    case_item                      shift and go to state 147
+    constant_expression            shift and go to state 148
+    term                           shift and go to state 103
+
+state 134
+
+    (31) instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 151
+
+
+state 135
+
+    (35) named_port_connection_list -> DOT ID . LPAREN expression RPAREN COMMA named_port_connection_list
+    (36) named_port_connection_list -> DOT ID . LPAREN expression RPAREN
+
+    LPAREN          shift and go to state 152
+
+
+state 136
+
+    (32) parameter_value_assignment_opt -> HASH LPAREN parameter_assignment COMMA parameter_value_assignment_opt . RPAREN
+
+    RPAREN          shift and go to state 153
+
+
+state 137
+
+    (40) expression -> expression PLUS term .
+
+    PLUS            reduce using rule 40 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 40 (expression -> expression PLUS term .)
+    TIMES           reduce using rule 40 (expression -> expression PLUS term .)
+    DIVIDE          reduce using rule 40 (expression -> expression PLUS term .)
+    MODULO          reduce using rule 40 (expression -> expression PLUS term .)
+    COMMA           reduce using rule 40 (expression -> expression PLUS term .)
+    SEMICOLON       reduce using rule 40 (expression -> expression PLUS term .)
+    RPAREN          reduce using rule 40 (expression -> expression PLUS term .)
+    COLON           reduce using rule 40 (expression -> expression PLUS term .)
+
+
+state 138
+
+    (41) expression -> expression MINUS term .
+
+    PLUS            reduce using rule 41 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 41 (expression -> expression MINUS term .)
+    TIMES           reduce using rule 41 (expression -> expression MINUS term .)
+    DIVIDE          reduce using rule 41 (expression -> expression MINUS term .)
+    MODULO          reduce using rule 41 (expression -> expression MINUS term .)
+    COMMA           reduce using rule 41 (expression -> expression MINUS term .)
+    SEMICOLON       reduce using rule 41 (expression -> expression MINUS term .)
+    RPAREN          reduce using rule 41 (expression -> expression MINUS term .)
+    COLON           reduce using rule 41 (expression -> expression MINUS term .)
+
+
+state 139
+
+    (42) expression -> expression TIMES term .
+
+    PLUS            reduce using rule 42 (expression -> expression TIMES term .)
+    MINUS           reduce using rule 42 (expression -> expression TIMES term .)
+    TIMES           reduce using rule 42 (expression -> expression TIMES term .)
+    DIVIDE          reduce using rule 42 (expression -> expression TIMES term .)
+    MODULO          reduce using rule 42 (expression -> expression TIMES term .)
+    COMMA           reduce using rule 42 (expression -> expression TIMES term .)
+    SEMICOLON       reduce using rule 42 (expression -> expression TIMES term .)
+    RPAREN          reduce using rule 42 (expression -> expression TIMES term .)
+    COLON           reduce using rule 42 (expression -> expression TIMES term .)
+
+
+state 140
+
+    (43) expression -> expression DIVIDE term .
+
+    PLUS            reduce using rule 43 (expression -> expression DIVIDE term .)
+    MINUS           reduce using rule 43 (expression -> expression DIVIDE term .)
+    TIMES           reduce using rule 43 (expression -> expression DIVIDE term .)
+    DIVIDE          reduce using rule 43 (expression -> expression DIVIDE term .)
+    MODULO          reduce using rule 43 (expression -> expression DIVIDE term .)
+    COMMA           reduce using rule 43 (expression -> expression DIVIDE term .)
+    SEMICOLON       reduce using rule 43 (expression -> expression DIVIDE term .)
+    RPAREN          reduce using rule 43 (expression -> expression DIVIDE term .)
+    COLON           reduce using rule 43 (expression -> expression DIVIDE term .)
+
+
+state 141
+
+    (44) expression -> expression MODULO term .
+
+    PLUS            reduce using rule 44 (expression -> expression MODULO term .)
+    MINUS           reduce using rule 44 (expression -> expression MODULO term .)
+    TIMES           reduce using rule 44 (expression -> expression MODULO term .)
+    DIVIDE          reduce using rule 44 (expression -> expression MODULO term .)
+    MODULO          reduce using rule 44 (expression -> expression MODULO term .)
+    COMMA           reduce using rule 44 (expression -> expression MODULO term .)
+    SEMICOLON       reduce using rule 44 (expression -> expression MODULO term .)
+    RPAREN          reduce using rule 44 (expression -> expression MODULO term .)
+    COLON           reduce using rule 44 (expression -> expression MODULO term .)
+
+
+state 142
+
+    (45) expression -> LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 45 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 45 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 45 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 45 (expression -> LPAREN expression RPAREN .)
+    MODULO          reduce using rule 45 (expression -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 45 (expression -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 45 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 45 (expression -> LPAREN expression RPAREN .)
+    COLON           reduce using rule 45 (expression -> LPAREN expression RPAREN .)
+
+
+state 143
+
+    (50) always_construct -> ALWAYS AT LPAREN event_expression RPAREN statement .
+
+    WIRE            reduce using rule 50 (always_construct -> ALWAYS AT LPAREN event_expression RPAREN statement .)
+    REG             reduce using rule 50 (always_construct -> ALWAYS AT LPAREN event_expression RPAREN statement .)
+    PARAMETER       reduce using rule 50 (always_construct -> ALWAYS AT LPAREN event_expression RPAREN statement .)
+    LOCALPARAM      reduce using rule 50 (always_construct -> ALWAYS AT LPAREN event_expression RPAREN statement .)
+    ID              reduce using rule 50 (always_construct -> ALWAYS AT LPAREN event_expression RPAREN statement .)
+    ASSIGN          reduce using rule 50 (always_construct -> ALWAYS AT LPAREN event_expression RPAREN statement .)
+    ALWAYS          reduce using rule 50 (always_construct -> ALWAYS AT LPAREN event_expression RPAREN statement .)
+    INITIAL         reduce using rule 50 (always_construct -> ALWAYS AT LPAREN event_expression RPAREN statement .)
+    ENDMODULE       reduce using rule 50 (always_construct -> ALWAYS AT LPAREN event_expression RPAREN statement .)
+
+
+state 144
+
+    (63) if_statement -> IF LPAREN expression RPAREN statement .
+    (64) if_statement -> IF LPAREN expression RPAREN statement . ELSE statement
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    WIRE            reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    REG             reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    PARAMETER       reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    LOCALPARAM      reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    ID              reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    ASSIGN          reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    ALWAYS          reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    INITIAL         reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    ENDMODULE       reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    IF              reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    CASE            reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    BEGIN           reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    END             reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    DEFAULT         reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    NUMBER          reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    LPAREN          reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    STRING          reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    ENDCASE         reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .)
+    ELSE            shift and go to state 154
+
+  ! ELSE            [ reduce using rule 63 (if_statement -> IF LPAREN expression RPAREN statement .) ]
+
+
+state 145
+
+    (68) constant_expression -> expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+    (42) expression -> expression . TIMES term
+    (43) expression -> expression . DIVIDE term
+    (44) expression -> expression . MODULO term
+
+    COLON           reduce using rule 68 (constant_expression -> expression .)
+    PLUS            shift and go to state 123
+    MINUS           shift and go to state 124
+    TIMES           shift and go to state 125
+    DIVIDE          shift and go to state 126
+    MODULO          shift and go to state 127
+
+
+state 146
+
+    (65) case_statement -> CASE LPAREN expression RPAREN case_item_list . ENDCASE
+
+    ENDCASE         shift and go to state 155
+
+
+state 147
+
+    (66) case_item_list -> case_item . case_item_list
+    (67) case_item_list -> case_item .
+    (66) case_item_list -> . case_item case_item_list
+    (67) case_item_list -> . case_item
+    (70) case_item -> . constant_expression COLON statement
+    (71) case_item -> . DEFAULT COLON statement
+    (68) constant_expression -> . expression
+    (69) constant_expression -> . NUMBER
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) expression -> . expression TIMES term
+    (43) expression -> . expression DIVIDE term
+    (44) expression -> . expression MODULO term
+    (45) expression -> . LPAREN expression RPAREN
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    ENDCASE         reduce using rule 67 (case_item_list -> case_item .)
+    DEFAULT         shift and go to state 149
+    NUMBER          shift and go to state 150
+    LPAREN          shift and go to state 104
+    ID              shift and go to state 101
+    STRING          shift and go to state 106
+
+    case_item                      shift and go to state 147
+    case_item_list                 shift and go to state 156
+    constant_expression            shift and go to state 148
+    expression                     shift and go to state 145
+    term                           shift and go to state 103
+
+state 148
+
+    (70) case_item -> constant_expression . COLON statement
+
+    COLON           shift and go to state 157
+
+
+state 149
+
+    (71) case_item -> DEFAULT . COLON statement
+
+    COLON           shift and go to state 158
+
+
+state 150
+
+    (69) constant_expression -> NUMBER .
+    (47) term -> NUMBER .
+
+  ! reduce/reduce conflict for COLON resolved using rule 47 (term -> NUMBER .)
+    PLUS            reduce using rule 47 (term -> NUMBER .)
+    MINUS           reduce using rule 47 (term -> NUMBER .)
+    TIMES           reduce using rule 47 (term -> NUMBER .)
+    DIVIDE          reduce using rule 47 (term -> NUMBER .)
+    MODULO          reduce using rule 47 (term -> NUMBER .)
+    COLON           reduce using rule 47 (term -> NUMBER .)
+
+  ! COLON           [ reduce using rule 69 (constant_expression -> NUMBER .) ]
+
+
+state 151
+
+    (31) instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON .
+
+    WIRE            reduce using rule 31 (instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON .)
+    REG             reduce using rule 31 (instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON .)
+    PARAMETER       reduce using rule 31 (instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON .)
+    LOCALPARAM      reduce using rule 31 (instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON .)
+    ID              reduce using rule 31 (instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON .)
+    ASSIGN          reduce using rule 31 (instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON .)
+    ALWAYS          reduce using rule 31 (instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON .)
+    INITIAL         reduce using rule 31 (instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON .)
+    ENDMODULE       reduce using rule 31 (instantiation -> ID parameter_value_assignment_opt ID LPAREN named_port_connection_list RPAREN SEMICOLON .)
+
+
+state 152
+
+    (35) named_port_connection_list -> DOT ID LPAREN . expression RPAREN COMMA named_port_connection_list
+    (36) named_port_connection_list -> DOT ID LPAREN . expression RPAREN
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) expression -> . expression TIMES term
+    (43) expression -> . expression DIVIDE term
+    (44) expression -> . expression MODULO term
+    (45) expression -> . LPAREN expression RPAREN
+    (46) term -> . ID
+    (47) term -> . NUMBER
+    (48) term -> . STRING
+
+    LPAREN          shift and go to state 104
+    ID              shift and go to state 101
+    NUMBER          shift and go to state 105
+    STRING          shift and go to state 106
+
+    expression                     shift and go to state 159
+    term                           shift and go to state 103
+
+state 153
+
+    (32) parameter_value_assignment_opt -> HASH LPAREN parameter_assignment COMMA parameter_value_assignment_opt RPAREN .
+
+    ID              reduce using rule 32 (parameter_value_assignment_opt -> HASH LPAREN parameter_assignment COMMA parameter_value_assignment_opt RPAREN .)
+    RPAREN          reduce using rule 32 (parameter_value_assignment_opt -> HASH LPAREN parameter_assignment COMMA parameter_value_assignment_opt RPAREN .)
+
+
+state 154
+
+    (64) if_statement -> IF LPAREN expression RPAREN statement ELSE . statement
+    (56) statement -> . blocking_assignment SEMICOLON
+    (57) statement -> . non_blocking_assignment SEMICOLON
+    (58) statement -> . if_statement
+    (59) statement -> . case_statement
+    (60) statement -> . begin_end_block
+    (61) blocking_assignment -> . ID BLOCKING_ASSIGN expression
+    (62) non_blocking_assignment -> . ID NON_BLOCKING_ASSIGN expression
+    (63) if_statement -> . IF LPAREN expression RPAREN statement
+    (64) if_statement -> . IF LPAREN expression RPAREN statement ELSE statement
+    (65) case_statement -> . CASE LPAREN expression RPAREN case_item_list ENDCASE
+    (72) begin_end_block -> . BEGIN statement_list END
+
+    ID              shift and go to state 67
+    IF              shift and go to state 68
+    CASE            shift and go to state 69
+    BEGIN           shift and go to state 70
+
+    statement                      shift and go to state 160
+    blocking_assignment            shift and go to state 62
+    non_blocking_assignment        shift and go to state 63
+    if_statement                   shift and go to state 64
+    case_statement                 shift and go to state 65
+    begin_end_block                shift and go to state 66
+
+state 155
+
+    (65) case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .
+
+    WIRE            reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    REG             reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    PARAMETER       reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    LOCALPARAM      reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    ID              reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    ASSIGN          reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    ALWAYS          reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    INITIAL         reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    ENDMODULE       reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    IF              reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    CASE            reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    BEGIN           reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    END             reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    ELSE            reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    DEFAULT         reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    NUMBER          reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    LPAREN          reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    STRING          reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+    ENDCASE         reduce using rule 65 (case_statement -> CASE LPAREN expression RPAREN case_item_list ENDCASE .)
+
+
+state 156
+
+    (66) case_item_list -> case_item case_item_list .
+
+    ENDCASE         reduce using rule 66 (case_item_list -> case_item case_item_list .)
+
+
+state 157
+
+    (70) case_item -> constant_expression COLON . statement
+    (56) statement -> . blocking_assignment SEMICOLON
+    (57) statement -> . non_blocking_assignment SEMICOLON
+    (58) statement -> . if_statement
+    (59) statement -> . case_statement
+    (60) statement -> . begin_end_block
+    (61) blocking_assignment -> . ID BLOCKING_ASSIGN expression
+    (62) non_blocking_assignment -> . ID NON_BLOCKING_ASSIGN expression
+    (63) if_statement -> . IF LPAREN expression RPAREN statement
+    (64) if_statement -> . IF LPAREN expression RPAREN statement ELSE statement
+    (65) case_statement -> . CASE LPAREN expression RPAREN case_item_list ENDCASE
+    (72) begin_end_block -> . BEGIN statement_list END
+
+    ID              shift and go to state 67
+    IF              shift and go to state 68
+    CASE            shift and go to state 69
+    BEGIN           shift and go to state 70
+
+    statement                      shift and go to state 161
+    blocking_assignment            shift and go to state 62
+    non_blocking_assignment        shift and go to state 63
+    if_statement                   shift and go to state 64
+    case_statement                 shift and go to state 65
+    begin_end_block                shift and go to state 66
+
+state 158
+
+    (71) case_item -> DEFAULT COLON . statement
+    (56) statement -> . blocking_assignment SEMICOLON
+    (57) statement -> . non_blocking_assignment SEMICOLON
+    (58) statement -> . if_statement
+    (59) statement -> . case_statement
+    (60) statement -> . begin_end_block
+    (61) blocking_assignment -> . ID BLOCKING_ASSIGN expression
+    (62) non_blocking_assignment -> . ID NON_BLOCKING_ASSIGN expression
+    (63) if_statement -> . IF LPAREN expression RPAREN statement
+    (64) if_statement -> . IF LPAREN expression RPAREN statement ELSE statement
+    (65) case_statement -> . CASE LPAREN expression RPAREN case_item_list ENDCASE
+    (72) begin_end_block -> . BEGIN statement_list END
+
+    ID              shift and go to state 67
+    IF              shift and go to state 68
+    CASE            shift and go to state 69
+    BEGIN           shift and go to state 70
+
+    statement                      shift and go to state 162
+    blocking_assignment            shift and go to state 62
+    non_blocking_assignment        shift and go to state 63
+    if_statement                   shift and go to state 64
+    case_statement                 shift and go to state 65
+    begin_end_block                shift and go to state 66
+
+state 159
+
+    (35) named_port_connection_list -> DOT ID LPAREN expression . RPAREN COMMA named_port_connection_list
+    (36) named_port_connection_list -> DOT ID LPAREN expression . RPAREN
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+    (42) expression -> expression . TIMES term
+    (43) expression -> expression . DIVIDE term
+    (44) expression -> expression . MODULO term
+
+    RPAREN          shift and go to state 163
+    PLUS            shift and go to state 123
+    MINUS           shift and go to state 124
+    TIMES           shift and go to state 125
+    DIVIDE          shift and go to state 126
+    MODULO          shift and go to state 127
+
+
+state 160
+
+    (64) if_statement -> IF LPAREN expression RPAREN statement ELSE statement .
+
+    WIRE            reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    REG             reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    PARAMETER       reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    LOCALPARAM      reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    ID              reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    ASSIGN          reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    ALWAYS          reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    INITIAL         reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    ENDMODULE       reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    IF              reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    CASE            reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    BEGIN           reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    END             reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    ELSE            reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    DEFAULT         reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    NUMBER          reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    LPAREN          reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    STRING          reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+    ENDCASE         reduce using rule 64 (if_statement -> IF LPAREN expression RPAREN statement ELSE statement .)
+
+
+state 161
+
+    (70) case_item -> constant_expression COLON statement .
+
+    DEFAULT         reduce using rule 70 (case_item -> constant_expression COLON statement .)
+    NUMBER          reduce using rule 70 (case_item -> constant_expression COLON statement .)
+    LPAREN          reduce using rule 70 (case_item -> constant_expression COLON statement .)
+    ID              reduce using rule 70 (case_item -> constant_expression COLON statement .)
+    STRING          reduce using rule 70 (case_item -> constant_expression COLON statement .)
+    ENDCASE         reduce using rule 70 (case_item -> constant_expression COLON statement .)
+
+
+state 162
+
+    (71) case_item -> DEFAULT COLON statement .
+
+    DEFAULT         reduce using rule 71 (case_item -> DEFAULT COLON statement .)
+    NUMBER          reduce using rule 71 (case_item -> DEFAULT COLON statement .)
+    LPAREN          reduce using rule 71 (case_item -> DEFAULT COLON statement .)
+    ID              reduce using rule 71 (case_item -> DEFAULT COLON statement .)
+    STRING          reduce using rule 71 (case_item -> DEFAULT COLON statement .)
+    ENDCASE         reduce using rule 71 (case_item -> DEFAULT COLON statement .)
+
+
+state 163
+
+    (35) named_port_connection_list -> DOT ID LPAREN expression RPAREN . COMMA named_port_connection_list
+    (36) named_port_connection_list -> DOT ID LPAREN expression RPAREN .
+
+    COMMA           shift and go to state 164
+    RPAREN          reduce using rule 36 (named_port_connection_list -> DOT ID LPAREN expression RPAREN .)
+
+
+state 164
+
+    (35) named_port_connection_list -> DOT ID LPAREN expression RPAREN COMMA . named_port_connection_list
+    (35) named_port_connection_list -> . DOT ID LPAREN expression RPAREN COMMA named_port_connection_list
+    (36) named_port_connection_list -> . DOT ID LPAREN expression RPAREN
+    (37) named_port_connection_list -> . empty
+    (75) empty -> .
+
+    DOT             shift and go to state 119
+    RPAREN          reduce using rule 75 (empty -> .)
+
+    named_port_connection_list     shift and go to state 165
+    empty                          shift and go to state 120
+
+state 165
+
+    (35) named_port_connection_list -> DOT ID LPAREN expression RPAREN COMMA named_port_connection_list .
+
+    RPAREN          reduce using rule 35 (named_port_connection_list -> DOT ID LPAREN expression RPAREN COMMA named_port_connection_list .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ELSE in state 144 resolved as shift
+WARNING: reduce/reduce conflict in state 18 resolved using rule (port_type_opt -> empty)
+WARNING: rejected rule (range_opt -> empty) in state 18
+WARNING: reduce/reduce conflict in state 30 resolved using rule (module_items -> module_item)
+WARNING: rejected rule (empty -> <empty>) in state 30
+WARNING: reduce/reduce conflict in state 150 resolved using rule (term -> NUMBER)
+WARNING: rejected rule (constant_expression -> NUMBER) in state 150
+WARNING: Rule (constant_expression -> NUMBER) is never reduced
